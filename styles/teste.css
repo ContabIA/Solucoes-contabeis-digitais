@@ -44,3 +44,14 @@ nav {
     width: 60px;
     height: 60px;
 }
+
+/* main */
+
+
+/* footer */
+
+footer{
+    margin-top: 100%;
+    background: aqua;
+    padding: 5em 0;
+}

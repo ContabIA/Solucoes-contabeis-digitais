@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;1,600&display=swap');
+
+:root {
+    --fonte: "Montserrat", sans-serif;
+    --cor-textos: #FFFFFF
+}
+
+body {
+    background-color: #110119;
+    box-shadow: #110119;
+}
+
+
+/* header */
+nav {
+    background: #2B2551;
+    font-family: var(--fonte);
+    width: 100%;
+    display: flex;
+    justify-content: left;
+}
+
+.logo{
+    padding: 1em 1em;
+    width: 280px;
+    height: 90px;
+}
+
+.login {
+    display: grid;
+    justify-items: center;
+    margin-top: 4em;
+}
+
+h1 {
+    padding-bottom: 0.7em;
+    font-size: 40px;
+    font-family: var(--fonte);
+    color: var(--cor-textos);
+}
+
+.form {
+    display: grid;
+    justify-items: center;
+}
+
+.inputs {
+    margin-bottom: 1em;
+    width: 20em;
+    padding: 0.5em 1em;
+    border-radius: 15px;
+    border: #2B2551 2px solid;
+    background-color: #C3C3C3;
+    font-family: var(--fonte);
+    font-size: 18px;
+    text-align: center;
+}
+
+#user::placeholder {
+    background-image: url(../img/user-Icon.png);
+    background-size: 40px;
+    background-repeat: no-repeat;
+    background-position: 17.8em;
+    padding: 0.5em;
+}
+
+#senha::placeholder {
+    background-image: url(../img/cadeado.png);
+    background-size: 35px;
+    background-repeat: no-repeat;
+    background-position: 17.8em;
+    padding: 0.5em;
+}
+
+.inputs::placeholder {
+    color: #636363;
+    font-family: var(--fonte);
+    font-size: 18px;
+    text-align: center;
+}
+
+#button {
+    width: 15em;
+    font-family: var(--fonte);
+    font-size: 18px;
+    border-radius: 15px;
+    background-color: #2B2551;
+    border: #2B2551 2px solid;
+    color: var(--cor-textos);
+    padding: 0.3em 0;
+}
+
+a {
+    color: var(--cor-textos);
+    font-family: var(--fonte);
+    font-size: 14px;
+    text-decoration: underline;
+    margin: 1em 0;
+}

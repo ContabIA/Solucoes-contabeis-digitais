@@ -1,14 +1,47 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Page Title</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src='main.js'></script>
-</head>
-<body>
-    
-</body>
+
+<html lang="pt-br">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="../styles/reset.css">
+        <link rel="stylesheet" href="../styles/cadastroUser.css">
+        <script src="../main.js" defer></script>
+
+        <title>ContabIA</title>
+    </head>
+
+    <body>
+
+        <header>
+            <nav>
+                <img src="../img/logo.png" alt="logo" class="logo">
+            </nav>
+        </header>
+
+        <main>
+            <section class="login">
+                <h1>Criar Conta</h1>
+
+                <form method="get" class="form">
+                    <input type="text" placeholder="CNPJ" minlength="14" maxlength="14" class="inputs user" required>
+
+                    <input type="password" placeholder="Senha" minlength="6" maxlength="6" class="inputs senha" required>
+
+                    <input type="password" placeholder="Confirme sua Senha" minlength="6" maxlength="6" class="inputs senha" required>
+
+                    <input type="email" placeholder="E-mail" class="inputs email" required>
+
+                    <input type="email" placeholder="Confirme seu E-mail" class="inputs email" required>
+                    <button id="button">Entrar</button>
+                </form>
+
+                <a href="../views/loginUser.html">Já tenho uma conta</a>
+            </section>
+        </main>
+
+    </body>
+
 </html>
