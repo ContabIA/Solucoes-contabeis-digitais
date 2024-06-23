@@ -1,14 +1,78 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Page Title</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cadastroCnpj</title>
+    <link rel="stylesheet" href="../styles/reset.css">
+    <link rel="stylesheet" href="../styles/cadastroCnpj.css">
     <script src='main.js'></script>
 </head>
 <body>
-    
+    <header>
+        <nav>
+            <a href="../views/home.html"><img src="../img/logo.png" alt="logo" class="logo"></a>
+
+            <a href="../views/cadastroCnpj.html" class="button-nav">CNPJ's</a>
+
+            <a href="#" class="button-nav">Histórico de Alterações</a>
+
+            <div class="caixa-user">
+
+                <label id="user">XX.XXX.XXX/0001-XX</label>
+                <img src="../img/user-Icon.png" alt="userIcon" id="userIcon">
+
+            </div>
+        </nav>
+
+        <main>
+            <div class="container">
+                <div class="telaCadastro">
+                
+                <form action="" class="formCadCnpj">
+                    <label class="labelFormCadCnpj" for="">Cadastrar Novo CNPJ</label>
+                    <input type="text" placeholder="CNPJ" minlength="14" maxlength="14" class="inputCadCnpj" id="cnpjCadCnpj" name="cnpjCadCnpj" required>
+                    <input type="text" placeholder="Nome" minlength="14" maxlength="14" class="inputCadCnpj" id="nomeCadCnpj" name="nomeCadCnpj" required>
+                    <label class="labelFormCadCnpj" for="">Consultas</label>
+                    <div class="consultasCadCnpj">
+                        <div class="checkboxCadCnpj">
+                            <input type="checkbox" name="checkboxSefaz">
+                            <label for=""><span class="fontBold">SEFAZ</span> - Secretaria da Fazenda</label> 
+                            <select name="frequenciaSefaz" id="frequenciaSefaz">
+                                <option value="1">Semanalmente</option>
+                                <option value="2">Mensalmente</option>
+                                <option value="3">Anualmente</option>
+                            </select>  
+                        </div>
+                        <div class="checkboxCadCnpj">
+                            <input type="checkbox" name="checkboxCnd">
+                            <label for=""><span class="fontBold">CND</span> - Certidão Negativa de Débitos - Receita Federal</label> 
+                            <select name="frequenciaCnd" id="frequenciaCnd">
+                                <option value="1">Semanalmente</option>
+                                <option value="2">Mensalmente</option>
+                                <option value="3">Anualmente</option>
+                            </select>       
+                        </div>
+                        <div style="border: none;" class="checkboxCadCnpj">
+                            <input type="checkbox" name="checkboxCndt">
+                            <label for=""><span class="fontBold">CNDT</span> - Certidão Negativa de Debito Trabalhista</label>
+                            <select class="" name="frequenciaCndt" id="frequenciaCndt">
+                                <option value="1">Semanalmente</option>
+                                <option value="2">Mensalmente</option>
+                                <option value="3">Anualmente</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+
+                </form>
+                    
+                </div>
+            </div>
+        </main>
+
+        <footer></footer>
+
+    </header>
 </body>
 </html>
