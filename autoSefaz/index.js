@@ -1,7 +1,7 @@
 const cypress = require('cypress')
 
   cypress
-  .run({
+  .open({
     spec: './cypress/e2e/login.cy.js',
   })
   .then((results) => {

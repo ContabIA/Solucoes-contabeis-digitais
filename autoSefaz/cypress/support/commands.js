@@ -34,21 +34,15 @@ Cypress.Commands.add('coleta_notas', () => {
     
 })
 
-Cypress.Commands.add('cria_arquivo_svc', () => {
+Cypress.Commands.add('cria_arquivo_json', () => {
     cy.writeFile('notas.txt', '')
     
     //Coletando tabela com notas e tabela com resumo das notas 
 
-    cy.get('[name=frmConsultar] > table:nth-child(3) > tbody > tr')
-    .each(($linha) => {
-        cy.log('oi')
-    }) 
-
     var c = 0
-    cy.get('[name=frmConsultar] > table:nth-child(2) > tbody > tr > td').invoke('text')
+    cy.get('[name=frmConsultar] > table:nth-child(2) > tbody > tr > td')
     .each(($coluna, index) => {
 
-        cy.log($coluna)
         if (index < 8){
             c += 1
             return
@@ -61,12 +55,17 @@ Cypress.Commands.add('cria_arquivo_svc', () => {
             c += 7
             return
         } 
-        // cy.get($coluna).invoke('text').then(($conteudo) => {
-        //     cy.writeFile('notas.txt', $conteudo  + ', ', {flag :'a+'})
-        // })
-        // if (index <= 1){
-        //     return
-        // }
+        cy.get($coluna).invoke('text').then(($conteudo) => {
+            if (index == c - 1){
+                cy.writeFile('notas.txt', $conteudo  + '\n', {flag :'a+'})
+            } else{
+                cy.writeFile('notas.txt', $conteudo  + ', ', {flag :'a+'})
+            }
+            
+        })
+        if (index <= 1){
+            return
+        }
         
         // var conteudo = ''
         // cy.get($linha).find('td').each(($coluna, k, $lista) => {
