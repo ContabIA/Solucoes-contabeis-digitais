@@ -2,6 +2,19 @@ const fs = require('fs');
 const captcha = require('@2captcha/captcha-solver');
 const solver = new captcha.Solver("31693569b91ed643587f2531785ae020");
 
+var getInput = async function(){
+    // função para pegar os cnpj's em input_CNPJ.txt
+
+    let arqCnpj = fs.readFileSync("input_autoCndt.txt", "utf8").split("\n");
+    return arqCnpj;
+}
+
+var writeOutput = async function(output){
+    // função para escrever os resultados em output_autoCndt
+    
+    fs.writeFileSync("output_autoCndt.txt", output);
+}
+
 async function getUrl(){
     try{
         var urlB = fs.readFileSync('imgUrl.txt', 'utf8');
