@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.contabia</groupId>
-	<artifactId>contabIA</artifactId>
+	<artifactId>contabia</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>contabIA</name>
-	<description>Aplicação principal da ContabIA</description>
+	<name>contabia</name>
+	<description>aplicação principal do projeto ContabIA</description>
 	<url/>
 	<licenses>
 		<license/>

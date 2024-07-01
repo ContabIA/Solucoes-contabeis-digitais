@@ -1,10 +1,10 @@
-package com.contabia.contabIA;
+package com.contabia.contabia;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ContabIaApplicationTests {
+class ContabiaApplicationTests {
 
 	@Test
 	void contextLoads() {
