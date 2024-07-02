@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes</title>
+    <link rel="stylesheet" href="../static/styles/reset.css">
+    <link rel="stylesheet" href="../static/styles/detalhes.css">
+    <link rel="stylesheet" href="../static/styles/style.css">
+    <script src='main.js'></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="../views/home.html"><img src="../static/img/logo.png" alt="logo" class="logo"></a>
+
+            <a href="home.html" class="button-nav">Home</a>
+                
+            <a href="listaCnpj.html" class="button-nav">CNPJ's</a>
+
+            <div class="caixa-user">
+
+                <label id="user">XX.XXX.XXX/0001-XX</label>
+                <img src="../static/img/user-Icon.png" alt="userIcon" id="userIcon">
+
+            </div>
+        </nav>
+
+        <main>
+            <div class="container">
+                <div class="divPrincipal divDetalhes" >
+                    <H1 class="title">Detalhes {}</H1>
+
+                    <div style="margin-left: auto; margin-right: auto; ">
+                        <div class="detalhes1">
+                            <h2 class="title2"> CNPJ: XXXXXXXX/XXXX-XX </h2>
+                            <h2 class="title2"> Mês: 18/03</h2>
+                        </div>
+                    </div>
+
+                    <table class="detalhes">
+                        <tr style="border-bottom: 1px solid black;">
+                        <th>Número</th>
+                        <th>Série</th>
+                        <th>Data de Emissão</th>
+                        <th>CNPJ-Emitente</th>
+                        <th>Emitente</th>
+                        <th>Situação</th>
+                        <th style="border: none;">Valor Total</th>
+                        </tr>
+                        <td>1748497</td>
+                        <td>23</td>
+                        <td>01/05/2024</td>
+                        <td style="width: 200px;">XXXXXXXX/XXXX-XX</td>
+                        <td>BLACK E DECKER DO BRASIL LTDA</td>
+                        <td>Autorizada</td>
+                        <td style="border: none;">R$2.051,43</td>
+                    </table>
+
+                    <a class="btnVoltar" href="home.html">Voltar</a>
+                </div>
+            </div>
+        </main>
+    </header>
+</body>
+</html>
