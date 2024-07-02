@@ -27,12 +27,12 @@
             <section class="login">
                 <h1>Login</h1>
 
-                <form method="get" class="form">
-                    <input type="text" placeholder="CNPJ" minlength="14" maxlength="14" class="inputs" id="userLogin" required>
+                <form action="/" method="POST" class="form">
+                    <input name="cnpj" type="text" placeholder="CNPJ" minlength="14" maxlength="14" class="inputs" id="userLogin" required>
 
-                    <input type="password" placeholder="Senha" minlength="6" maxlength="6" class="inputs" id="senhaLogin" required>
+                    <input name="senha" type="password" placeholder="Senha" minlength="6" class="inputs" id="senhaLogin" required>
 
-                    <button id="button">Entrar</button>
+                    <button type="submit" id="button">Entrar</button>
                 </form>
 
                 <a th:href="@{/cadastro}">Criar uma conta</a>
