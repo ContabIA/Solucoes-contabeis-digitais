@@ -42,4 +42,8 @@ var solveCaptcha = async function (){
     });
 }
 
-module.exports = solveCaptcha;
+module.exports = {
+    solveCaptcha,
+    writeOutput,
+    getInput
+};
