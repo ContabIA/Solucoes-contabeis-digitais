@@ -1,5 +1,7 @@
 package com.contabia.contabia.models.entity;
 
+import com.contabia.contabia.models.dto.UserDto;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -34,4 +36,12 @@ public class UserModel {
 
     @Column(unique = true, nullable = false)
     private String userSefaz;
+
+    public UserModel(UserDto dados){
+        this.cnpj = dados.cnpj();
+        this.email = dados.email();
+        this.senha = dados.senha();
+        this.senhaSefaz = dados.senhaSefaz();
+        this.userSefaz = dados.userSefaz();
+    }
 }
