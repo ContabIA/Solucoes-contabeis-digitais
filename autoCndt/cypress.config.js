@@ -1,5 +1,5 @@
 const { defineConfig } = require("cypress");
-const solveCaptcha = require("./cypress/support/e2e");
+const {solveCaptcha, getInput, writeOutput} = require("./cypress/support/e2e");
 
 module.exports = defineConfig({
   e2e: {
@@ -9,7 +9,9 @@ module.exports = defineConfig({
           var ret = await solveCaptcha();
           console.log(ret);
           return ret;
-        }
+        },
+        getInput,
+        writeOutput
 
         
       });
