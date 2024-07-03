@@ -32,6 +32,6 @@ public class RegUserController {
     @Transactional
     public String addUsuario(@Valid UserDto dados){
         userRepository.save(new UserModel(dados));
-        return "redirect:/loginUser";
+        return "redirect:/";
     }
 }

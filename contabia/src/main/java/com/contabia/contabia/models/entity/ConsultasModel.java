@@ -8,12 +8,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 @Getter
-@AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Entity
 @Table(name = "Consulta")
@@ -31,4 +29,13 @@ public class ConsultasModel{
     @ManyToOne
     @JoinColumn(name="idEmpresa", nullable = false)
     private EmpresaModel empresa;
+
+    public ConsultasModel(int tipoConsulta, int frequencia, EmpresaModel empresa) {
+        this.tipoConsulta = tipoConsulta;
+        this.frequencia = frequencia;
+        this.empresa = empresa;
+    }
+
+    
+    
 }
