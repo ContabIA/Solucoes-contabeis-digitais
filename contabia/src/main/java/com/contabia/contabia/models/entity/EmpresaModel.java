@@ -11,8 +11,10 @@ import jakarta.persistence.Table;
 import jakarta.persistence.ManyToOne;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
+@NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Entity
 @Table(name = "Empresa")
