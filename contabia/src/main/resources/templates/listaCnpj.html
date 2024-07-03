@@ -11,11 +11,7 @@
 </head>
 <body>
     
-    <header>
-
-        <nav th:include="~{fragments :: nav}"></nav>
-        
-    </header>
+    <header th:insert="~{fragments :: nav}"></header>
 
     <main>
         <div class="container">
@@ -23,42 +19,8 @@
                 <div class="divBtnCadastrar">
                     <a class="btnCadastrar" th:href="@{/cadastroCnpj(cnpj=${cnpj})}"> Cadastrar Novo Cnpj </a>
                 </div>
-                <section id="cnpjs">
-                    <div class="divCnpj">
-                        <span class="nomeDivCnpj">XX.XXX.XXX/0001-XX - {{nome_exemplo1}}</span>
-                        <div class="opcoes">
-                            <a class="btnEditar" href="cadastroCnpj.html"> Editar </a>
-                            <button class="btnTrash"><img class="imgTrash" src="img/trash.png" alt=""></button>
-                        </div>
-                    </div>
-                    <div class="divCnpj">
-                        <span class="nomeDivCnpj">XX.XXX.XXX/0001-XX - {{nome_exemplo1}}</span>
-                        <div class="opcoes">
-                            <a class="btnEditar" href="cadastroCnpj.html"> Editar </a>
-                            <button class="btnTrash"><img class="imgTrash" src="img/trash.png" alt=""></button>
-                        </div>
-                    </div>
-                    <div class="divCnpj">
-                        <span class="nomeDivCnpj">XX.XXX.XXX/0001-XX - {{nome_exemplo1}}</span>
-                        <div class="opcoes">
-                            <a class="btnEditar" href="cadastroCnpj.html"> Editar </a>
-                            <button class="btnTrash"><img class="imgTrash" src="img/trash.png" alt=""></button>
-                        </div>
-                    </div>
-                    <div class="divCnpj">
-                        <span class="nomeDivCnpj">XX.XXX.XXX/0001-XX - {{nome_exemplo1}}</span>
-                        <div class="opcoes">
-                            <a class="btnEditar" href="cadastroCnpj.html"> Editar </a>
-                            <button class="btnTrash"><img class="imgTrash" src="img/trash.png" alt=""></button>
-                        </div>
-                    </div>
-                    <div class="divCnpj">
-                        <span class="nomeDivCnpj">XX.XXX.XXX/0001-XX - {{nome_exemplo1}}</span>
-                        <div class="opcoes">
-                            <a class="btnEditar" href="cadastroCnpj.html">  Editar </a>
-                            <button class="btnTrash"><img class="imgTrash" src="img/trash.png" alt=""></button>
-                        </div>
-                    </div>
+                <section id="cnpjs" th:each="infos : ${empresasInfos}" th:insert="~{fragments :: cnpj(infos)}">
+                    
                 </section>
             </div>
         </div>
