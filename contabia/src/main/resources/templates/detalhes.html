@@ -1,31 +1,22 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalhes</title>
-    <link rel="stylesheet" href="styles/reset.css">
-    <link rel="stylesheet" href="styles/detalhes.css">
-    <link rel="stylesheet" href="styles/style.css">
-    <script src='main.js'></script>
-</head>
-<body>
-    <header>
-        <nav>
-            <a th:href="@{/home}"><img src="img/logo.png" alt="logo" class="logo"></a>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Detalhes</title>
+        <link rel="stylesheet" href="styles/reset.css">
+        <link rel="stylesheet" href="styles/detalhes.css">
+        <link rel="stylesheet" href="styles/style.css">
+        <script src="js/main.js" defer></script>
+    </head>
+    <body>
 
-            <a href="home.html" class="button-nav">Home</a>
-                
-            <a href="listaCnpj.html" class="button-nav">CNPJ's</a>
+        <header>
 
-            <div class="caixa-user">
+            <nav th:include="~{fragments :: nav}"></nav>
 
-                <label id="user">XX.XXX.XXX/0001-XX</label>
-                <img src="img/user-Icon.png" alt="userIcon" id="userIcon">
-
-            </div>
-        </nav>
-
+        </header>
+        
         <main>
             <div class="container">
                 <div class="divPrincipal divDetalhes" >
@@ -61,6 +52,5 @@
                 </div>
             </div>
         </main>
-    </header>
-</body>
+    </body>
 </html>

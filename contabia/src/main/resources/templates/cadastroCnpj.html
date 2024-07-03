@@ -3,38 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>cadastroCnpj</title>
+
     <link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/cadastroCnpj.css">
-    <script src='main.js'></script>
+    <script src='js/main.js' defer></script>
+
+    <title>ContabIA</title>
 </head>
 <body>
     <header>
-        <nav>
-            <a th:href="@{/home}"><img src="img/logo.png" alt="logo" class="logo"></a>
 
-            <a href="home.html" class="button-nav">Home</a>
-                
-            <a href="listaCnpj.html" class="button-nav">CNPJ's</a>
+        <nav th:include="~{fragments :: nav}"></nav>
 
-            <div class="caixa-user">
-
-                <label id="user">XX.XXX.XXX/0001-XX</label>
-                <img src="img/user-Icon.png" alt="userIcon" id="userIcon">
-
-            </div>
-        </nav>
     </header>
     <main>
         <div class="container">
             <div class="divPrincipal">
             
-            <form action="" class="formCadCnpj">
+            <form th:action="@{/cadastroCnpj(cnpj=${cnpj})}" method="post" class="formCadCnpj">
                 <label class="labelFormCadCnpj" for="">Cadastrar Novo CNPJ</label>
-                <input type="text" placeholder="CNPJ" minlength="14" maxlength="14" class="inputCadCnpj" id="cnpjCadCnpj" name="cnpjCadCnpj" required>
-                <input type="text" placeholder="Nome" class="inputCadCnpj" maxlength="70" id="nomeCadCnpj" name="nomeCadCnpj" required>
+
+                <input type="text" placeholder="CNPJ" minlength="14" maxlength="14" class="inputCadCnpj" id="cnpjCadCnpj" name="cnpjEmpresa" required>
+
+                <input type="text" placeholder="Nome" class="inputCadCnpj" maxlength="70" id="nomeCadCnpj" name="nome" required>
+
                 <label class="labelFormCadCnpj" for="">Consultas</label>
+
                 <div class="consultasCadCnpj">
                     <div class="checkboxCadCnpj">
                         <input type="checkbox" name="checkboxSefaz">
@@ -45,7 +40,8 @@
                             <option value="3">Anualmente</option>
                         </select>  
                     </div>
-                    <div class="checkboxCadCnpj">
+
+                    <!-- <div class="checkboxCadCnpj">
                         <input type="checkbox" name="checkboxCnd">
                         <label class="labelCheckbox" for=""><span class="fontBold">CND</span> - Certidão Negativa de Débitos - Receita Federal</label> 
                         <select class="selectFreq" name="frequenciaCnd" id="frequenciaCnd">
@@ -53,7 +49,8 @@
                             <option value="2">Mensalmente</option>
                             <option value="3">Anualmente</option>
                         </select>       
-                    </div>
+                    </div> -->
+
                     <div style="border: none;" class="checkboxCadCnpj">
                         <input type="checkbox" name="checkboxCndt">
                         <label class="labelCheckbox" for=""><span class="fontBold">CNDT</span> - Certidão Negativa de Débitos Trabalhistas</label>
@@ -63,9 +60,10 @@
                             <option value="3">Anualmente</option>
                         </select>
                     </div>
+
                 </div>
                 
-                <button class="btnSalvar">Salvar</button>
+                <button type="submit" class="btnSalvar">Salvar</button>
             </form>
                 
             </div>
