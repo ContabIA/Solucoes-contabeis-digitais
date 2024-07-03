@@ -1,18 +1,13 @@
 const fs = require('fs');
 const captcha = require('@2captcha/captcha-solver');
 const solver = new captcha.Solver("31693569b91ed643587f2531785ae020");
+const path = require('path')
 
-var getInput = async function(){
-    // função para pegar os cnpj's em input_CNPJ.txt
-
-    let arqCnpj = fs.readFileSync("input_autoCndt.txt", "utf8").split("\n");
-    return arqCnpj;
-}
-
+// função para escrever os resultados em output_autoCndt
 var writeOutput = async function(output){
-    // função para escrever os resultados em output_autoCndt
     
-    fs.writeFileSync("output_autoCndt.txt", output);
+    // escreve os resultados em um txt
+    fs.writeFileSync(path.join(__dirname, "output_autoCndt.txt"), output);
 }
 
 async function getUrl(){
@@ -44,6 +39,5 @@ var solveCaptcha = async function (){
 
 module.exports = {
     solveCaptcha,
-    writeOutput,
-    getInput
+    writeOutput
 };
