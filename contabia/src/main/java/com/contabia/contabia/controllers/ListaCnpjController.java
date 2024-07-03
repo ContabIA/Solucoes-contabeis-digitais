@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -31,7 +32,7 @@ public class ListaCnpjController {
     private UserRepository userRepository;
 
     @GetMapping
-    public String getMethodName(@RequestParam("cnpj") String cnpj, Model model) {
+    public String listaCnpj(@RequestParam("cnpj") String cnpj, Model model) {
         Optional<UserModel> user = userRepository.findByCnpj(cnpj);
         List<EmpresaDto> infos = new ArrayList<>();
 
@@ -42,11 +43,17 @@ public class ListaCnpjController {
             for (EmpresaModel empresaModel : empresas) {
                 var nome = (empresaModel.getNome() + " - " + empresaModel.getCnpj());
                 
-                infos.add(new EmpresaDto(nome, empresaModel.getCnpj()));
+                infos.add(0, new EmpresaDto(nome, empresaModel.getCnpj()));
             }
             model.addAttribute("empresasInfos", infos);
         }
         model.addAttribute("cnpj", cnpj);
+        return "listaCnpj";
+    }
+
+    @DeleteMapping
+    public String delCnpj(){
+        
         return "listaCnpj";
     }
 }
