@@ -1,6 +1,6 @@
 package com.contabia.contabia.models.entity;
 
-import java.util.Date;
+import com.contabia.contabia.models.dto.RespostaDto;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -24,13 +24,11 @@ import lombok.NoArgsConstructor;
 public class RespostaModel {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true, nullable = false)
     private Long id;
 
     @Column(unique = false, nullable = false)
     private byte status;
-
-    @Column(unique = false, nullable = false)
-    private Date data;
 
     @Column(unique = false, nullable = false)
     private boolean novo;
@@ -38,4 +36,10 @@ public class RespostaModel {
     @ManyToOne
     @JoinColumn(name = "idConsulta", nullable = false)
     private ConsultasModel consulta;
+
+    public RespostaModel(RespostaDto dados, ConsultasModel consulta){
+        this.status = dados.status();
+        this.novo = dados.novo();
+        this.consulta = consulta;
+    }
 }

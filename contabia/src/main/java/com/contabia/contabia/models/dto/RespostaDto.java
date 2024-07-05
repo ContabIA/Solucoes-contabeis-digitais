@@ -2,12 +2,15 @@ package com.contabia.contabia.models.dto;
 
 import jakarta.validation.constraints.NotBlank;
 
-public record LoginDto(
+public record RespostaDto(
 
     @NotBlank
-    String cnpj,
-    
+    byte status,
+
     @NotBlank
-    String senha
-    
+    boolean novo,
+
+    @NotBlank
+    String cnpjEmpresa
+
 ) {}
