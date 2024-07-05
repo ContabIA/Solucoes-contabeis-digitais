@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
     
     @GetMapping
-    public String home(@RequestParam("cnpj") String cnpj, Model model) {
-        model.addAttribute("cnpj", cnpj);
+    public String home(@RequestParam("cnpjUser") String cnpjUser, Model model) {
+        model.addAttribute("cnpjUser", cnpjUser);
         return "home";
     }
 }

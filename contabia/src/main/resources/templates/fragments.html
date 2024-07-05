@@ -1,13 +1,13 @@
 <nav th:fragment="nav">
-    <a th:href="@{/home(cnpj=${cnpj})}"><img src="img/logo.png" alt="logo" class="logo"></a>
+    <a th:href="@{/home(cnpjUser=${cnpjUser})}"><img src="img/logo.png" alt="logo" class="logo"></a>
 
-    <a th:href="@{/home(cnpj=${cnpj})}" class="button-nav">Home</a>
+    <a th:href="@{/home(cnpjUser=${cnpjUser})}" class="button-nav">Home</a>
     
-    <a th:href="@{/listaCnpj(cnpj=${cnpj})}" class="button-nav">CNPJ's</a>
+    <a th:href="@{/listaCnpj(cnpjUser=${cnpjUser})}" class="button-nav">CNPJ's</a>
 
     <div class="caixa-user">
 
-        <label th:text="${cnpj}" id="user"></label>
+        <label th:text="${cnpjUser}" id="user"></label>
         <img src="img/user-Icon.png" alt="userIcon" id="userIcon">
 
     </div>
@@ -22,7 +22,7 @@
 <div th:fragment="cnpj(infos)" class="divCnpj">
     <span th:text="${infos.nome}" class="nomeDivCnpj"></span>
     <div class="opcoes">
-        <a class="btnEditar" th:href="@{/editCnpj(cnpj=${cnpj}, cnpjEmpresa=${infos.cnpj})}"> Editar </a>
-        <button type="reset" th:attr="onclick=|delEmpresa('${infos.cnpj}', '${cnpj}')|" class="btnTrash"><img class="imgTrash" src="img/trash.png" alt="imagem deletar"></button>
+        <a class="btnEditar" th:href="@{/editCnpj(cnpjUser=${cnpjUser}, cnpjEmpresa=${infos.cnpj})}"> Editar </a>
+        <button type="reset" th:attr="onclick=|delEmpresa('${infos.cnpj}', '${cnpjUser}')|" class="btnTrash"><img class="imgTrash" src="img/trash.png" alt="imagem deletar"></button>
     </div>
 </div>

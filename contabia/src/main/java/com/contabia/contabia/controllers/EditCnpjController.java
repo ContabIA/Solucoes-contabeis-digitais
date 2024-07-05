@@ -34,8 +34,8 @@ public class EditCnpjController {
     private UserRepository userRepository;
 
     @GetMapping
-    public String editCnpj(@RequestParam("cnpj") String cnpj, @RequestParam("cnpjEmpresa") String cnpjEmpresa, Model model) {
-        Optional<UserModel> user = userRepository.findByCnpj(cnpj);
+    public String editCnpj(@RequestParam("cnpjUser") String cnpjUser, @RequestParam("cnpjEmpresa") String cnpjEmpresa, Model model) {
+        Optional<UserModel> user = userRepository.findByCnpj(cnpjUser);
 
         if(user.isPresent()){
             var userEncontrado = user.get();
@@ -61,7 +61,7 @@ public class EditCnpjController {
                 model.addAttribute(sla.get(consultas.get(i).getTipoConsulta()) + Integer.toString(consultas.get(i).getFrequencia()), true);
             }
         }
-        model.addAttribute("cnpj", cnpj);
+        model.addAttribute("cnpjUser", cnpjUser);
         return "editCnpj";
     }
     
