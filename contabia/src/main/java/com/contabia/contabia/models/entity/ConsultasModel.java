@@ -26,6 +26,7 @@ import lombok.NoArgsConstructor;
 public class ConsultasModel{
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true, nullable = false)
     private Long id;
 
     @Column(unique = false, nullable = false)
