@@ -61,6 +61,7 @@ Cypress.Commands.add('cria_arquivo_json', () => {
             } else{
                 cy.writeFile('notas.txt', $conteudo  + ', ', {flag :'a+'})
             }
+            requisiçaõ
             
         })
         if (index <= 1){
