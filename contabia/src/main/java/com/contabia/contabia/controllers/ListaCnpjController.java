@@ -31,8 +31,8 @@ public class ListaCnpjController {
     private UserRepository userRepository;
 
     @GetMapping
-    public String listaCnpj(@RequestParam("cnpj") String cnpj, Model model) {
-        Optional<UserModel> user = userRepository.findByCnpj(cnpj);
+    public String listaCnpj(@RequestParam("cnpjUser") String cnpjUser, Model model) {
+        Optional<UserModel> user = userRepository.findByCnpj(cnpjUser);
         List<EmpresaDto> infos = new ArrayList<>();
 
         if(user.isPresent()){
@@ -46,13 +46,13 @@ public class ListaCnpjController {
             }
             model.addAttribute("empresasInfos", infos);
         }
-        model.addAttribute("cnpj", cnpj);
+        model.addAttribute("cnpjUser", cnpjUser);
         return "listaCnpj";
     }
 
     @DeleteMapping
     @Transactional
-    public String delCnpj(@RequestParam("cnpj") String cnpj, @RequestParam("cnpjEmpresa") String cnpjEmpresa){
+    public String delCnpj(@RequestParam("cnpjUser") String cnpjUser, @RequestParam("cnpjEmpresa") String cnpjEmpresa){
         empresaRepository.deleteByCnpj(cnpjEmpresa);
         return "listaCnpj";
     }

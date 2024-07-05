@@ -33,8 +33,8 @@ public class LoginController {
         if(user.isPresent()){
             var userEncontrado = user.get();
             if(userEncontrado.getSenha().equals(dadosLogin.senha())){
-                var cnpj = userEncontrado.getCnpj();
-                return "redirect:/home?cnpj=" + cnpj;
+                var cnpjUser = userEncontrado.getCnpj();
+                return "redirect:/home?cnpjUser=" + cnpjUser;
             }
         }
         return "loginUser";

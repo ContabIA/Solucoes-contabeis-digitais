@@ -19,7 +19,7 @@
         <div class="container">
             <div class="divPrincipal">
             
-            <form th:action="@{/cadastroCnpj(cnpj=${cnpj})}" method="post" class="formCadCnpj">
+            <form th:action="@{/cadastroCnpj(cnpjUser=${cnpjUser})}" method="post" class="formCadCnpj">
                 <label class="labelFormCadCnpj" for="">Cadastrar Novo CNPJ</label>
 
                 <input type="text" placeholder="CNPJ" minlength="14" maxlength="14" class="inputCadCnpj" id="cnpjCadCnpj" name="cnpjEmpresa" required>

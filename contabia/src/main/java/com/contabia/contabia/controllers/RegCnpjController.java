@@ -36,16 +36,16 @@ public class RegCnpjController {
     private ConsultasRepository consultaRepository;
 
     @GetMapping
-    public String cadastroCnpj(@RequestParam("cnpj") String cnpj, Model model) {
-        model.addAttribute("cnpj", cnpj);
+    public String cadastroCnpj(@RequestParam("cnpjUser") String cnpjUser, Model model) {
+        model.addAttribute("cnpjUser", cnpjUser);
         return "cadastroCnpj";
     }
     
     @PostMapping
     @Transactional
-    public String addEmpresa(@RequestParam("cnpj") String cnpj, @Valid RegCnpjDto dadosEmpresa) {
+    public String addEmpresa(@RequestParam("cnpjUser") String cnpjUser, @Valid RegCnpjDto dadosEmpresa) {
 
-        Optional<UserModel> user = userRepository.findByCnpj(cnpj);
+        Optional<UserModel> user = userRepository.findByCnpj(cnpjUser);
 
         if (user.isPresent()){
             var userEncontrado = user.get();
@@ -61,6 +61,6 @@ public class RegCnpjController {
             }
         }
         
-        return "redirect:/listaCnpj?cnpj=" + cnpj;
+        return "redirect:/listaCnpj?cnpjUser=" + cnpjUser;
     }
 }
