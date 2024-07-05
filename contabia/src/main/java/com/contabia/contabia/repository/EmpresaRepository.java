@@ -12,4 +12,8 @@ import com.contabia.contabia.models.entity.UserModel;
 public interface EmpresaRepository extends JpaRepository<EmpresaModel, Long> {
 
     List<EmpresaModel> findByUser(UserModel user);
+
+    EmpresaModel findByUserAndCnpj(UserModel user, String cnpj); 
+
+    void deleteByCnpj(String cnpjEmpresa);
 }

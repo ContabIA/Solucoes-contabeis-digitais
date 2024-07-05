@@ -17,11 +17,10 @@ import com.contabia.contabia.repository.ConsultasRepository;
 import com.contabia.contabia.repository.EmpresaRepository;
 import com.contabia.contabia.repository.UserRepository;
 
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.PostMapping;
-
-
 
 @Controller
 @RequestMapping("/cadastroCnpj")
@@ -43,9 +42,8 @@ public class RegCnpjController {
     }
     
     @PostMapping
+    @Transactional
     public String addEmpresa(@RequestParam("cnpj") String cnpj, @Valid RegCnpjDto dadosEmpresa) {
-        
-
 
         Optional<UserModel> user = userRepository.findByCnpj(cnpj);
 
@@ -61,11 +59,8 @@ public class RegCnpjController {
             if (dadosEmpresa.checkboxCndt().isPresent()){
                 consultaRepository.save(new ConsultasModel(3, dadosEmpresa.frequenciaCndt(), empresa));
             }
-
         }
         
         return "redirect:/listaCnpj?cnpj=" + cnpj;
     }
-    
-
 }

@@ -14,9 +14,11 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Entity
 @Table(name = "Notas")
@@ -48,6 +50,6 @@ public class NotasModel {
 
     @ManyToOne
     @JoinColumn(name="idEmpresa", nullable = false)
-    private EmpresaModel empresa;
-    
+    private EmpresaModel empresaNotas;
+
 }
