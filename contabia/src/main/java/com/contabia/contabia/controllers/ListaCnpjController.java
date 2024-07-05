@@ -18,8 +18,7 @@ import com.contabia.contabia.models.entity.UserModel;
 import com.contabia.contabia.repository.EmpresaRepository;
 import com.contabia.contabia.repository.UserRepository;
 
-
-
+import jakarta.transaction.Transactional;
 
 @Controller
 @RequestMapping("/listaCnpj")
@@ -52,8 +51,9 @@ public class ListaCnpjController {
     }
 
     @DeleteMapping
-    public String delCnpj(){
-        
+    @Transactional
+    public String delCnpj(@RequestParam("cnpj") String cnpj, @RequestParam("cnpjEmpresa") String cnpjEmpresa){
+        empresaRepository.deleteByCnpj(cnpjEmpresa);
         return "listaCnpj";
     }
 }
