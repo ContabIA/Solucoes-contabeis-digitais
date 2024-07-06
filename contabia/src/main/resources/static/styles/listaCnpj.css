@@ -1,0 +1,43 @@
+.divPrincipal{
+    text-align: center;
+    display: block;
+}
+
+.opcoes{
+    width: 20%;
+    display: flex;
+    align-items: center;
+}
+
+.btnEditar, .btnCadastrar{
+    text-decoration: none;
+    color: white;
+    background-color: #553D8A;
+    border-radius: 5px;
+    border: #361f51 2px solid;
+    transition-property: background-color, color;
+    transition-duration: 0.2s;
+    padding: 5px 20px 5px 20px;
+}
+
+.btnEditar:hover, .btnCadastrar:hover{
+    background-color: white;
+    color: black;
+}
+
+.divBtnCadastrar{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.imgTrash{
+    width: 50%;
+    cursor: pointer;
+}
+
+.btnTrash{
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    width: 5em;
+}

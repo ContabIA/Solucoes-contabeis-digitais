@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="/styles/reset.css">
+        <link rel="stylesheet" href="/styles/style.css">
+        <link rel="stylesheet" href="/styles/cadastroUser.css">
+        <script src="js/main.js" defer></script>
+        <title>ContabIA</title>
+    </head>
+
+    <body>
+
+        <header>
+            <nav>
+                <img src="/img/logo.png" alt="logo" class="logo">
+            </nav>
+        </header>
+
+        <main>
+            <section class="login">
+                <h1>Criar Conta</h1>
+
+                <form action="/cadastro" method="POST" class="form">
+                    <input type="text" name="cnpj" placeholder="CNPJ" minlength="14" maxlength="14" class="inputs user" required>
+
+                    <input type="password" name="senha" placeholder="Senha" minlength="6" class="inputs senha" required>
+
+                    <input type="email" name="email" placeholder="E-mail" class="inputs email" required>
+
+                    <input type="text" name="userSefaz" placeholder="Usuário Sefaz" class="inputs user" required>
+
+                    <input type="password" name="senhaSefaz" placeholder="Senha Sefaz" class="inputs senha" required>
+                    
+                    <button type="submit" id="button">Entrar</button>
+                </form>
+
+                <a th:href="@{/}">Já tenho uma conta</a>
+            </section>
+        </main>
+
+    </body>
+
+</html>
