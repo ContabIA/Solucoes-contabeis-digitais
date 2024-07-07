@@ -1,5 +1,7 @@
 package com.contabia.contabia.models.dto;
 
+import java.time.LocalDate;
+
 import jakarta.validation.constraints.NotBlank;
 
 //import jakarta.validation.constraints.NotBlank;
@@ -10,7 +12,7 @@ public record NotasDto(
     Long id,
 
     @NotBlank
-    String data,
+    LocalDate data,
 
     @NotBlank
     int serie,
@@ -19,7 +21,7 @@ public record NotasDto(
     String nomeEmitente,
 
     @NotBlank
-    int situacao,
+    String situacao,
 
     @NotBlank
     double valor,

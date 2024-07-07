@@ -20,8 +20,13 @@
                 <div class="divBtnCadastrar">
                     <a class="btnCadastrar" th:href="@{/cadastroCnpj(cnpjUser=${cnpjUser})}"> Cadastrar Novo Cnpj </a>
                 </div>
-                <section id="cnpjs" th:each="infos : ${empresasInfos}" th:insert="~{fragments :: cnpj(infos)}">
-                    
+
+                <section id="cnpjs">
+
+                    <div th:each="infos : ${empresasInfos}" th:insert="~{fragments :: cnpj(infos)}">
+                        
+                    </div>
+
                 </section>
             </div>
         </div>
