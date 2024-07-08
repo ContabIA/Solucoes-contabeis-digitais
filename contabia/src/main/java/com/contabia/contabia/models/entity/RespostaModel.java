@@ -1,5 +1,7 @@
 package com.contabia.contabia.models.entity;
 
+import java.time.LocalDate;
+
 import com.contabia.contabia.models.dto.RespostaDto;
 
 import jakarta.persistence.Column;
@@ -31,6 +33,9 @@ public class RespostaModel {
     private byte status;
 
     @Column(unique = false, nullable = false)
+    private LocalDate data;
+
+    @Column(unique = false, nullable = false)
     private boolean novo;
 
     @ManyToOne
@@ -40,6 +45,7 @@ public class RespostaModel {
     public RespostaModel(RespostaDto dados, ConsultasModel consulta){
         this.status = dados.status();
         this.novo = dados.novo();
+        this.data = dados.data();
         this.consulta = consulta;
     }
 }

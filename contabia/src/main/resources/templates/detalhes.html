@@ -4,10 +4,10 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Detalhes</title>
-        <link rel="stylesheet" href="styles/reset.css">
-        <link rel="stylesheet" href="styles/detalhes.css">
-        <link rel="stylesheet" href="styles/style.css">
-        <script src="js/main.js" defer></script>
+        <link rel="stylesheet" href="../styles/reset.css">
+        <link rel="stylesheet" href="../styles/detalhes.css">
+        <link rel="stylesheet" href="../styles/style.css">
+        <script src="../js/main.js" defer></script>
     </head>
     <body>
 
@@ -16,12 +16,12 @@
         <main>
             <div class="container">
                 <div class="divPrincipal divDetalhes" >
-                    <H1 class="title">Detalhes {}</H1>
+                    <H1 class="title">Detalhes <span th:text="${tipoAlt}"></span></H1>
 
                     <div style="margin-left: auto; margin-right: auto; ">
                         <div class="detalhes1">
-                            <h2 class="title2"> CNPJ: XXXXXXXX/XXXX-XX </h2>
-                            <h2 class="title2"> Mês: 18/03</h2>
+                            <h2 class="title2" th:text="${'CNPJ - ' + nota.cnpjEmpresa}"></h2>
+                            <h2 class="title2" th:text="${'Mês - ' + nota.data.getMonth()}"></h2>
                         </div>
                     </div>
 
@@ -30,21 +30,19 @@
                         <th>Número</th>
                         <th>Série</th>
                         <th>Data de Emissão</th>
-                        <th>CNPJ-Emitente</th>
                         <th>Emitente</th>
                         <th>Situação</th>
                         <th style="border: none;">Valor Total</th>
                         </tr>
-                        <td>1748497</td>
-                        <td>23</td>
-                        <td>01/05/2024</td>
-                        <td style="width: 200px;">XXXXXXXX/XXXX-XX</td>
-                        <td>BLACK E DECKER DO BRASIL LTDA</td>
-                        <td>Autorizada</td>
-                        <td style="border: none;">R$2.051,43</td>
+                        <td th:text="${nota.id}"></td>
+                        <td th:text="${nota.serie}"></td>
+                        <td th:text="${nota.data}" id="data"></td>
+                        <td th:text="${nota.nomeEmitente}"></td>
+                        <td th:text="${nota.situacao}"></td>
+                        <td th:text="${'R$ ' + nota.valor}" style="border: none;"></td>
                     </table>
 
-                    <a class="btnVoltar" href="home.html">Voltar</a>
+                    <a class="btnVoltar" th:href="@{/home(cnpjUser=${cnpjUser})}">Voltar</a>
                 </div>
             </div>
         </main>
