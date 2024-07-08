@@ -3,11 +3,26 @@ const captcha = require('@2captcha/captcha-solver');
 const solver = new captcha.Solver("31693569b91ed643587f2531785ae020");
 const path = require('path')
 
+
+
 // função para escrever os resultados em output_autoCndt
-var writeOutput = async function(output){
-    
+var writeOutput = async function(cnpj, status){
+    /*
+    output = {
+        "status" : int[0-15],
+        "cnpj" : str
+    }
+    */
+
     // escreve os resultados em um txt
-    fs.writeFileSync(path.join(__dirname, "output_autoCndt.txt"), output);
+
+    let resp = cnpj + ":" + status;
+
+    fs.writeFileSync(
+        "autoCndt_output.txt",
+        fs.readFileSync("autoCndt_output.txt") + resp
+    );
+    return null;
 }
 
 async function getUrl(){
