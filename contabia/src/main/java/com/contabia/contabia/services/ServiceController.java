@@ -46,9 +46,9 @@ public class ServiceController {
     private RespostaRepository respostaRepository;
 
     @GetMapping("/getCnpj")
-    public ResponseEntity<ServiceDto> getCnpj(@RequestParam("ultimoDigito") int ultimoDigito, @RequestParam("frequencia") int frequencia, @RequestParam("tipoConsulta") int tipoConsulta) {
+    public ResponseEntity<ServiceDto> getCnpj(@RequestParam("tamanhoFinal") int tamanhoFinal, @RequestParam("ultimoDigito") int ultimoDigito, @RequestParam("frequencia") int frequencia, @RequestParam("tipoConsulta") int tipoConsulta) {
 
-        List<Long> listIdEmpresa = consultasRepository.empresasOfDay(ultimoDigito, frequencia, tipoConsulta);
+        List<Long> listIdEmpresa = consultasRepository.empresasOfDay(tamanhoFinal, ultimoDigito, frequencia, tipoConsulta);
         List<String> cnpjs = new ArrayList<>();
 
         for (Long id : listIdEmpresa) {

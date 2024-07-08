@@ -1,5 +1,5 @@
 <nav th:fragment="nav">
-    <a th:href="@{/home(cnpjUser=${cnpjUser})}"><img src="img/logo.png" alt="logo" class="logo"></a>
+    <a th:href="@{/home(cnpjUser=${cnpjUser})}"><img src="../img/logo.png" alt="logo" class="logo"></a>
 
     <a th:href="@{/home(cnpjUser=${cnpjUser})}" class="button-nav">Home</a>
     
@@ -8,14 +8,14 @@
     <div class="caixa-user">
 
         <label th:text="${cnpjUser}" id="user"></label>
-        <img src="img/user-Icon.png" alt="userIcon" id="userIcon">
+        <img src="../img/user-Icon.png" alt="userIcon" id="userIcon">
 
     </div>
 </nav>
 
 <div th:fragment="alteracao" class="divAlt">
-    <span th:text="${nome}" class="nomeAlt"></span>
-    <a class="detalhesLink" th:href="@{/detalhes}">Ver detalhes</a>
+    <span class="nomeAlt" th:text="${infos.texto}"></span>
+    <a class="detalhesLink" th:href="@{${'detalhes/' + infos.tipoAlt}(cnpjUser=${cnpjUser}, cnpjEmpresa=${infos.cnpjEmpresa}, idAlt=${infos.altId})}">Ver detalhes</a>
 </div>
 
 

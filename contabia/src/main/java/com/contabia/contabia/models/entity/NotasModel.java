@@ -1,6 +1,7 @@
 package com.contabia.contabia.models.entity;
 
-import java.util.Date;
+
+import java.time.LocalDate;
 
 import com.contabia.contabia.models.dto.NotasDto;
 
@@ -29,7 +30,7 @@ public class NotasModel {
     private Long id;
 
     @Column(unique = false, nullable = false)
-    private String data;
+    private LocalDate data;
 
     @Column(unique = false, nullable = false)
     private int serie;
@@ -41,7 +42,7 @@ public class NotasModel {
     private String nomeEmitente;
 
     @Column(unique = false, nullable = false)
-    private int situacao;
+    private String situacao;
 
     @Column(unique = false, nullable = false)
     private double valor;
