@@ -1,11 +1,13 @@
+#!/bin/env node index.js >> saida.txt
 const cypress = require('cypress');
 const fs = require('fs');
+const { resolve, join } = require('path');
 
 var runArgs = {
     spec: './cypress/e2e/certidao.cy.js', 
     configFile: './cypress.config.js', 
     env:'', 
-    headed:true, 
+    headed:false, 
     browser:'edge'
 };
 
@@ -105,75 +107,148 @@ async function getInput(){
 
 };
 
+function getFormatedDate(){
+    let dateObj = new Date();
+
+    let year = dateObj.getFullYear();
+    
+    let month = (dateObj.getMonth()+1).toString().padStart(2,"0");
+
+    let date = dateObj.gateDate().toString().padStart(2,"0");
+
+    return year + "-" + month + "-" + date;
+}
+
 // função para enviar o output
 function sendOutput(){
+
+    let dateObj = new Date();
 
     // pegando todos os outputs gerados
     let outputs_cypress = fs.readFileSync("autoCndt_output.txt").toString().split("\n");
 
+    console.log("autoCndt/index.js/sendOutput - outputArq: " + outputs_cypress);
+
     // transformandos todos os outputs de strig para obj
     outputs_cypress = outputs_cypress.map(element => {
 
-        let args = element.split(":")
+        let args = element.split(":");
+        console.log("autCndt/index.js/sendOutput - args: " + args + ";args[0]: " + args[0] + ";args[1]: " + args[1]);
 
         return {
             status : parseInt(args[1]),
             novo : true,
             cnpjEmpresa : args[0],
-            data : "2020-01-01"
+            data : getFormatedDate()
         };
     });
     
     // criando o body da requisição
     body = {
-        "listaRespostas" : outputs_cypress
+        listaRespostas : outputs_cypress.slice(1)
     }
     
-    console.log(JSON.stringify(body))
+    console.log("autoCndt/index.js/sendOutput - req.body: " + JSON.stringify(body))
 
     //enviandos os outputs para a API
     fetch("http://localhost:8080/service/respCndt",{
         method : "POST",
-        body : JSON.stringify(body)
+        body : JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+        }
     })
     .then((resp)=>{
         console.log(resp)
+        fs.writeFileSync(join(__dirname, "autoCndt_output.txt"), "");
     })
 
 };
 
 
-// roda o cypress asincronamente usando os argumentos em runArgs e depois retorna os resultados para o callback
-async function runCypress(runArgs, callback){
+class runCypress{
+    constructor(runArgs, runableObj){
+        this.runArgs = runArgs;
+        this.runableObj = runableObj;
+    }
 
-    // roda o cypress utilizando os argumentos  e 
-    cypress.run(runArgs).then(callback);
-
+    async run(){
+        return new Promise((resolve,reject)=>{
+            cypress.run(this.runArgs).then((resultado)=>{
+                console.log(resultado);
+                if (this.runableObj === undefined){
+                    resolve("end");
+                } else {
+                    this.runableObj.run().then((value)=>{
+                        resolve(value);
+                    }, (reason) => {
+                        reject(reason)
+                    });
+                }
+            }, (reason)=>{
+                if (this.runableObj === undefined){
+                    resolve("end");
+                } else {
+                    this.runableObj.run().then((value)=>{
+                        reject(value + "; " + reason);
+                    }, (retReason) => {
+                        reject(retReason + ";" + reason);
+                    })
+                }
+            });
+        });
+    };
 };
 
 async function loop(){
-    // lista com todos os cnpjs
-    let listaCnpj = await getInput();
 
-    //loop para varer os cnpjs
-    for (let i = 0; i < listaCnpj.length; i++){
-        
-        // seta o valor de cnpj
-        runArgs.env = "cnpj=" + listaCnpj[i];
+    fs.writeFileSync(join(__dirname, "autoCndt_output.txt"), "");
 
-        // run cypress/e2e/certidao.cy.js
-        await runCypress(runArgs, (resultados) => {});
+    return new Promise((resolve, reject)=>{
 
-    };
+        // lista com todos os cnpjs
+        getInput().then((listaCnpj)=>{
+
+            let lastObj = undefined;
+            
+            //loop para varer os cnpjs
+            for (let i = 0; i < listaCnpj.length; i++){
+                        
+                // seta o valor de cnpj
+                runArgs.env = "cnpj=" + listaCnpj[i];
+
+                // criando os objetos
+                lastObj = new runCypress(runArgs, lastObj);
+
+            };
+
+            if (lastObj === undefined){
+                resolve("no entry's")
+            }
+
+            lastObj.run().then((value)=>{
+                resolve(value);
+            }, (reason) => {
+                reject(reason);
+            });
+        });
+    });
 }
 
 // função principal do documento
 async function main(){
 
-    await loop();
-    
-    
+    await loop().then((value, reason)=>{
+        if (reason) {
+            console.error(reason);
+        } else {
+            console.log(value);
+        };
+        
+        console.log("enviando os dados");
+        sendOutput();
+        console.log("dados enviados");
+    });
 };
 
-main() 
-sendOutput()
+main();
