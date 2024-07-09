@@ -6,21 +6,22 @@ const path = require('path')
 
 
 // função para escrever os resultados em output_autoCndt
-var writeOutput = async function(cnpj, status){
+var writeOutput = async function(Object){
     /*
     output = {
         "status" : int[0-15],
         "cnpj" : str
+        "data" : "2000-01-01"
     }
     */
 
     // escreve os resultados em um txt
 
-    let resp = cnpj + ":" + status;
+    let resp = Object['cnpj'] + ":" + Object['status'];
 
     fs.writeFileSync(
         "autoCndt_output.txt",
-        fs.readFileSync("autoCndt_output.txt") + resp
+        fs.readFileSync("autoCndt_output.txt") + "\n" + resp 
     );
     return null;
 }

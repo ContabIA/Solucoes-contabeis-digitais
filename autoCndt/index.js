@@ -32,7 +32,7 @@ function getObjNumeroDia(periodo, digitos){
     };
     
     // varrendo a matriz e dividindo os numeros para cada um dos espaços
-    let dia = 0;
+    let dia = -1;
     for (let i = 0; i < periodo; i++){
         for (let j = 0; j < resp[i].length; j++){
             dia++;
@@ -45,7 +45,7 @@ function getObjNumeroDia(periodo, digitos){
 }
 
 // função para pegar os cnpjs
-function getInput(){
+async function getInput(){
 
     // data atual
     let dataObj = new Date();
@@ -61,7 +61,10 @@ function getInput(){
 
     // fazendo fetch para pegar todos os cnpj's semanais para consultar hoje
     for (let i = 0; i < objNumerosSemanal[diaSemana].length; i++){
-    resp = resp.concat(fetch("https:/service/getCnpj?tamanhoFinal=1&ultimoDigito=" + objNumerosSemanal[diaSemana][i] + "&frequencia=1&tipoConsulta=3"));
+
+        let req = await fetch("http://localhost:8080/service/getCnpj?tamanhoFinal=1&ultimoDigito=" + objNumerosSemanal[diaSemana][i] + "&frequencia=1&tipoConsulta=3")
+        let reqJson = await req.json()
+        resp = resp.concat(reqJson["cnpjs"])
     };
 
     // pega quantos dias tem nesse mes
@@ -75,7 +78,9 @@ function getInput(){
 
     // fazendo fetch para pegar todos os cnpj's mensais para consultar hoje
     for (let i = 0; i < objNumerosMensal[diaMes].length; i++){
-        resp = resp.concat(fetch("https:/service/getCnpj?tamanhoFinal=2&ultimoDigito=" + objNumerosMensal[diaMes][i] + "&frequencia=2&tipoConsulta=3"));
+        let req = await fetch("http://localhost:8080/service/getCnpj?tamanhoFinal=2&ultimoDigito=" + objNumerosMensal[diaMes][i] + "&frequencia=2&tipoConsulta=3")
+        let reqJson = await req.json()
+        resp = resp.concat(reqJson["cnpjs"])
     };
 
     // dias do ano
@@ -90,7 +95,9 @@ function getInput(){
 
     // fazendo fetch para pegar todos os cnpj's anuais para consultar hoje
     for (let i = 0; i < objNumerosAnual[diaAno].length; i++){
-        resp = resp.concat(fetch("https:/service/getCnpj?tamanhoFinal=2&ultimoDigito=" + objNumerosAnual[diaAno][i] + "&frequencia=3&tipoConsulta=3"));
+        let req = await fetch("http://localhost:8080/service/getCnpj?tamanhoFinal=2&ultimoDigito=" + objNumerosAnual[diaAno][i] + "&frequencia=3&tipoConsulta=3")
+        let reqJson = await req.json()
+        resp = resp.concat(reqJson["cnpjs"])
     };
 
 
@@ -102,17 +109,18 @@ function getInput(){
 function sendOutput(){
 
     // pegando todos os outputs gerados
-    let outputs_cypress = fs.readFileSync("autoCndt_output.txt").split("\n");
+    let outputs_cypress = fs.readFileSync("autoCndt_output.txt").toString().split("\n");
 
     // transformandos todos os outputs de strig para obj
-    outputs_cypress.forEach(element => {
+    outputs_cypress = outputs_cypress.map(element => {
 
-        let { cnpj , status } = element.split(":")
+        let args = element.split(":")
 
         return {
-            status : status,
+            status : parseInt(args[1]),
             novo : true,
-            cnpjEmpresa : cnpj,
+            cnpjEmpresa : args[0],
+            data : "2020-01-01"
         };
     });
     
@@ -121,16 +129,21 @@ function sendOutput(){
         "listaRespostas" : outputs_cypress
     }
     
+    console.log(JSON.stringify(body))
 
     //enviandos os outputs para a API
     fetch("http://localhost:8080/service/respCndt",{
-        "method":"POST",
-        "body":body
-    });
+        method : "POST",
+        body : JSON.stringify(body)
+    })
+    .then((resp)=>{
+        console.log(resp)
+    })
+
 };
 
 
-// roda o cypress asyncronamente usando os argumentos em runArgs e depois retorna os resultados para o callback
+// roda o cypress asincronamente usando os argumentos em runArgs e depois retorna os resultados para o callback
 async function runCypress(runArgs, callback){
 
     // roda o cypress utilizando os argumentos  e 
@@ -138,24 +151,29 @@ async function runCypress(runArgs, callback){
 
 };
 
-// função principal do documento
-function main(){
-
+async function loop(){
     // lista com todos os cnpjs
-    let listaCnpj = getInput();
+    let listaCnpj = await getInput();
 
     //loop para varer os cnpjs
     for (let i = 0; i < listaCnpj.length; i++){
-
+        
         // seta o valor de cnpj
         runArgs.env = "cnpj=" + listaCnpj[i];
 
         // run cypress/e2e/certidao.cy.js
-        runCypress(runArgs, (resultados) => {});
+        await runCypress(runArgs, (resultados) => {});
 
-        
     };
-    sendOutput()
+}
+
+// função principal do documento
+async function main(){
+
+    await loop();
+    
+    
 };
 
-main()
+main() 
+sendOutput()
