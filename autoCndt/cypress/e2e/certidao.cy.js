@@ -13,19 +13,11 @@ describe("Teste do negativado trabalhista", ()=>{
             cy.get('[name="resposta"]').type(resp);
         })
         cy.get('[name="gerarCertidaoForm:cpfCnpj"]').type(Cypress.env("cnpj"));
-        cy.wait(2000)
         cy.get('[name="gerarCertidaoForm:btnEmitirCertidao"]').click();
-        cy.wait(2000)
-        cy.task('writeOut',{"cnpj" : Cypress.env("cnpj"), "status" : 3});
-        cy.wait(5000)
         cy.get('#divSucesso').should('have.css', 'display', 'block').then(($element) => {
             if ($element.css('display') === 'block') {
                 //função de retorno de resposta positiva
-                cy.wait(5000)
-                cy.log("A")
                 cy.task('writeOut', {"status" : 1, "cnpj" : Cypress.env("cnpj")})
-                cy.wait(5000)
-                cy.log("B")
                 
             }
         });
