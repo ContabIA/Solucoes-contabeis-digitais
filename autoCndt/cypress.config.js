@@ -10,7 +10,11 @@ module.exports = defineConfig({
           console.log(ret);
           return ret;
         },
-        writeOutput
+        async writeOut(Objeto){
+          var retorno = await writeOutput(Objeto)
+          console.log(Objeto)
+          return retorno
+        }
 
         
       });
