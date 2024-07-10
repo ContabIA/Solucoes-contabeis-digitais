@@ -10,6 +10,7 @@ import com.contabia.contabia.models.entity.UserModel;
 @Repository
 public interface UserRepository extends JpaRepository<UserModel, Long>{
 
+    // Consulta SQL que retorna um usuário dado o cnpj dele.
     Optional<UserModel> findByCnpj(String cnpj);
 
 }
