@@ -2,7 +2,7 @@ describe("Teste do negativado trabalhista", ()=>{
 
     before("coleta de src", ()=>{
         cy.visit("https://cndt-certidao.tst.jus.br/gerarCertidao.faces");
-        cy.wait(2000);
+        cy.wait(4000);
         cy.get("#idImgBase64").invoke('attr', 'src').then(($url)=>{
             cy.writeFile('imgUrl.txt', $url);
         });
@@ -22,7 +22,7 @@ describe("Teste do negativado trabalhista", ()=>{
             }
         });
         cy.get('#divErro').should('have.css', 'display', 'none').then(($element)=>{
-            if($element.css('display') != 'none'){
+            if($element.css('display') === 'block'){
                 //função de retorno de resposta negativa
                 cy.task('writeOut', {"status" : 0, "cnpj" : Cypress.env("cnpj")})
             }
