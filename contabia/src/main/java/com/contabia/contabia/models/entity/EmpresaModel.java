@@ -50,4 +50,9 @@ public class EmpresaModel {
         this.nome = nome;
         this.user = user;
     }
+    
+    public void editEmpresa(String cnpj, String nome){
+        this.cnpj = cnpj;
+        this.nome = nome;
+    }
 }

@@ -86,7 +86,7 @@ public class ServiceController {
         
         for (RespostaDto resposta : listaResp.listaRespostas()) {
 
-            Optional<ConsultasModel> consulta = consultasRepository.findConsultaByCnpj(resposta.cnpjEmpresa());
+            Optional<ConsultasModel> consulta = consultasRepository.findConsultaByCnpjAndTipoConsulta(resposta.cnpjEmpresa(), 3);
             RespostaModel novaResposta = new RespostaModel(resposta, consulta.get());
             respostaRepository.save(novaResposta);
             
