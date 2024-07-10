@@ -48,8 +48,7 @@ public class RegCnpjController {
         Optional<UserModel> user = userRepository.findByCnpj(cnpjUser);
 
         if (user.isPresent()){
-            var userEncontrado = user.get();
-            EmpresaModel empresa = new EmpresaModel(dadosEmpresa.cnpjEmpresa(), dadosEmpresa.nome(), userEncontrado);
+            EmpresaModel empresa = new EmpresaModel(dadosEmpresa.cnpjEmpresa(), dadosEmpresa.nome(), user.get());
             empresaRepository.save(empresa);
 
             if (dadosEmpresa.checkboxSefaz().isPresent()){

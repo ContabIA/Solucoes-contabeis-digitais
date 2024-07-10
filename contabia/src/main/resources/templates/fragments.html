@@ -26,3 +26,20 @@
         <button type="reset" th:attr="onclick=|delEmpresa('${infos.cnpj}', '${cnpjUser}')|" class="btnTrash"><img class="imgTrash" src="img/trash.png" alt="imagem deletar"></button>
     </div>
 </div>
+
+<table th:fragment="tabelaDetalhes" class="detalhes">
+    <tr style="border-bottom: 1px solid black;">
+        <th>Número</th>
+        <th>Série</th>
+        <th>Data de Emissão</th>
+        <th>Emitente</th>
+        <th>Situação</th>
+        <th style="border: none;">Valor Total</th>
+        </tr>
+        <td th:text="${nota.id}"></td>
+        <td th:text="${nota.serie}"></td>
+        <td th:text="${nota.data}" id="data"></td>
+        <td th:text="${nota.nomeEmitente}"></td>
+        <td th:text="${nota.situacao}"></td>
+        <td th:text="${'R$ ' + nota.valor}" style="border: none;"></td>
+</table>

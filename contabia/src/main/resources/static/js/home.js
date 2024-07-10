@@ -1,17 +1,4 @@
-import { formataData, TRADUZ_MES, formataCnpj } from "./main.js";
-
-var cnpj  = document.getElementById("user")
-var textCnpj = cnpj.textContent.split('')
-var cnpjFormatado = formataCnpj(textCnpj)
-cnpj.innerHTML = cnpjFormatado
-
-
-// var listSpanCnpj = document.querySelectorAll(".nomeDivCnpj")
-// listSpanCnpj.forEach(spanCnpj => {
-//     var textSpanCnpj = spanCnpj.textContent.split(' - ')
-//     var spanCnpjFormatado = formataCnpj(textSpanCnpj[1])
-//     spanCnpj.innerHTML = textSpanCnpj[0] + ' - ' + spanCnpjFormatado
-// });
+import { formataCnpj,  TRADUZ_MES } from "./main.js";
 
 var listAltCnpj = document.querySelectorAll(".nomeAlt")
 listAltCnpj.forEach(AltCnpj => {

@@ -15,5 +15,7 @@ public interface NotasRepository extends JpaRepository<NotasModel, Long> {
 
     @Query(value = "SELECT n.* FROM notas n JOIN empresa e ON n.id_empresa = e.id JOIN usuarios u ON e.id_usuario = u.id WHERE u.cnpj = :cnpjUser AND n.novo = :novo", nativeQuery = true)
     Optional<List<NotasModel>> findByNovoAndCnpjUser(@Param("novo") boolean novo,@Param("cnpjUser") String cnpjUser);
-    Optional<NotasModel> findById(Long id);
+
+    
+    
 }

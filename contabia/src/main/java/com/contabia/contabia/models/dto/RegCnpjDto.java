@@ -14,8 +14,6 @@ public record RegCnpjDto(
 
     Optional<Boolean> checkboxSefaz,
 
-    // boolean checkboxCnd,
-
     Optional<Boolean> checkboxCndt,
 
     int frequenciaSefaz,
