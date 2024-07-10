@@ -26,6 +26,8 @@ async function atualizaDados(cnpjUser, cnpjEmpresa){
         window.location = "/listaCnpj?cnpjUser="+respJson;
     });
 }
+
+// Função que formata o cnpj de XXXXXXXXXXXXXX para XX.XXX.XXX/XXXX-XX
 const formataCnpj = function (textCnpj){    
     var cnpjFormatado = ''
     
@@ -45,6 +47,7 @@ const formataCnpj = function (textCnpj){
     return cnpjFormatado
 }
 
+// Coleta o cnpj do usuário que fica no header e chama a função formataCnpj
 var cnpj  = document.getElementById("user")
 var textCnpj = cnpj.textContent.split('')
 var cnpjFormatado = formataCnpj(textCnpj)

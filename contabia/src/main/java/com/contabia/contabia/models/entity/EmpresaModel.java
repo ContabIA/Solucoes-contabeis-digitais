@@ -17,6 +17,17 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+/*
+ * Classe model responsável por fazer a representação da tabela empresa do banco de dados.
+ * 
+ * Atributos:
+ * id: identificador da instância
+ * cnpj: cnpj da empresa
+ * nome: nome da empresa
+ * user: usuario cuja a empresa está relacionada
+ * 
+*/
+
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
@@ -35,22 +46,27 @@ public class EmpresaModel {
     @Column(unique = false, nullable = false)
     private String nome;
 
+    // Declaração de relação n:1 da entidade empresa com a entidade usuario no banco de dados.
     @ManyToOne
     @JoinColumn(name="idUsuario", nullable = false)
     private UserModel user;
 
+    // Declaração de relação 1:n da entidade empresa com a entidade consultas no banco de dados.
     @OneToMany(mappedBy = "empresaConsulta", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ConsultasModel> consultas;
 
+    // Declaração de relação 1:n da entidade empresa com a entidade notas no banco de dados.
     @OneToMany(mappedBy = "empresaNotas", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<NotasModel> notas;
 
+    // Construtor
     public EmpresaModel(String cnpj, String nome, UserModel user){
         this.cnpj = cnpj;
         this.nome = nome;
         this.user = user;
     }
     
+    // Método que edita informações da empresa.
     public void editEmpresa(String cnpj, String nome){
         this.cnpj = cnpj;
         this.nome = nome;
