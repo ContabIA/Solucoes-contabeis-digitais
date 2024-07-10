@@ -16,10 +16,13 @@ import lombok.EqualsAndHashCode;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 @EqualsAndHashCode(of = "id")
 @Entity
 @Table(name = "Notas")
@@ -47,6 +50,7 @@ public class NotasModel {
     @Column(unique = false, nullable = false)
     private double valor;
 
+    @Setter
     @Column(unique = false, nullable = false)
     private boolean novo;
 

@@ -94,8 +94,7 @@ public class EditCnpjController {
                 consultasRepository.save(new ConsultasModel(1, dadosEmpresa.frequenciaSefaz(), empresaEncontrada));
             }
         }else{
-            if(optionalConsultaSefaz.isPresent()){
-                System.out.println("\nopa\n");
+            if(optionalConsultaSefaz.isPresent()){  
                 consultasRepository.deleteById(optionalConsultaSefaz.get().getId());
             }
         }
@@ -116,6 +115,7 @@ public class EditCnpjController {
 
         empresaEncontrada.editEmpresa(dadosEmpresa.cnpjEmpresa(), dadosEmpresa.nome());
         empresaRepository.save(empresaEncontrada);
+
 
         return ResponseEntity.ok().body(cnpjUser);
     }

@@ -7,7 +7,8 @@
         <link rel="stylesheet" href="../styles/reset.css">
         <link rel="stylesheet" href="../styles/detalhes.css">
         <link rel="stylesheet" href="../styles/style.css">
-        <script src="../js/main.js" defer></script>
+        <script th:src="@{/js/main.js}" defer></script>
+        <script th:src="@{/js/detalhes.js}" defer></script>
     </head>
     <body>
 
@@ -20,29 +21,16 @@
 
                     <div style="margin-left: auto; margin-right: auto; ">
                         <div class="detalhes1">
-                            <h2 class="title2" th:text="${'CNPJ - ' + nota.cnpjEmpresa}"></h2>
-                            <h2 class="title2" th:text="${'Mês - ' + nota.data.getMonth()}"></h2>
+                            <h2 class="title2" th:text="${'CNPJ - ' + cnpjEmpresa}"></h2>
+                            <h2 class="title2" th:text="${'Mês - ' + mes}"></h2>
                         </div>
                     </div>
 
-                    <table class="detalhes">
-                        <tr style="border-bottom: 1px solid black;">
-                        <th>Número</th>
-                        <th>Série</th>
-                        <th>Data de Emissão</th>
-                        <th>Emitente</th>
-                        <th>Situação</th>
-                        <th style="border: none;">Valor Total</th>
-                        </tr>
-                        <td th:text="${nota.id}"></td>
-                        <td th:text="${nota.serie}"></td>
-                        <td th:text="${nota.data}" id="data"></td>
-                        <td th:text="${nota.nomeEmitente}"></td>
-                        <td th:text="${nota.situacao}"></td>
-                        <td th:text="${'R$ ' + nota.valor}" style="border: none;"></td>
+                    <table th:each="nota : ${nota}" th:insert="~{fragments :: tabelaDetalhes}">
+                        
                     </table>
 
-                    <a class="btnVoltar" th:href="@{/home(cnpjUser=${cnpjUser})}">Voltar</a>
+                    <button type="button" class="btnVoltar" th:attr="onclick=|removerNovo(${idAlt}, '${tipoAlt}', '${cnpjUser}')|">Voltar</button>
                 </div>
             </div>
         </main>

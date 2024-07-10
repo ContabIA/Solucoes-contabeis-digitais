@@ -16,6 +16,7 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @AllArgsConstructor
@@ -35,9 +36,13 @@ public class RespostaModel {
     @Column(unique = false, nullable = false)
     private LocalDate data;
 
+    @Setter
     @Column(unique = false, nullable = false)
     private boolean novo;
 
+    public boolean getNovo(){
+        return this.novo;
+    }
     @ManyToOne
     @JoinColumn(name = "idConsulta", nullable = false)
     private ConsultasModel consulta;
