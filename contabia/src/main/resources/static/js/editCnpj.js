@@ -1,6 +1,4 @@
-//var form = document.getElementById("formEditCnpj");
-
-async function sla(cnpjUser, cnpjEmpresa){
+async function atualizaDados(cnpjUser, cnpjEmpresa){
 
     var freqSefaz = document.getElementById("frequenciaSefaz");
     var freqCndt = document.getElementById("frequenciaCndt");
@@ -28,3 +26,28 @@ async function sla(cnpjUser, cnpjEmpresa){
         window.location = "/listaCnpj?cnpjUser="+respJson;
     });
 }
+const formataCnpj = function (textCnpj){    
+    var cnpjFormatado = ''
+    
+    for(var i = 0; i < textCnpj.length; i++){
+
+        if(i == 2 || i == 5){
+            cnpjFormatado += '.';
+        }else if(i == 8){
+            cnpjFormatado += '/';
+        }else if(i == 12){
+            cnpjFormatado += '-';
+        }
+        cnpjFormatado += textCnpj[i]
+        
+    }
+
+    return cnpjFormatado
+}
+
+var cnpj  = document.getElementById("user")
+var textCnpj = cnpj.textContent.split('')
+var cnpjFormatado = formataCnpj(textCnpj)
+cnpj.innerHTML = cnpjFormatado  
+
+

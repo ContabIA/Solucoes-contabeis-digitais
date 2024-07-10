@@ -1,15 +1,29 @@
-import formataData from "./main";
-
-const TRADUZ_MES = {"JANUARY" : "Janeiro", "FEBRUARY" : "Fevereiro", "MARCH" : "Março", "APRIL" : "Abril", "MAY" : "Maio", "JUNE" : "Junho", "JULY" : "Julho", "AUGUST" : "Agosto", "SEPTEMBER" : "Setembro", "OCTOBER" : "Outubro", "NOVEMBER" : "Novembro", "DECEMBER" : "Dezembro"}
+import { formataCnpj, formataData, TRADUZ_MES } from "./main.js";
 
 var tdData = document.getElementById("data")
-var data = tdData.textContent
-dataFormatada = formataData(data)
-tdData.innerHTML = dataFormatada
+if (tdData != null){
+    var data = tdData.textContent
+    tdData.innerHTML = formataData(data)
+}
 
 var listaTitulos = document.querySelectorAll(".title2")
-var textoTituloCnpj = listaTitulos[0].textContent().split(" - ")
-var cnpjFormatado = formataCnpj(textoTituloCnpj)
-listaTitulos[0].innerHTML(textoTituloCnpj[0] + " - " + cnpjFormatado)
+var textoTituloCnpj = listaTitulos[0].textContent.split(" - ")
+var cnpjFormatado = formataCnpj(textoTituloCnpj[1])
+listaTitulos[0].innerHTML = textoTituloCnpj[0] + " - " + cnpjFormatado
+var mesFormatado = TRADUZ_MES[listaTitulos[1].textContent.split(" - ")[1]]
+listaTitulos[1].innerHTML = listaTitulos[1].textContent.split(" - ")[0] + " - " + mesFormatado
 
-alert('oi')
+window.removerNovo = function(idAlt, tipoAlt, cnpjUser){
+
+    fetch("http://localhost:8080/home?idAlt="+idAlt+"&tipoAlt="+tipoAlt+"&cnpjUser="+cnpjUser, {
+        method : "PUT"
+    })
+    .then((resp) => {return resp.json()})
+    .then((respJson) => {
+
+        window.location = "http://localhost:8080/home?cnpjUser="+respJson;
+    });
+
+};
+
+
