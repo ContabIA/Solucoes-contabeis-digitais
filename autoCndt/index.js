@@ -1,14 +1,16 @@
 #!/bin/env node index.js >> saida.txt
-const cypress = require('cypress');
 const fs = require('fs');
 const { resolve, join } = require('path');
+const RunCypress = require(join(__dirname, "/RunCypress"))
 
-var runArgs = {
-    spec: './cypress/e2e/certidao.cy.js', 
-    configFile: './cypress.config.js', 
-    env:'', 
-    headed:false, 
-    browser:'edge'
+class RunArgs{
+    constructor (env){
+        this.env = env;
+        this.spec = './cypress/e2e/certidao.cy.js';
+        this.configFile = './cypress.config.js';
+        this.headed = false;
+        this.browser ='edge';
+    }
 };
 
 // função para gerar um Obj que divide os indices para o fetch em um periodo de dias 
@@ -114,7 +116,7 @@ function getFormatedDate(){
     
     let month = (dateObj.getMonth()+1).toString().padStart(2,"0");
 
-    let date = dateObj.gateDate().toString().padStart(2,"0");
+    let date = dateObj.getDate().toString().padStart(2,"0");
 
     return year + "-" + month + "-" + date;
 }
@@ -133,7 +135,6 @@ function sendOutput(){
     outputs_cypress = outputs_cypress.map(element => {
 
         let args = element.split(":");
-        console.log("autCndt/index.js/sendOutput - args: " + args + ";args[0]: " + args[0] + ";args[1]: " + args[1]);
 
         return {
             status : parseInt(args[1]),
@@ -157,48 +158,10 @@ function sendOutput(){
         headers: {
             "Content-Type": "application/json",
         }
-    })
-    .then((resp)=>{
-        console.log(resp)
-        fs.writeFileSync(join(__dirname, "autoCndt_output.txt"), "");
-    })
+    });
 
 };
 
-
-class runCypress{
-    constructor(runArgs, runableObj){
-        this.runArgs = runArgs;
-        this.runableObj = runableObj;
-    }
-
-    async run(){
-        return new Promise((resolve,reject)=>{
-            cypress.run(this.runArgs).then((resultado)=>{
-                console.log(resultado);
-                if (this.runableObj === undefined){
-                    resolve("end");
-                } else {
-                    this.runableObj.run().then((value)=>{
-                        resolve(value);
-                    }, (reason) => {
-                        reject(reason)
-                    });
-                }
-            }, (reason)=>{
-                if (this.runableObj === undefined){
-                    resolve("end");
-                } else {
-                    this.runableObj.run().then((value)=>{
-                        reject(value + "; " + reason);
-                    }, (retReason) => {
-                        reject(retReason + ";" + reason);
-                    })
-                }
-            });
-        });
-    };
-};
 
 async function loop(){
 
@@ -209,22 +172,17 @@ async function loop(){
         // lista com todos os cnpjs
         getInput().then((listaCnpj)=>{
 
+
+            if (listaCnpj.length === 0) {resolve("no entry's")}
+            console.log(listaCnpj);
+
             let lastObj = undefined;
             
             //loop para varer os cnpjs
             for (let i = 0; i < listaCnpj.length; i++){
-                        
-                // seta o valor de cnpj
-                runArgs.env = "cnpj=" + listaCnpj[i];
-
                 // criando os objetos
-                lastObj = new runCypress(runArgs, lastObj);
-
+                lastObj = new RunCypress(new RunArgs("cnpj="+listaCnpj[i]), lastObj);
             };
-
-            if (lastObj === undefined){
-                resolve("no entry's")
-            }
 
             lastObj.run().then((value)=>{
                 resolve(value);
@@ -238,17 +196,16 @@ async function loop(){
 // função principal do documento
 async function main(){
 
-    await loop().then((value, reason)=>{
-        if (reason) {
-            console.error(reason);
-        } else {
-            console.log(value);
-        };
-        
-        console.log("enviando os dados");
-        sendOutput();
-        console.log("dados enviados");
-    });
+    fs.writeFileSync(join(__dirname, "autoCndt_output.txt"), "");
+
+    await loop()
+    .then(console.log)
+    .catch(console.error);
+
+    console.log("\n\n\n\n\nenviando os dados");
+    sendOutput();
+    console.log("dados enviados");
+
 };
 
 main();
