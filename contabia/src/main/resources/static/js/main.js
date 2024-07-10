@@ -47,10 +47,10 @@ listAltCnpj.forEach(AltCnpj => {
     AltCnpj.innerHTML = textAltCnpj[0] + ' - ' + altCnpjFormatado + ' - ' + TRADUZ_MES[textAltCnpj[2]]
 });
 
-var tdData = document.getElementById("data")
-var data = tdData.textContent
-dataFormatada = formataData(data)
-tdData.innerHTML = dataFormatada
+// var tdData = document.getElementById("data")
+// var data = tdData.textContent
+// dataFormatada = formataData(data)
+// tdData.innerHTML = dataFormatada
 
 var listaTitulos = document.querySelectorAll(".title2")
 var textoTituloCnpj = listaTitulos[0].textContent.split(" - ")

@@ -35,7 +35,7 @@ public class HomeController {
         
 
         Optional<List<NotasModel>> optionalNotas = notasRepository.findByNovoAndCnpjUser(true, cnpjUser);
-        Optional<List<RespostaModel>> optionalResposta = respostaRepository.findByNovoAndCnpjUser(true, cnpjUser);
+        Optional<List<RespostaModel>> optionalResposta = respostaRepository.findByNovoAndCnpjUserAndStatus(true, cnpjUser, 0);
         List<AltDto> infos = new ArrayList<>();
 
         if (optionalNotas.isPresent()){
@@ -46,10 +46,7 @@ public class HomeController {
 
         if(optionalResposta.isPresent()){
             for (RespostaModel resposta : optionalResposta.get()) {
-    
                 infos.add(new AltDto("Alteração CNDT - " + resposta.getConsulta().getEmpresaConsulta().getCnpj() + " - " + resposta.getData().getMonth(), resposta.getConsulta().getEmpresaConsulta().getCnpj(), resposta.getId(), "cndt"));
-
-                
             }
         }
         model.addAttribute("infosAlt", infos);

@@ -16,9 +16,11 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Getter
 @AllArgsConstructor
+@ToString
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Entity
@@ -46,5 +48,9 @@ public class ConsultasModel{
         this.tipoConsulta = tipoConsulta;
         this.frequencia = frequencia;
         this.empresaConsulta = empresa;
+    }
+    
+    public void editConsulta(int frequencia){
+        this.frequencia = frequencia;
     }
 }
