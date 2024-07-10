@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/cadastroCnpj.css">
-    <script src='js/main.js' defer></script>
+    <script src="js/editCnpj.js" defer></script>
 
     <title>ContabIA</title>
 </head>
@@ -19,7 +19,7 @@
         <div class="container">
             <div class="divPrincipal">
             
-            <form class="formCadCnpj">
+            <form class="formCadCnpj" id="formEditCnpj" action="#">
                 <label class="labelFormCadCnpj" for="">Editar informações do CNPJ</label>
 
                 <input th:attr="value=${cnpjEmpresa}" type="text" placeholder="CNPJ" minlength="14" maxlength="14" class="inputCadCnpj" id="cnpjCadCnpj" name="cnpjEmpresa" required>
@@ -30,7 +30,7 @@
 
                 <div class="consultasCadCnpj">
                     <div class="checkboxCadCnpj">
-                        <input th:checked="${sefazStatus}" type="checkbox" name="checkboxSefaz">
+                        <input th:checked="${sefazStatus}" type="checkbox" name="checkboxSefaz" id="checkboxSefaz">
                         <label class="labelCheckbox" for=""><span class="fontBold">SEFAZ</span> - Secretaria da Fazenda</label> 
                         <select  class="selectFreq" name="frequenciaSefaz" id="frequenciaSefaz">
                             <option th:attr="selected=${freqSefaz1}" value="1">Semanalmente</option>
@@ -50,7 +50,7 @@
                     </div> -->
 
                     <div style="border: none;" class="checkboxCadCnpj">
-                        <input th:checked="${cndtStatus}" type="checkbox" name="checkboxCndt">
+                        <input th:checked="${cndtStatus}" type="checkbox" name="checkboxCndt" id="checkboxCndt">
                         <label class="labelCheckbox" for=""><span class="fontBold">CNDT</span> - Certidão Negativa de Débitos Trabalhistas</label>
                         <select class="selectFreq" name="frequenciaCndt" id="frequenciaCndt">
                             <option th:attr="selected=${freqCndt1}" value="1">Semanalmente</option>
@@ -61,7 +61,7 @@
 
                 </div>
                 
-                <button class="btnSalvar">Salvar</button>
+                <button type="button" th:attr="onclick=|atualizaDados('${cnpjUser}', '${cnpjEmpresa}')|" class="btnSalvar">Salvar</button>
             </form>
                 
             </div>
