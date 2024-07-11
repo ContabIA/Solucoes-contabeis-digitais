@@ -13,25 +13,32 @@ import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.RequestBody;
 
+    /*
+     * Classe controller responsável por cadastrar um novo usuário ao banco de dados
+     * 
+     * rotas:
+     *  /cadastro/ (GET) -> exibe a página de cadastro de usuários
+     * 
+     *  /cadastro/ (POST) -> coleta todos os dados enviados pelo usuário e os salva no banco de dados 
+    */
 
 @Controller
 @RequestMapping("/cadastro")
 public class RegUserController {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserRepository userRepository; //repository dos usuarios
 
     @GetMapping
     public String cadastro() {
-        return "cadastroUser";
+        return "cadastroUser"; //exibe a página de cadastro de usuário
     }
     
     @PostMapping
     @Transactional
     public String addUsuario(@Valid UserDto dados){
         userRepository.save(new UserModel(dados));
-        return "redirect:/";
+        return "redirect:/"; //redireciona o usuário para a página de login
     }
 }
