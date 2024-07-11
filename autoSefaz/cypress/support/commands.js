@@ -12,28 +12,32 @@ Cypress.Commands.add('buscandoCnpj', (indexCnpj) => {
     cy.visit('https://www4.sefaz.pb.gov.br/atf/fis/FISf_ConsultarNFeXml2.do?idSERVirtual=S&h=https://www.sefaz.pb.gov.br/ser/servirtual/credenciamento/info', {failOnStatusCode: false})
     
     cy.get('[name=edtDtInicial]').clear()
-    cy.get('[name=edtDtInicial]')
-    .type('08072024')
 
     cy.get('[name=edtDtFinal]').clear()
-    cy.get('[name=edtDtFinal]')
-    .type(new Date().toLocaleDateString())
-    cy.get('[name=cmbTpDoccmpDest]')
-    .select(1)
 
     cy.iframe('[name=cmpDest]')
     .as('iframe')
     .find('[name=hidNrDocumentocmpDest]').clear()
-    cy.iframe('[name=cmpDest]')
-    .as('iframe')
-    .find('[name=hidNrDocumentocmpDest]') 
-    .type(Cypress.env('cnpjs')[indexCnpj])
 
     cy.iframe('[name=cmpDest]')
     .as('iframe')
     .find('[name="hidNoHumanoInstcmpDest"]') 
     .clear()
+
+
+    cy.get('[name=edtDtInicial]')
+    .type('01062024')
+
+    cy.get('[name=edtDtFinal]')
+    .type(new Date().toLocaleDateString())
+
+    cy.get('[name=cmbTpDoccmpDest]')
+    .select(1)
     
+    cy.iframe('[name=cmpDest]')
+    .as('iframe')
+    .find('[name=hidNrDocumentocmpDest]') 
+    .type(Cypress.env('cnpjs')[indexCnpj])
 
     cy.get('@iframe')
     .find('[name=btnPesquisar]')
