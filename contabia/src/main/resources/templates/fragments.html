@@ -1,3 +1,9 @@
+
+<!--
+    Este arquivo é destinado para o armazenamento dos fragments que serão utilizados pelo thymeleaf nas páginas da aplicação
+-->
+
+<!--Fragment que contém o cabeçalho do site-->
 <nav th:fragment="nav">
     <a th:href="@{/home(cnpjUser=${cnpjUser})}"><img src="../img/logo.png" alt="logo" class="logo"></a>
 
@@ -13,12 +19,13 @@
     </div>
 </nav>
 
+<!--Fragment que contém a div que exibe o nome da alteração e o link para ver os detalhes-->
 <div th:fragment="alteracao" class="divAlt">
     <span class="nomeAlt" th:text="${infos.texto}"></span>
     <a class="detalhesLink" th:href="@{${'detalhes/' + infos.tipoAlt}(cnpjUser=${cnpjUser}, cnpjEmpresa=${infos.cnpjEmpresa}, idAlt=${infos.altId})}">Ver detalhes</a>
 </div>
 
-
+<!--Fragment que contém a div que exibe o nome/CNPJ da empresa, e fornece a opção de deleta-la e edita-la-->
 <div th:fragment="cnpj(infos)" class="divCnpj">
     <span th:text="${infos.nome}" class="nomeDivCnpj"></span>
     <div class="opcoes">
@@ -27,6 +34,7 @@
     </div>
 </div>
 
+<!--Fragment que contém a tabela que exibe os detalhes de uma alteração Sefaz-->
 <table th:fragment="tabelaDetalhes" class="detalhes">
     <tr style="border-bottom: 1px solid black;">
         <th>Número</th>

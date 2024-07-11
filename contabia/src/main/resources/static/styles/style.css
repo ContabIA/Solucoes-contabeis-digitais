@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 
+/*
+CSS com os elementos que se repetem nas páginas HTML
+*/
+
 :root {
     --fonte: "Montserrat", sans-serif;
     --cor-textos: #FFFFFF
