@@ -2,6 +2,852 @@
 "runs":[{
 "listaNotas" : [
 {
+  "id": "1775634",
+  "serie": "23",
+  "data": "03/06/2024",
+  "nomeEmitente": "BLACK E DECKER DO BRASIL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 229,51",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "4067",
+  "serie": "1",
+  "data": "05/06/2024",
+  "nomeEmitente": "COMERCIAL DE TELAS E FERRAGENS LTDA - ME",
+  "situacao": "Cancelada",
+  "valor": "R$ 169,58",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "1779549",
+  "serie": "23",
+  "data": "06/06/2024",
+  "nomeEmitente": "BLACK E DECKER DO BRASIL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 453,99",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "22968",
+  "serie": "1",
+  "data": "06/06/2024",
+  "nomeEmitente": "SOFRIO REFRIGERACOES LTDA - EPP",
+  "situacao": "Cancelada",
+  "valor": "R$ 88,00",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "22969",
+  "serie": "1",
+  "data": "06/06/2024",
+  "nomeEmitente": "SOFRIO REFRIGERACOES LTDA - EPP",
+  "situacao": "Autorizada",
+  "valor": "R$ 88,00",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "22973",
+  "serie": "1",
+  "data": "07/06/2024",
+  "nomeEmitente": "SOFRIO REFRIGERACOES LTDA - EPP",
+  "situacao": "Autorizada",
+  "valor": "R$ 88,00",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "29016",
+  "serie": "1",
+  "data": "07/06/2024",
+  "nomeEmitente": "LOJAO PARAIBA COMERCIAL DA CONSTRUCAO LTDA",
+  "situacao": "Cancelada",
+  "valor": "R$ 451,84",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "6440",
+  "serie": "3",
+  "data": "07/06/2024",
+  "nomeEmitente": "RRB MAGAZINE COMERCIAL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 448,72",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "1947604",
+  "serie": "1",
+  "data": "08/06/2024",
+  "nomeEmitente": "Electrolux do Brasil S/A",
+  "situacao": "Autorizada",
+  "valor": "R$ 273,12",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "1949537",
+  "serie": "1",
+  "data": "10/06/2024",
+  "nomeEmitente": "Electrolux do Brasil S/A",
+  "situacao": "Autorizada",
+  "valor": "R$ 1.088,42",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "19635",
+  "serie": "2",
+  "data": "10/06/2024",
+  "nomeEmitente": "JBA SHOP COMERCIO E IMPORTACAO LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 65,56",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "214936",
+  "serie": "3",
+  "data": "10/06/2024",
+  "nomeEmitente": "MAIKO BRASIL COMERCIO LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 157,68",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "36762",
+  "serie": "2",
+  "data": "10/06/2024",
+  "nomeEmitente": "LOJAS PARIS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 163,60",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "61522",
+  "serie": "2",
+  "data": "10/06/2024",
+  "nomeEmitente": "AMANDA A.M.V.I CORREA LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 187,44",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "64288",
+  "serie": "2",
+  "data": "10/06/2024",
+  "nomeEmitente": "BRASTHERM AQUECIMENTOS ELETRICOS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 64,90",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "77391",
+  "serie": "1",
+  "data": "10/06/2024",
+  "nomeEmitente": "EMERSON NORONHA DE BARROS 35342863830",
+  "situacao": "Autorizada",
+  "valor": "R$ 68,64",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "98159",
+  "serie": "2",
+  "data": "10/06/2024",
+  "nomeEmitente": "MARCELA CRISTINA RIGOBELLO LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 47,28",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "1067",
+  "serie": "2",
+  "data": "11/06/2024",
+  "nomeEmitente": "32.006.979 CRISTOVAM LUIZ SILVA",
+  "situacao": "Autorizada",
+  "valor": "R$ 146,73",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "133681",
+  "serie": "2",
+  "data": "11/06/2024",
+  "nomeEmitente": "MADRI FERRAMENTAS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 142,97",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "1783513",
+  "serie": "23",
+  "data": "11/06/2024",
+  "nomeEmitente": "BLACK E DECKER DO BRASIL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 28,22",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "439130",
+  "serie": "1",
+  "data": "11/06/2024",
+  "nomeEmitente": "DEXCO HYDRA CORONA S.A.L.",
+  "situacao": "Autorizada",
+  "valor": "R$ 6.250,79",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "439131",
+  "serie": "1",
+  "data": "11/06/2024",
+  "nomeEmitente": "DEXCO HYDRA CORONA S.A.L.",
+  "situacao": "Autorizada",
+  "valor": "R$ 1.615,40",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "293905",
+  "serie": "1",
+  "data": "12/06/2024",
+  "nomeEmitente": "MAKITA DO BRASIL FERRAMENTAS ELETRICAS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 1.048,16",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "1786239",
+  "serie": "23",
+  "data": "13/06/2024",
+  "nomeEmitente": "BLACK E DECKER DO BRASIL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 57,02",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "1787204",
+  "serie": "23",
+  "data": "13/06/2024",
+  "nomeEmitente": "BLACK E DECKER DO BRASIL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 3.348,96",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "439677",
+  "serie": "1",
+  "data": "13/06/2024",
+  "nomeEmitente": "DEXCO HYDRA CORONA S.A.L.",
+  "situacao": "Autorizada",
+  "valor": "R$ 91,97",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "1787792",
+  "serie": "23",
+  "data": "14/06/2024",
+  "nomeEmitente": "BLACK E DECKER DO BRASIL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 9.558,03",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "1788730",
+  "serie": "23",
+  "data": "14/06/2024",
+  "nomeEmitente": "BLACK E DECKER DO BRASIL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 487,79",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "5256",
+  "serie": "0",
+  "data": "14/06/2024",
+  "nomeEmitente": "COMERCIAL MARANGUAPE LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 3.542,82",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "12961",
+  "serie": "3",
+  "data": "17/06/2024",
+  "nomeEmitente": "MAIKO MARTINS LEAO 30349474885",
+  "situacao": "Autorizada",
+  "valor": "R$ 189,49",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "1506131",
+  "serie": "1",
+  "data": "17/06/2024",
+  "nomeEmitente": "FAME - FABRICA DE APARELHOS E MATERIAL ELETRICO LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 2.355,42",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "228369",
+  "serie": "2",
+  "data": "17/06/2024",
+  "nomeEmitente": "GDS BRASIL COMERCIO DE ELETRONICO LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 139,11",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "255856",
+  "serie": "2",
+  "data": "17/06/2024",
+  "nomeEmitente": "ALLINE DE OLIVEIRA SILVA LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 110,85",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "29193",
+  "serie": "1",
+  "data": "17/06/2024",
+  "nomeEmitente": "LOJAO PARAIBA COMERCIAL DA CONSTRUCAO LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 138,35",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "29195",
+  "serie": "1",
+  "data": "17/06/2024",
+  "nomeEmitente": "LOJAO PARAIBA COMERCIAL DA CONSTRUCAO LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 182,97",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "294272",
+  "serie": "1",
+  "data": "17/06/2024",
+  "nomeEmitente": "MAKITA DO BRASIL FERRAMENTAS ELETRICAS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 122,40",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "294370",
+  "serie": "1",
+  "data": "17/06/2024",
+  "nomeEmitente": "MAKITA DO BRASIL FERRAMENTAS ELETRICAS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 0,31",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "5693",
+  "serie": "2",
+  "data": "17/06/2024",
+  "nomeEmitente": "GUNTAI & CO STORE LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 144,29",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "77073",
+  "serie": "2",
+  "data": "17/06/2024",
+  "nomeEmitente": "LEANDRO HENRIQUE RINALDI DUARTE",
+  "situacao": "Autorizada",
+  "valor": "R$ 318,50",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "80687",
+  "serie": "1",
+  "data": "17/06/2024",
+  "nomeEmitente": "ERIKA HELENA PEREIRA REZENDE",
+  "situacao": "Autorizada",
+  "valor": "R$ 78,99",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "9670",
+  "serie": "1",
+  "data": "17/06/2024",
+  "nomeEmitente": "RRB MAGAZINE COMERCIAL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 111,33",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "1506295",
+  "serie": "1",
+  "data": "18/06/2024",
+  "nomeEmitente": "FAME - FABRICA DE APARELHOS E MATERIAL ELETRICO LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 13.900,00",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "153819",
+  "serie": "2",
+  "data": "18/06/2024",
+  "nomeEmitente": "LED TOOLS FERRAMENTAS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 1.049,00",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "294480",
+  "serie": "1",
+  "data": "18/06/2024",
+  "nomeEmitente": "MAKITA DO BRASIL FERRAMENTAS ELETRICAS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 132,74",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "31664",
+  "serie": "2",
+  "data": "18/06/2024",
+  "nomeEmitente": "DAIVENDAS ECOMMERCE LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 224,20",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "31666",
+  "serie": "2",
+  "data": "18/06/2024",
+  "nomeEmitente": "DAIVENDAS ECOMMERCE LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 56,05",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "39335",
+  "serie": "3",
+  "data": "18/06/2024",
+  "nomeEmitente": "F.A INDUSTRIA DE RESISTENCIAS ELETRICAS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 96,93",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "439809",
+  "serie": "1",
+  "data": "18/06/2024",
+  "nomeEmitente": "DEXCO HYDRA CORONA S.A.L.",
+  "situacao": "Autorizada",
+  "valor": "R$ 5.208,56",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "101948",
+  "serie": "1",
+  "data": "19/06/2024",
+  "nomeEmitente": "MAKITA DO BRASIL FERRAMENTAS ELETRICAS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 18,86",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "294684",
+  "serie": "1",
+  "data": "19/06/2024",
+  "nomeEmitente": "MAKITA DO BRASIL FERRAMENTAS ELETRICAS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 388,98",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "31743",
+  "serie": "2",
+  "data": "19/06/2024",
+  "nomeEmitente": "DAIVENDAS ECOMMERCE LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 224,20",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "31746",
+  "serie": "2",
+  "data": "19/06/2024",
+  "nomeEmitente": "DAIVENDAS ECOMMERCE LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 168,15",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "148721",
+  "serie": "1",
+  "data": "20/06/2024",
+  "nomeEmitente": "POSITEC IMPORTACAO DE FERRAMENTAS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 524,13",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "294759",
+  "serie": "1",
+  "data": "20/06/2024",
+  "nomeEmitente": "MAKITA DO BRASIL FERRAMENTAS ELETRICAS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 1.239,21",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "294763",
+  "serie": "1",
+  "data": "20/06/2024",
+  "nomeEmitente": "MAKITA DO BRASIL FERRAMENTAS ELETRICAS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 337,80",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "413838",
+  "serie": "4",
+  "data": "20/06/2024",
+  "nomeEmitente": "MAKITA DO BRASIL FERRAMENTAS ELETRICAS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 294,35",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "1965070",
+  "serie": "1",
+  "data": "21/06/2024",
+  "nomeEmitente": "Electrolux do Brasil S/A",
+  "situacao": "Autorizada",
+  "valor": "R$ 496,62",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "294929",
+  "serie": "1",
+  "data": "21/06/2024",
+  "nomeEmitente": "MAKITA DO BRASIL FERRAMENTAS ELETRICAS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 42,01",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "294964",
+  "serie": "1",
+  "data": "21/06/2024",
+  "nomeEmitente": "MAKITA DO BRASIL FERRAMENTAS ELETRICAS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 74,49",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "95348",
+  "serie": "2",
+  "data": "22/06/2024",
+  "nomeEmitente": "A.C. DE QUADROS",
+  "situacao": "Autorizada",
+  "valor": "R$ 39,00",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "1795400",
+  "serie": "23",
+  "data": "23/06/2024",
+  "nomeEmitente": "BLACK E DECKER DO BRASIL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 7,63",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "1797659",
+  "serie": "23",
+  "data": "25/06/2024",
+  "nomeEmitente": "BLACK E DECKER DO BRASIL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 19,70",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "214622",
+  "serie": "1",
+  "data": "25/06/2024",
+  "nomeEmitente": "ROBERT BOSCH LIMITADA",
+  "situacao": "Autorizada",
+  "valor": "R$ 328,60",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "1798320",
+  "serie": "23",
+  "data": "26/06/2024",
+  "nomeEmitente": "BLACK E DECKER DO BRASIL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 167,42",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "1798574",
+  "serie": "23",
+  "data": "26/06/2024",
+  "nomeEmitente": "BLACK E DECKER DO BRASIL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 2.737,74",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "1799810",
+  "serie": "23",
+  "data": "26/06/2024",
+  "nomeEmitente": "BLACK E DECKER DO BRASIL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 103,41",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "23709",
+  "serie": "2",
+  "data": "26/06/2024",
+  "nomeEmitente": "TRABUCO E-COMMERCE LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 143,64",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "295195",
+  "serie": "1",
+  "data": "26/06/2024",
+  "nomeEmitente": "MAKITA DO BRASIL FERRAMENTAS ELETRICAS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 246,43",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "445182",
+  "serie": "1",
+  "data": "26/06/2024",
+  "nomeEmitente": "ELETRON SERVICE COM E SER LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 87,40",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "57491",
+  "serie": "1",
+  "data": "26/06/2024",
+  "nomeEmitente": "MARCOS VINICIUS FERREIRA COSTA NUNES",
+  "situacao": "Autorizada",
+  "valor": "R$ 170,34",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "214767",
+  "serie": "1",
+  "data": "27/06/2024",
+  "nomeEmitente": "ROBERT BOSCH LIMITADA",
+  "situacao": "Autorizada",
+  "valor": "R$ 1.712,83",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "295330",
+  "serie": "1",
+  "data": "27/06/2024",
+  "nomeEmitente": "MAKITA DO BRASIL FERRAMENTAS ELETRICAS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 1.601,59",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "417688",
+  "serie": "4",
+  "data": "27/06/2024",
+  "nomeEmitente": "MAKITA DO BRASIL FERRAMENTAS ELETRICAS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 34,63",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "652738",
+  "serie": "14",
+  "data": "27/06/2024",
+  "nomeEmitente": "ALPARGATAS S/A",
+  "situacao": "Autorizada",
+  "valor": "R$ 1.500,00",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "70801",
+  "serie": "1",
+  "data": "27/06/2024",
+  "nomeEmitente": "FLORESTA MAQUINAS E MOTORES LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 214,12",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "746",
+  "serie": "1",
+  "data": "27/06/2024",
+  "nomeEmitente": "MAGELA SERVICOS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 894,19",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "13700",
+  "serie": "2",
+  "data": "28/06/2024",
+  "nomeEmitente": "BRASTHERM RESISTENCIAS ELETRICAS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 359,80",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "2518811",
+  "serie": "1",
+  "data": "28/06/2024",
+  "nomeEmitente": "LORENZETTI S.A. INDUSTRIAS BRASILEIRAS ELETROMETALURGICAS",
+  "situacao": "Autorizada",
+  "valor": "R$ 19.901,00",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "2518812",
+  "serie": "1",
+  "data": "28/06/2024",
+  "nomeEmitente": "LORENZETTI S.A. INDUSTRIAS BRASILEIRAS ELETROMETALURGICAS",
+  "situacao": "Autorizada",
+  "valor": "R$ 796,04",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "25856",
+  "serie": "2",
+  "data": "28/06/2024",
+  "nomeEmitente": "APARECIDO RODRIGUES DE OLIVEIRA JUNIOR LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 129,90",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "45806",
+  "serie": "1",
+  "data": "28/06/2024",
+  "nomeEmitente": "TECELAGEM SAO CRISTOVAO LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 200,00",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "75765",
+  "serie": "2",
+  "data": "28/06/2024",
+  "nomeEmitente": "VOXCOMMERCE VENDAS NA INTERNET LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 37,99",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "895937",
+  "serie": "3",
+  "data": "28/06/2024",
+  "nomeEmitente": "RA MARTINS BORGES NEGOCIOS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 35,00",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "9625947",
+  "serie": "2",
+  "data": "28/06/2024",
+  "nomeEmitente": "RA MARTINS BORGES NEGOCIOS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 28,90",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "141237",
+  "serie": "1",
+  "data": "01/07/2024",
+  "nomeEmitente": "MAKITA DO BRASIL FERRAMS ELETR LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 273,24",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "1801814",
+  "serie": "23",
+  "data": "01/07/2024",
+  "nomeEmitente": "BLACK E DECKER DO BRASIL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 1.279,11",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "1804770",
+  "serie": "23",
+  "data": "02/07/2024",
+  "nomeEmitente": "BLACK E DECKER DO BRASIL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 667,55",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "1804775",
+  "serie": "23",
+  "data": "02/07/2024",
+  "nomeEmitente": "BLACK E DECKER DO BRASIL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 45,59",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "306801",
+  "serie": "6",
+  "data": "03/07/2024",
+  "nomeEmitente": "LORENZETTI S.A. INDUSTRIAS BRASILEIRAS ELETROMETALURGICAS",
+  "situacao": "Autorizada",
+  "valor": "R$ 264,91",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "306802",
+  "serie": "6",
+  "data": "03/07/2024",
+  "nomeEmitente": "LORENZETTI S.A. INDUSTRIAS BRASILEIRAS ELETROMETALURGICAS",
+  "situacao": "Autorizada",
+  "valor": "R$ 355,69",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "306803",
+  "serie": "6",
+  "data": "03/07/2024",
+  "nomeEmitente": "LORENZETTI S.A. INDUSTRIAS BRASILEIRAS ELETROMETALURGICAS",
+  "situacao": "Autorizada",
+  "valor": "R$ 230,99",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "519098",
+  "serie": "1",
+  "data": "03/07/2024",
+  "nomeEmitente": "GAZIN INDUSTRIA E COMERCIO DE MOVEIS E ELETRODOMESTICOS S.A",
+  "situacao": "Autorizada",
+  "valor": "R$ 108,95",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "1806658",
+  "serie": "23",
+  "data": "04/07/2024",
+  "nomeEmitente": "BLACK E DECKER DO BRASIL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 2,10",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "1808043",
+  "serie": "23",
+  "data": "05/07/2024",
+  "nomeEmitente": "BLACK E DECKER DO BRASIL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 94,97",
+  "cnpjEmpresa": "09197286000111"
+},
+{
   "id": "1809946",
   "serie": "23",
   "data": "08/07/2024",
@@ -113,3 +959,959 @@
 },
 {
 "listaNotas" : [
+{
+  "id": "514473",
+  "serie": "2",
+  "data": "10/07/2024",
+  "nomeEmitente": "GRAND COMMERCE LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 78,90",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "4067",
+  "serie": "1",
+  "data": "05/06/2024",
+  "nomeEmitente": "COMERCIAL DE TELAS E FERRAGENS LTDA - ME",
+  "situacao": "Cancelada",
+  "valor": "R$ 169,58",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "1779549",
+  "serie": "23",
+  "data": "06/06/2024",
+  "nomeEmitente": "BLACK E DECKER DO BRASIL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 453,99",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "22968",
+  "serie": "1",
+  "data": "06/06/2024",
+  "nomeEmitente": "SOFRIO REFRIGERACOES LTDA - EPP",
+  "situacao": "Cancelada",
+  "valor": "R$ 88,00",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "22969",
+  "serie": "1",
+  "data": "06/06/2024",
+  "nomeEmitente": "SOFRIO REFRIGERACOES LTDA - EPP",
+  "situacao": "Autorizada",
+  "valor": "R$ 88,00",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "22973",
+  "serie": "1",
+  "data": "07/06/2024",
+  "nomeEmitente": "SOFRIO REFRIGERACOES LTDA - EPP",
+  "situacao": "Autorizada",
+  "valor": "R$ 88,00",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "29016",
+  "serie": "1",
+  "data": "07/06/2024",
+  "nomeEmitente": "LOJAO PARAIBA COMERCIAL DA CONSTRUCAO LTDA",
+  "situacao": "Cancelada",
+  "valor": "R$ 451,84",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "6440",
+  "serie": "3",
+  "data": "07/06/2024",
+  "nomeEmitente": "RRB MAGAZINE COMERCIAL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 448,72",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "1947604",
+  "serie": "1",
+  "data": "08/06/2024",
+  "nomeEmitente": "Electrolux do Brasil S/A",
+  "situacao": "Autorizada",
+  "valor": "R$ 273,12",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "1949537",
+  "serie": "1",
+  "data": "10/06/2024",
+  "nomeEmitente": "Electrolux do Brasil S/A",
+  "situacao": "Autorizada",
+  "valor": "R$ 1.088,42",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "19635",
+  "serie": "2",
+  "data": "10/06/2024",
+  "nomeEmitente": "JBA SHOP COMERCIO E IMPORTACAO LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 65,56",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "214936",
+  "serie": "3",
+  "data": "10/06/2024",
+  "nomeEmitente": "MAIKO BRASIL COMERCIO LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 157,68",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "36762",
+  "serie": "2",
+  "data": "10/06/2024",
+  "nomeEmitente": "LOJAS PARIS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 163,60",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "61522",
+  "serie": "2",
+  "data": "10/06/2024",
+  "nomeEmitente": "AMANDA A.M.V.I CORREA LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 187,44",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "64288",
+  "serie": "2",
+  "data": "10/06/2024",
+  "nomeEmitente": "BRASTHERM AQUECIMENTOS ELETRICOS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 64,90",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "77391",
+  "serie": "1",
+  "data": "10/06/2024",
+  "nomeEmitente": "EMERSON NORONHA DE BARROS 35342863830",
+  "situacao": "Autorizada",
+  "valor": "R$ 68,64",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "98159",
+  "serie": "2",
+  "data": "10/06/2024",
+  "nomeEmitente": "MARCELA CRISTINA RIGOBELLO LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 47,28",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "1067",
+  "serie": "2",
+  "data": "11/06/2024",
+  "nomeEmitente": "32.006.979 CRISTOVAM LUIZ SILVA",
+  "situacao": "Autorizada",
+  "valor": "R$ 146,73",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "133681",
+  "serie": "2",
+  "data": "11/06/2024",
+  "nomeEmitente": "MADRI FERRAMENTAS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 142,97",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "1783513",
+  "serie": "23",
+  "data": "11/06/2024",
+  "nomeEmitente": "BLACK E DECKER DO BRASIL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 28,22",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "439130",
+  "serie": "1",
+  "data": "11/06/2024",
+  "nomeEmitente": "DEXCO HYDRA CORONA S.A.L.",
+  "situacao": "Autorizada",
+  "valor": "R$ 6.250,79",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "439131",
+  "serie": "1",
+  "data": "11/06/2024",
+  "nomeEmitente": "DEXCO HYDRA CORONA S.A.L.",
+  "situacao": "Autorizada",
+  "valor": "R$ 1.615,40",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "293905",
+  "serie": "1",
+  "data": "12/06/2024",
+  "nomeEmitente": "MAKITA DO BRASIL FERRAMENTAS ELETRICAS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 1.048,16",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "1786239",
+  "serie": "23",
+  "data": "13/06/2024",
+  "nomeEmitente": "BLACK E DECKER DO BRASIL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 57,02",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "1787204",
+  "serie": "23",
+  "data": "13/06/2024",
+  "nomeEmitente": "BLACK E DECKER DO BRASIL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 3.348,96",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "439677",
+  "serie": "1",
+  "data": "13/06/2024",
+  "nomeEmitente": "DEXCO HYDRA CORONA S.A.L.",
+  "situacao": "Autorizada",
+  "valor": "R$ 91,97",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "1787792",
+  "serie": "23",
+  "data": "14/06/2024",
+  "nomeEmitente": "BLACK E DECKER DO BRASIL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 9.558,03",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "1788730",
+  "serie": "23",
+  "data": "14/06/2024",
+  "nomeEmitente": "BLACK E DECKER DO BRASIL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 487,79",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "5256",
+  "serie": "0",
+  "data": "14/06/2024",
+  "nomeEmitente": "COMERCIAL MARANGUAPE LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 3.542,82",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "12961",
+  "serie": "3",
+  "data": "17/06/2024",
+  "nomeEmitente": "MAIKO MARTINS LEAO 30349474885",
+  "situacao": "Autorizada",
+  "valor": "R$ 189,49",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "1506131",
+  "serie": "1",
+  "data": "17/06/2024",
+  "nomeEmitente": "FAME - FABRICA DE APARELHOS E MATERIAL ELETRICO LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 2.355,42",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "228369",
+  "serie": "2",
+  "data": "17/06/2024",
+  "nomeEmitente": "GDS BRASIL COMERCIO DE ELETRONICO LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 139,11",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "255856",
+  "serie": "2",
+  "data": "17/06/2024",
+  "nomeEmitente": "ALLINE DE OLIVEIRA SILVA LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 110,85",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "29193",
+  "serie": "1",
+  "data": "17/06/2024",
+  "nomeEmitente": "LOJAO PARAIBA COMERCIAL DA CONSTRUCAO LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 138,35",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "29195",
+  "serie": "1",
+  "data": "17/06/2024",
+  "nomeEmitente": "LOJAO PARAIBA COMERCIAL DA CONSTRUCAO LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 182,97",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "294272",
+  "serie": "1",
+  "data": "17/06/2024",
+  "nomeEmitente": "MAKITA DO BRASIL FERRAMENTAS ELETRICAS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 122,40",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "294370",
+  "serie": "1",
+  "data": "17/06/2024",
+  "nomeEmitente": "MAKITA DO BRASIL FERRAMENTAS ELETRICAS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 0,31",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "5693",
+  "serie": "2",
+  "data": "17/06/2024",
+  "nomeEmitente": "GUNTAI & CO STORE LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 144,29",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "77073",
+  "serie": "2",
+  "data": "17/06/2024",
+  "nomeEmitente": "LEANDRO HENRIQUE RINALDI DUARTE",
+  "situacao": "Autorizada",
+  "valor": "R$ 318,50",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "80687",
+  "serie": "1",
+  "data": "17/06/2024",
+  "nomeEmitente": "ERIKA HELENA PEREIRA REZENDE",
+  "situacao": "Autorizada",
+  "valor": "R$ 78,99",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "9670",
+  "serie": "1",
+  "data": "17/06/2024",
+  "nomeEmitente": "RRB MAGAZINE COMERCIAL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 111,33",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "1506295",
+  "serie": "1",
+  "data": "18/06/2024",
+  "nomeEmitente": "FAME - FABRICA DE APARELHOS E MATERIAL ELETRICO LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 13.900,00",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "153819",
+  "serie": "2",
+  "data": "18/06/2024",
+  "nomeEmitente": "LED TOOLS FERRAMENTAS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 1.049,00",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "294480",
+  "serie": "1",
+  "data": "18/06/2024",
+  "nomeEmitente": "MAKITA DO BRASIL FERRAMENTAS ELETRICAS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 132,74",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "31664",
+  "serie": "2",
+  "data": "18/06/2024",
+  "nomeEmitente": "DAIVENDAS ECOMMERCE LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 224,20",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "31666",
+  "serie": "2",
+  "data": "18/06/2024",
+  "nomeEmitente": "DAIVENDAS ECOMMERCE LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 56,05",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "39335",
+  "serie": "3",
+  "data": "18/06/2024",
+  "nomeEmitente": "F.A INDUSTRIA DE RESISTENCIAS ELETRICAS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 96,93",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "439809",
+  "serie": "1",
+  "data": "18/06/2024",
+  "nomeEmitente": "DEXCO HYDRA CORONA S.A.L.",
+  "situacao": "Autorizada",
+  "valor": "R$ 5.208,56",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "101948",
+  "serie": "1",
+  "data": "19/06/2024",
+  "nomeEmitente": "MAKITA DO BRASIL FERRAMENTAS ELETRICAS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 18,86",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "294684",
+  "serie": "1",
+  "data": "19/06/2024",
+  "nomeEmitente": "MAKITA DO BRASIL FERRAMENTAS ELETRICAS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 388,98",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "31743",
+  "serie": "2",
+  "data": "19/06/2024",
+  "nomeEmitente": "DAIVENDAS ECOMMERCE LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 224,20",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "31746",
+  "serie": "2",
+  "data": "19/06/2024",
+  "nomeEmitente": "DAIVENDAS ECOMMERCE LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 168,15",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "148721",
+  "serie": "1",
+  "data": "20/06/2024",
+  "nomeEmitente": "POSITEC IMPORTACAO DE FERRAMENTAS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 524,13",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "294759",
+  "serie": "1",
+  "data": "20/06/2024",
+  "nomeEmitente": "MAKITA DO BRASIL FERRAMENTAS ELETRICAS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 1.239,21",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "294763",
+  "serie": "1",
+  "data": "20/06/2024",
+  "nomeEmitente": "MAKITA DO BRASIL FERRAMENTAS ELETRICAS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 337,80",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "413838",
+  "serie": "4",
+  "data": "20/06/2024",
+  "nomeEmitente": "MAKITA DO BRASIL FERRAMENTAS ELETRICAS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 294,35",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "1965070",
+  "serie": "1",
+  "data": "21/06/2024",
+  "nomeEmitente": "Electrolux do Brasil S/A",
+  "situacao": "Autorizada",
+  "valor": "R$ 496,62",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "294929",
+  "serie": "1",
+  "data": "21/06/2024",
+  "nomeEmitente": "MAKITA DO BRASIL FERRAMENTAS ELETRICAS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 42,01",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "294964",
+  "serie": "1",
+  "data": "21/06/2024",
+  "nomeEmitente": "MAKITA DO BRASIL FERRAMENTAS ELETRICAS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 74,49",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "95348",
+  "serie": "2",
+  "data": "22/06/2024",
+  "nomeEmitente": "A.C. DE QUADROS",
+  "situacao": "Autorizada",
+  "valor": "R$ 39,00",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "1795400",
+  "serie": "23",
+  "data": "23/06/2024",
+  "nomeEmitente": "BLACK E DECKER DO BRASIL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 7,63",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "1797659",
+  "serie": "23",
+  "data": "25/06/2024",
+  "nomeEmitente": "BLACK E DECKER DO BRASIL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 19,70",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "214622",
+  "serie": "1",
+  "data": "25/06/2024",
+  "nomeEmitente": "ROBERT BOSCH LIMITADA",
+  "situacao": "Autorizada",
+  "valor": "R$ 328,60",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "1798320",
+  "serie": "23",
+  "data": "26/06/2024",
+  "nomeEmitente": "BLACK E DECKER DO BRASIL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 167,42",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "1798574",
+  "serie": "23",
+  "data": "26/06/2024",
+  "nomeEmitente": "BLACK E DECKER DO BRASIL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 2.737,74",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "1799810",
+  "serie": "23",
+  "data": "26/06/2024",
+  "nomeEmitente": "BLACK E DECKER DO BRASIL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 103,41",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "23709",
+  "serie": "2",
+  "data": "26/06/2024",
+  "nomeEmitente": "TRABUCO E-COMMERCE LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 143,64",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "295195",
+  "serie": "1",
+  "data": "26/06/2024",
+  "nomeEmitente": "MAKITA DO BRASIL FERRAMENTAS ELETRICAS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 246,43",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "445182",
+  "serie": "1",
+  "data": "26/06/2024",
+  "nomeEmitente": "ELETRON SERVICE COM E SER LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 87,40",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "57491",
+  "serie": "1",
+  "data": "26/06/2024",
+  "nomeEmitente": "MARCOS VINICIUS FERREIRA COSTA NUNES",
+  "situacao": "Autorizada",
+  "valor": "R$ 170,34",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "214767",
+  "serie": "1",
+  "data": "27/06/2024",
+  "nomeEmitente": "ROBERT BOSCH LIMITADA",
+  "situacao": "Autorizada",
+  "valor": "R$ 1.712,83",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "295330",
+  "serie": "1",
+  "data": "27/06/2024",
+  "nomeEmitente": "MAKITA DO BRASIL FERRAMENTAS ELETRICAS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 1.601,59",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "417688",
+  "serie": "4",
+  "data": "27/06/2024",
+  "nomeEmitente": "MAKITA DO BRASIL FERRAMENTAS ELETRICAS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 34,63",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "652738",
+  "serie": "14",
+  "data": "27/06/2024",
+  "nomeEmitente": "ALPARGATAS S/A",
+  "situacao": "Autorizada",
+  "valor": "R$ 1.500,00",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "70801",
+  "serie": "1",
+  "data": "27/06/2024",
+  "nomeEmitente": "FLORESTA MAQUINAS E MOTORES LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 214,12",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "746",
+  "serie": "1",
+  "data": "27/06/2024",
+  "nomeEmitente": "MAGELA SERVICOS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 894,19",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "13700",
+  "serie": "2",
+  "data": "28/06/2024",
+  "nomeEmitente": "BRASTHERM RESISTENCIAS ELETRICAS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 359,80",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "2518811",
+  "serie": "1",
+  "data": "28/06/2024",
+  "nomeEmitente": "LORENZETTI S.A. INDUSTRIAS BRASILEIRAS ELETROMETALURGICAS",
+  "situacao": "Autorizada",
+  "valor": "R$ 19.901,00",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "2518812",
+  "serie": "1",
+  "data": "28/06/2024",
+  "nomeEmitente": "LORENZETTI S.A. INDUSTRIAS BRASILEIRAS ELETROMETALURGICAS",
+  "situacao": "Autorizada",
+  "valor": "R$ 796,04",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "25856",
+  "serie": "2",
+  "data": "28/06/2024",
+  "nomeEmitente": "APARECIDO RODRIGUES DE OLIVEIRA JUNIOR LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 129,90",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "45806",
+  "serie": "1",
+  "data": "28/06/2024",
+  "nomeEmitente": "TECELAGEM SAO CRISTOVAO LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 200,00",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "75765",
+  "serie": "2",
+  "data": "28/06/2024",
+  "nomeEmitente": "VOXCOMMERCE VENDAS NA INTERNET LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 37,99",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "895937",
+  "serie": "3",
+  "data": "28/06/2024",
+  "nomeEmitente": "RA MARTINS BORGES NEGOCIOS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 35,00",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "9625947",
+  "serie": "2",
+  "data": "28/06/2024",
+  "nomeEmitente": "RA MARTINS BORGES NEGOCIOS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 28,90",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "141237",
+  "serie": "1",
+  "data": "01/07/2024",
+  "nomeEmitente": "MAKITA DO BRASIL FERRAMS ELETR LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 273,24",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "1801814",
+  "serie": "23",
+  "data": "01/07/2024",
+  "nomeEmitente": "BLACK E DECKER DO BRASIL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 1.279,11",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "1804770",
+  "serie": "23",
+  "data": "02/07/2024",
+  "nomeEmitente": "BLACK E DECKER DO BRASIL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 667,55",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "1804775",
+  "serie": "23",
+  "data": "02/07/2024",
+  "nomeEmitente": "BLACK E DECKER DO BRASIL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 45,59",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "306801",
+  "serie": "6",
+  "data": "03/07/2024",
+  "nomeEmitente": "LORENZETTI S.A. INDUSTRIAS BRASILEIRAS ELETROMETALURGICAS",
+  "situacao": "Autorizada",
+  "valor": "R$ 264,91",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "306802",
+  "serie": "6",
+  "data": "03/07/2024",
+  "nomeEmitente": "LORENZETTI S.A. INDUSTRIAS BRASILEIRAS ELETROMETALURGICAS",
+  "situacao": "Autorizada",
+  "valor": "R$ 355,69",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "306803",
+  "serie": "6",
+  "data": "03/07/2024",
+  "nomeEmitente": "LORENZETTI S.A. INDUSTRIAS BRASILEIRAS ELETROMETALURGICAS",
+  "situacao": "Autorizada",
+  "valor": "R$ 230,99",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "519098",
+  "serie": "1",
+  "data": "03/07/2024",
+  "nomeEmitente": "GAZIN INDUSTRIA E COMERCIO DE MOVEIS E ELETRODOMESTICOS S.A",
+  "situacao": "Autorizada",
+  "valor": "R$ 108,95",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "1806658",
+  "serie": "23",
+  "data": "04/07/2024",
+  "nomeEmitente": "BLACK E DECKER DO BRASIL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 2,10",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "1808043",
+  "serie": "23",
+  "data": "05/07/2024",
+  "nomeEmitente": "BLACK E DECKER DO BRASIL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 94,97",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "1809946",
+  "serie": "23",
+  "data": "08/07/2024",
+  "nomeEmitente": "BLACK E DECKER DO BRASIL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 640,77",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "1812104",
+  "serie": "23",
+  "data": "09/07/2024",
+  "nomeEmitente": "BLACK E DECKER DO BRASIL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 2.451,54",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "23708",
+  "serie": "3",
+  "data": "09/07/2024",
+  "nomeEmitente": "FRAELLIO IND.COML E IMPORTADORA MAT.ELETRICOS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 271,90",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "296077",
+  "serie": "1",
+  "data": "09/07/2024",
+  "nomeEmitente": "MAKITA DO BRASIL FERRAMENTAS ELETRICAS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 2.087,28",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "15136",
+  "serie": "3",
+  "data": "10/07/2024",
+  "nomeEmitente": "HENRIQUE DE CAMPOS COELHO DA SILVA 11413010911",
+  "situacao": "Autorizada",
+  "valor": "R$ 34,93",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "15162",
+  "serie": "3",
+  "data": "10/07/2024",
+  "nomeEmitente": "HENRIQUE DE CAMPOS COELHO DA SILVA 11413010911",
+  "situacao": "Autorizada",
+  "valor": "R$ 34,93",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "209810",
+  "serie": "2",
+  "data": "10/07/2024",
+  "nomeEmitente": "CASA PAULISTANA MATERIAIS PARA CONSTRUCAO E DECORACOES LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 37,05",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "209907",
+  "serie": "2",
+  "data": "10/07/2024",
+  "nomeEmitente": "CASA PAULISTANA MATERIAIS PARA CONSTRUCAO E DECORACOES LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 74,10",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "238718",
+  "serie": "9",
+  "data": "10/07/2024",
+  "nomeEmitente": "MAX FERRAMENTAS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 260,88",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "27336",
+  "serie": "2",
+  "data": "10/07/2024",
+  "nomeEmitente": "CECAROLI ASSESSORIA COMERCIAL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 35,89",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "27925",
+  "serie": "2",
+  "data": "10/07/2024",
+  "nomeEmitente": "48.014.331 MICHELLE MAYRA REIS CHAGAS",
+  "situacao": "Autorizada",
+  "valor": "R$ 143,60",
+  "cnpjEmpresa": "04006932000100"
+},
+{
+  "id": "514473",
+  "serie": "2",
+  "data": "10/07/2024",
+  "nomeEmitente": "GRAND COMMERCE LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 78,90",
+  "cnpjEmpresa": "04006932000100"
+}
+]
+},
