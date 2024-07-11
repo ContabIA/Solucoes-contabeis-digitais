@@ -1,0 +1,115 @@
+{
+"runs":[{
+"listaNotas" : [
+{
+  "id": "1809946",
+  "serie": "23",
+  "data": "08/07/2024",
+  "nomeEmitente": "BLACK E DECKER DO BRASIL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 640,77",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "1812104",
+  "serie": "23",
+  "data": "09/07/2024",
+  "nomeEmitente": "BLACK E DECKER DO BRASIL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 2.451,54",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "23708",
+  "serie": "3",
+  "data": "09/07/2024",
+  "nomeEmitente": "FRAELLIO IND.COML E IMPORTADORA MAT.ELETRICOS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 271,90",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "296077",
+  "serie": "1",
+  "data": "09/07/2024",
+  "nomeEmitente": "MAKITA DO BRASIL FERRAMENTAS ELETRICAS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 2.087,28",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "15136",
+  "serie": "3",
+  "data": "10/07/2024",
+  "nomeEmitente": "HENRIQUE DE CAMPOS COELHO DA SILVA 11413010911",
+  "situacao": "Autorizada",
+  "valor": "R$ 34,93",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "15162",
+  "serie": "3",
+  "data": "10/07/2024",
+  "nomeEmitente": "HENRIQUE DE CAMPOS COELHO DA SILVA 11413010911",
+  "situacao": "Autorizada",
+  "valor": "R$ 34,93",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "209810",
+  "serie": "2",
+  "data": "10/07/2024",
+  "nomeEmitente": "CASA PAULISTANA MATERIAIS PARA CONSTRUCAO E DECORACOES LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 37,05",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "209907",
+  "serie": "2",
+  "data": "10/07/2024",
+  "nomeEmitente": "CASA PAULISTANA MATERIAIS PARA CONSTRUCAO E DECORACOES LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 74,10",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "238718",
+  "serie": "9",
+  "data": "10/07/2024",
+  "nomeEmitente": "MAX FERRAMENTAS LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 260,88",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "27336",
+  "serie": "2",
+  "data": "10/07/2024",
+  "nomeEmitente": "CECAROLI ASSESSORIA COMERCIAL LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 35,89",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "27925",
+  "serie": "2",
+  "data": "10/07/2024",
+  "nomeEmitente": "48.014.331 MICHELLE MAYRA REIS CHAGAS",
+  "situacao": "Autorizada",
+  "valor": "R$ 143,60",
+  "cnpjEmpresa": "09197286000111"
+},
+{
+  "id": "514473",
+  "serie": "2",
+  "data": "10/07/2024",
+  "nomeEmitente": "GRAND COMMERCE LTDA",
+  "situacao": "Autorizada",
+  "valor": "R$ 78,90",
+  "cnpjEmpresa": "09197286000111"
+}
+]
+},
+{
+"listaNotas" : [
