@@ -14,24 +14,31 @@ import com.contabia.contabia.models.dto.UserDto;
 import com.contabia.contabia.models.entity.UserModel;
 import com.contabia.contabia.repository.UserRepository;
 
-import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestBody;
+
+    /*
+     * Classe controller responsável por cadastrar um novo usuário ao banco de dados
+     * 
+     * rotas:
+     *  /cadastro/ (GET) -> exibe a página de cadastro de usuários
+     * 
+     *  /cadastro/ (POST) -> coleta todos os dados enviados pelo usuário e os salva no banco de dados 
+    */
 
 @Controller
 @RequestMapping("/cadastro")
 public class RegUserController {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserRepository userRepository; //repository dos usuarios
 
     @GetMapping
     public String cadastro() {
-        return "cadastroUser";
+        return "cadastroUser"; //exibe a página de cadastro de usuário
     }
 
     @PostMapping
