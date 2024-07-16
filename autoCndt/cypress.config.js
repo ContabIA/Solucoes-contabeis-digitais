@@ -1,5 +1,5 @@
 const { defineConfig } = require("cypress");
-const {solveCaptcha, writeOutput} = require("./cypress/support/e2e");
+const {solveCaptcha, writeOutput, verifyPdf} = require("./cypress/support/e2e");
 
 module.exports = defineConfig({
   e2e: {
@@ -14,6 +14,11 @@ module.exports = defineConfig({
           var retorno = await writeOutput(Objeto)
           console.log(Objeto)
           return retorno
+        },
+        async pdfStatus(cnpj){
+          let ret = await verifyPdf(cnpj);
+          console.log(ret);
+          return ret;
         }
 
         

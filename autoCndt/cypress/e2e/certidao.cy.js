@@ -17,7 +17,9 @@ describe("Teste do negativado trabalhista", ()=>{
         cy.get('#divSucesso').should('have.css', 'display', 'block').then(($element) => {
             if ($element.css('display') === 'block') {
                 //função de retorno de resposta positiva
-                cy.task('writeOut', {"status" : 1, "cnpj" : Cypress.env("cnpj")})
+                cy.task("pdfStatus", Cypress.env("cnpj")).then((status) => {
+                    cy.task('writeOut', {"status" : status, "cnpj" : Cypress.env("cnpj")})
+                })
                 
             }
         });
