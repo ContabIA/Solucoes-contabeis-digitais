@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Detalhes</title>
+        <link rel="stylesheet" href="../styles/reset.css">
+        <link rel="stylesheet" href="../styles/detalhes.css">
+        <link rel="stylesheet" href="../styles/style.css">
+        <script th:src="@{/js/main.js}" defer></script>
+        <script type="module" th:src="@{/js/detalhes.js}" defer></script>
+    </head>
+    <!--
+        Atributos utilizados pelo thymeleaf:
+        - cnpjUser
+        - cnpjEmpresa
+        - tipoAlt
+        - nota
+        - mes
+        - idAlt
+        - resp
+    -->
+    <body>
+
+        <header th:insert="~{fragments :: nav}"></header>
+        
+        <main>
+            <div class="container">
+                <div class="divPrincipal divDetalhes" >
+                    <H1 class="title">Detalhes <span th:text="${tipoAlt}"></span></H1>
+
+                    <div style="margin-left: auto; margin-right: auto; ">
+                        <div class="detalhes1">
+                            <h2 class="title2" th:text="${'CNPJ - ' + cnpjEmpresa}"></h2>
+                            <h2 class="title2" th:text="${'Mês - ' + mes}"></h2>
+                        </div>
+                    </div>
+
+                    <table th:each="nota : ${nota}" th:insert="~{fragments :: tabelaDetalhes}">
+                        
+                    </table>
+
+                    <button type="button" class="btnVoltar" th:attr="onclick=|removerNovo(${idAlt}, '${tipoAlt}', '${cnpjUser}')|">Voltar</button>
+                </div>
+            </div>
+        </main>
+
+    </body>
+</html>

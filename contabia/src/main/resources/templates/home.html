@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../styles/reset.css">
+        <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/home.css">
+        <script th:src="@{/js/main.js}" defer></script>
+        <script type="module" th:src="@{/js/home.js}" defer></script>
+        <title>ContabIA</title>
+    </head>
+    <!--
+    Atributos utilizados pelo thymeleaf:
+    - cnpjUser
+    - cnpjEmpresa
+    - infosAlt
+    -->
+    <body>
+
+        <header th:insert="~{fragments :: nav}"></header>
+
+        <main>
+            <div class="container">
+                <div class="divPrincipal">
+                    <h1 class="title">Alterações Detectadas</h1>
+
+                    <section id="alts">
+
+                        <div th:each="infos : ${infosAlt}" th:insert="~{fragments :: alteracao}"></div>
+
+                    </section>
+
+                </div>
+            </div>
+        </main>
+
+    </body>
+</html>

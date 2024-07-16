@@ -1,0 +1,119 @@
+/*
+CSS com as estilizações específicas da página de cadastro de usuários
+*/
+
+body {
+    height: 100vh;
+    background-color: #110119;
+    box-shadow: #2b2551 0px 0px 55px -5px inset;
+}
+
+/* header */
+nav {
+    background: #2B2551;
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    margin-bottom: 5vh;
+}
+
+.login {
+    display: grid;
+    justify-items: center;
+    /*margin-top: 12vh;*/
+}
+
+h1 {
+    padding-bottom: 0.6em;
+    font-size: 40px;
+    color: var(--cor-textos);
+    font-weight: 600
+}
+
+.form {
+    display: grid;
+    justify-items: center;
+}
+
+.inputs {
+    margin-bottom: 1em;
+    width: 20em;
+    padding: 0.5em 1em;
+    border-radius: 15px;
+    border: #2B2551 2px solid;
+    background-color: #C3C3C3;
+    font-weight: 600;
+    font-size: 18px;
+    text-align: center;
+}
+
+.user::placeholder {
+    background-image: url(../img/user-Icon.png);
+    background-size: 40px;
+    background-repeat: no-repeat;
+    background-position: 17.8em;
+    padding: 0.5em;
+}
+
+.senha::placeholder {
+    background-image: url(../img/cadeado.png);
+    background-size: 35px;
+    background-repeat: no-repeat;
+    background-position: 17.8em;
+    padding: 0.5em;
+}
+
+.email::placeholder {
+    background-image: url(../img/o-email.png);
+    background-size: 35px;
+    background-repeat: no-repeat;
+    background-position: 17.8em;
+    padding: 0.5em;
+}
+
+.inputs::placeholder {
+    color: #636363;
+    font-size: 18px;
+    text-align: center;
+}
+
+#button {
+    width: 15em;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 15px;
+    background-color: #2B2551;
+    border: #2B2551 2px solid;
+    color: var(--cor-textos);
+    padding: 0.3em 0;
+    transition-property: background-color, color;
+    transition-duration: 0.2s;
+}
+
+#button:hover{
+    background-color: white;
+    color: black;
+}
+
+a {
+    color: var(--cor-textos);
+    font-size: 14px;
+    text-decoration: none;
+    margin-top: 1em;
+    margin-bottom: 2em;
+    transition-property: text-decoration;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
+#erro{
+    background-color: rgba(255, 124, 124, 0.764);
+    padding: 1%;
+    margin-bottom: 2%;
+    text-align: center;
+    border-radius: 15px;
+    border: 2px solid rgb(255, 63, 63);
+    font-weight: bolder;
+}
