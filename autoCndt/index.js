@@ -1,4 +1,4 @@
-#!/bin/env node index.js >> saida.txt
+#!/bin/env node index.js
 const fs = require('fs');
 const { resolve, join } = require('path');
 const RunCypress = require(join(__dirname, "/RunCypress"))
@@ -9,7 +9,8 @@ class RunArgs{
         this.spec = './cypress/e2e/certidao.cy.js';
         this.configFile = './cypress.config.js';
         this.headed = false;
-        this.browser ='edge';
+        this.browser ='firefox';
+        this.quiet = true;
     }
 };
 
@@ -208,4 +209,8 @@ async function main(){
 
 };
 
-main();
+let run = new RunCypress(new RunArgs("cnpj=08803834000147"), undefined);
+
+run.run().catch((reason) => {
+    console.log(reason);
+})

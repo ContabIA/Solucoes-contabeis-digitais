@@ -7,7 +7,7 @@ class RunCypress{
         this.runArgs = runArgs;
         this.runableObj = runableObj;
         this.current = undefined;
-        this.maxRetrys = 1;
+        this.maxRetrys = 2;
     }
 
     async #runRunableObj(){
@@ -34,7 +34,7 @@ class RunCypress{
             fs.readFileSync(path) + "\n" +
             this.runArgs.env.slice(5) + ":" + status
         )
-    }
+    };
 
     async #cypressRetry(failMsg, failStatus){
         
@@ -55,7 +55,7 @@ class RunCypress{
                 });
             };
 
-            return this.#runRunableObj().then(resp, resp);
+            return this.#runRunableObj().then(resp).catch(resp);
         }
         
     }
@@ -84,7 +84,7 @@ class RunCypress{
 
             return this.#runRunableObj();
 
-        }, this.#cypressErrorHandler)
+        }).catch(this.#cypressErrorHandler);
 
     };
 };
