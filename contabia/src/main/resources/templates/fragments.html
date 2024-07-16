@@ -11,12 +11,22 @@
     
     <a th:href="@{/listaCnpj(cnpjUser=${cnpjUser})}" class="button-nav">CNPJ's</a>
 
+   
     <div class="caixa-user">
 
         <label th:text="${cnpjUser}" id="user"></label>
-        <img src="../img/user-Icon.png" alt="userIcon" id="userIcon">
+        <a class='linkUser'><img src="../img/user-Icon.png" alt="userIcon" id="userIcon"></a>
 
+
+        
+        <div class='lista-config'>
+            <ul class='lista'>
+                <a th:href="@{/home(cnpjUser=${cnpjUser})}" class='button-li'><li class='elementos-li'><strong>Editar Perfil</strong></li><a/>
+                <a href='#' class='button-li'><li class='elementos-li'><strong>Sair</strong></li></a>
+            </ul>
+        </div>
     </div>
+    
 </nav>
 
 <!--Fragment que contém a div que exibe o nome da alteração e o link para ver os detalhes-->
