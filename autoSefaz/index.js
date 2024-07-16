@@ -1,4 +1,4 @@
-const cypress = require('cypress');
+//const cypress = require("cypress");
 const fs = require("fs");
 const path = require("path");
 
@@ -11,6 +11,60 @@ async function enviarDados(dados){
     });
 };
 
+function getListaNumeroDia(periodo, digitos, diaAtual){
+    
+  var resp = new Array();
+  if (periodo == 7){
+    diaAtual = diaAtual.getDay()
+  } else if (periodo > 7 & periodo <= 31){
+    diaAtual = diaAtual.getDate()
+  }
+
+  let finalIdInserir = diaAtual
+  while(Math.floor(finalIdInserir / Math.pow(10, digitos)) == 0){
+
+    resp.push(finalIdInserir)
+    finalIdInserir += periodo
+  }  
+    
+  return resp
+
+}
+
+async function getInput(){
+  
+  let diaAtual = new Date();
+
+  let listaCnpj = new Array();
+
+  let listaFinaisIdSemanal = getListaNumeroDia(7, 1, diaAtual);
+
+  for (let i = 0; listaFinaisIdSemanal.length; i++){
+    let req = await fetch("http://localhost:8080/service/getCnpj?tamanhoFinal=1&ultimoDigito=" + listaFinaisIdSemanal[i] + "&frequencia=1&tipoConsulta=1");
+    let reqJson = await req.json();
+    listaCnpj = listaCnpj.concat(reqJson["cnpjs"]);
+  }
+  
+  let diasMes = new Date(dataObj.getFullYear(), dataObj.getMonth(), 0).getDate();
+
+  let listaFinaisIdMensal = getListaNumeroDia(diasMes, 2);
+
+  for (let i = 0; listaFinaisIdMensal.length; i++){
+    let req = await fetch("http://localhost:8080/service/getCnpj?tamanhoFinal=2&ultimoDigito=" + listaFinaisIdSemanal[i] + "&frequencia=2&tipoConsulta=1");
+    let reqJson = await req.json();
+    listaCnpj = listaCnpj.concat(reqJson["cnpjs"]);
+  }
+
+  return listaCnpj
+}
+
+async function loginSefaz(){
+  let dadosLogin = await fetch("http://localhost:8080/service/")
+  let respJson = await dadosLogin.json()
+  let infoLogin = respJson.body.respJson;
+
+  return infoLogin
+}
 
 async function main(){
   //let resp = await fetch('http://localhost:8080/service/getCnpj?tamanhoFinal={tamanho}&ultimoDigito={digitos}&frequencia={1:semanal,2:mensal,3:anual}&tipoConsulta=1'); 
@@ -35,8 +89,8 @@ async function main(){
   .catch((err)  => {
     console.error(err)
   })
-  
-  
+
 }
 
-main()
+listaCnpj = getInput()
+console.log(listaCnpj)
