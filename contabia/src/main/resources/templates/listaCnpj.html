@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles/reset.css">
+        <link rel="stylesheet" href="styles/style.css">
+        <link rel="stylesheet" href="styles/listaCnpj.css">
+        <script th:src="@{/js/main.js}" defer></script>
+        <script type="module" th:src="@{/js/listaCnpj.js}" defer></script>
+        <script src="/js/deleteCnpj.js" defer></script>
+    </head>
+    <!--
+    Atributos utilizados pelo thymeleaf:
+    - cnpjUser
+    - cnpjEmpresa
+    - empresasInfos
+    -->
+    <body>
+        
+        <header th:insert="~{fragments :: nav}"></header>
+
+        <main>
+            <div class="container">
+                <div class="divPrincipal">
+                    
+                    <div class="divBtnCadastrar">
+                        <a class="btnCadastrar" th:href="@{/cadastroCnpj(cnpjUser=${cnpjUser})}"> Cadastrar Novo Cnpj </a>
+                    </div>
+
+                    <section id="cnpjs">
+                        <div th:each="infos : ${empresasInfos}" th:insert="~{fragments :: cnpj(infos)}">
+                            
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+
+    </body>
+</html>
