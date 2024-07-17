@@ -60,7 +60,7 @@ public class NotasModel {
     private String situacao;
 
     @Column(unique = false, nullable = false)
-    private double valor;
+    private String valor;
 
     @Setter
     @Column(unique = false, nullable = false)

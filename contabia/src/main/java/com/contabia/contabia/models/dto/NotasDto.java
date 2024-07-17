@@ -41,7 +41,7 @@ public record NotasDto(
     String situacao,
 
     @NotBlank
-    double valor,
+    String valor,
 
     @NotBlank
     String cnpjEmpresa

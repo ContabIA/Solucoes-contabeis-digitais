@@ -7,6 +7,7 @@ describe('Coletando notas Sefaz', () => {
     cy.writeFile("notas.json", '{\n"runs":[')
     for (let i = 0; i < Cypress.env("cnpjs").length; i ++){
       cy.buscandoCnpj(i)
+      cy.wait(5000)
       cy.cria_arquivo_json(i)
       cy.ultimo_dado(i)
       if (i == Cypress.env("cnpjs").length - 1){

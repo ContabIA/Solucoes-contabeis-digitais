@@ -83,11 +83,16 @@ public class ServiceController {
             NotasModel novaNota = new NotasModel(nota, true, empresa.get()); // Cria modelo de nota para inserir no banco.
             
             // Tenta inserir no banco a nota, caso não seja inserida nada acontece pois se ela já está no banco significa que ela não é uma alteração.
-            try {
-                notasRepository.save(novaNota); // Insere resposta no banco.
-            } catch (Exception e) {
+            if (notasRepository.findById(novaNota.getId()).isPresent()){
                 continue;
+            } else {
+                notasRepository.save(novaNota);
             }
+            // try {
+            //     notasRepository.save(novaNota); // Insere resposta no banco.
+            // } catch (Exception e) {
+            //     continue;
+            // }
         }
         return ResponseEntity.ok().body("deu certo!");
     }

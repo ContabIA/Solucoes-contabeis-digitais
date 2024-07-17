@@ -53,6 +53,8 @@ Cypress.Commands.add('buscandoCnpj', (indexCnpj) => {
 let valores = []
 
 Cypress.Commands.add('cria_arquivo_json', (indexCnpj) => {
+
+    valores = []
     cy.writeFile('notas.json', '{' + '\n' + '"listaNotas" : [' + '\n', {flag:"a+"})
 
     
@@ -87,8 +89,9 @@ Cypress.Commands.add('cria_arquivo_json', (indexCnpj) => {
                 valor: valores[5].trim(),
                 cnpjEmpresa: Cypress.env('cnpjs')[indexCnpj]
                 }
-                cy.writeFile('notas.json', registro, {flag: 'a+'})
-                cy.writeFile('notas.json', ',' + "\n", {flag: 'a+'})
+                // cy.writeFile('notas.json', registro, {flag: 'a+'})
+                // cy.writeFile('notas.json', ',' + "\n", {flag: 'a+'})
+                cy.task("escreverJson", {registro: registro, quebra: ",\n"})
                 
                 len = 1
                 valores = []
@@ -116,6 +119,7 @@ Cypress.Commands.add('ultimo_dado', (indexCnpj) => {
         valor: valores[5].trim(),
         cnpjEmpresa: Cypress.env('cnpjs')[indexCnpj]
     }
-    cy.writeFile('notas.json', registro, {flag: 'a+'})
-    cy.writeFile('notas.json', "\n" + ']' + '\n' + '}', {flag: 'a+'})
+    // cy.writeFile('notas.json', registro, {flag: 'a+'})
+    // cy.writeFile('notas.json', "\n" + ']' + '\n' + '}', {flag: 'a+'})
+    cy.task("escreverJson", {registro: registro, quebra: "\n]\n}"})
 })
