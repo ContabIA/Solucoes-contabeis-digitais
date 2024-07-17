@@ -69,37 +69,63 @@ async function getInput(){
   return listaCnpj
 }
 
-async function loginSefaz(){
-  let dadosLogin = await fetch("http://localhost:8080/service/");
-  let respJson = await dadosLogin.json();
-  let infoLogin = respJson.body;
 
-  return infoLogin
+
+function getObjDadosLogin(listaCnpj){
+  var objDadosLogin = new Object;
+  for (let i = 0; i < listaCnpj.length; i++){
+    // let dadosLogin = await fetch("http://localhost:8080/service/loginSefaz?cnpjEmpresa="+listaCnpj[i]);
+    // let respJson = await dadosLogin.json();
+    let infoLogin = ["***REMOVED***", "***REMOVED***"]; // respJson.body()
+    if (objDadosLogin[infoLogin[0]] == null){
+      objDadosLogin[infoLogin[0]] = [infoLogin[1], listaCnpj[i]]
+    } else {
+      objDadosLogin[infoLogin[0]] = objDadosLogin[infoLogin[0]].concat(listaCnpj[i])
+    }
+  }
+  return objDadosLogin
 }
 
 async function main(){
   
-  getInput().then((listaCnpj)=> {
-    cypress
-    .run({
-      spec: './cypress/e2e/login.cy.js',
-      env: {"cnpjs" : listaCnpj},
-      headed: true,
-      browser: "electron",
-    })
-    .then((results) => {
-      console.log(results)
-      let dadosJson = JSON.parse(fs.readFileSync(path.join(__dirname, "/notas.json")));
+  // getInput().then((listaCnpj)=> {
+  //   var objDadosLogin = getObjDadosLogin(listaCnpj) 
+  //     cypress
+  //     .run({
+  //       spec: './cypress/e2e/login.cy.js',
+  //       env: {"dadosLogin" : objDadosLogin, diaUm : (dateObj.getDay() === 1)},
+  //       headed: true,
+  //       browser: "electron",
+  //     })
+  //     .then((results) => {
+  //       console.log(results)
+  //       let dadosJson = JSON.parse(fs.readFileSync(path.join(__dirname, "/notas.json")));
 
-      return (enviarDados(dadosJson));
-    })
-    .catch((err)  => {
-      console.error(err)
-    })
-  }
-  )
+  //       return (enviarDados(dadosJson));
+  //     })
+  //     .catch((err)  => {
+  //       console.error(err)
+  //     })
+  //   })
+  
+    var objDadosLogin = getObjDadosLogin(["09157801000130"]) 
+    var dateObj = new Date();
+      cypress
+      .run({
+        spec: './cypress/e2e/login.cy.js',
+        env: {"dadosLogin" : objDadosLogin, diaUm : (dateObj.getDay() === 1)},
+        headed: true,
+        browser: "electron",
+      })
+      .then((results) => {
+        console.log(results)
+        let dadosJson = JSON.parse(fs.readFileSync(path.join(__dirname, "/notas.json")));
 
-
+        return (enviarDados(dadosJson));
+      })
+      .catch((err)  => {
+        console.error(err)
+      })
 }
-
+  
 main()

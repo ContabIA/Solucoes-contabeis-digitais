@@ -1,13 +1,14 @@
-Cypress.Commands.add("loginSefaz", () => {
+Cypress.Commands.add("loginSefaz", (user, senha) => {
     //Logando no Sefaz
     cy.visit('https://www4.sefaz.pb.gov.br/atf/seg/SEGf_LoginSERVirtual.jsp', {failOnStatusCode: false})
-    cy.get('[name=edtNoLogin]').type('***REMOVED***');
-    cy.get('[name=edtDsSenha]').type('***REMOVED***');
+    cy.get('[name=edtNoLogin]').type(user);
+    cy.get('[name=edtDsSenha]').type(senha);
     cy.get('[name=btnAvancar]').click()
 })
 
-Cypress.Commands.add('buscandoCnpj', (indexCnpj) => {
-
+Cypress.Commands.add('buscandoCnpj', (user, indexCnpj, dateInit, dateFim) => {
+    
+    
     //Inserindo dados das consultas
     cy.visit('https://www4.sefaz.pb.gov.br/atf/fis/FISf_ConsultarNFeXml2.do?idSERVirtual=S&h=https://www.sefaz.pb.gov.br/ser/servirtual/credenciamento/info', {failOnStatusCode: false})
     
@@ -26,10 +27,10 @@ Cypress.Commands.add('buscandoCnpj', (indexCnpj) => {
 
 
     cy.get('[name=edtDtInicial]')
-    .type('01062024')
+    .type(dateInit)
 
-    cy.get('[name=edtDtFinal]')
-    .type(new Date().toLocaleDateString())
+    cy.get('[name=edtDtFinal]') 
+    .type(dateFim)
 
     cy.get('[name=cmbTpDoccmpDest]')
     .select(1)
@@ -37,7 +38,7 @@ Cypress.Commands.add('buscandoCnpj', (indexCnpj) => {
     cy.iframe('[name=cmpDest]')
     .as('iframe')
     .find('[name=hidNrDocumentocmpDest]') 
-    .type(Cypress.env('cnpjs')[indexCnpj])
+    .type(Cypress.env("dadosLogin")[user][indexCnpj])
 
     cy.get('@iframe')
     .find('[name=btnPesquisar]')
@@ -52,7 +53,7 @@ Cypress.Commands.add('buscandoCnpj', (indexCnpj) => {
 
 let valores = []
 
-Cypress.Commands.add('cria_arquivo_json', (indexCnpj) => {
+Cypress.Commands.add('cria_arquivo_json', (user, indexCnpj) => {
 
     valores = []
     cy.writeFile('notas.json', '{' + '\n' + '"listaNotas" : [' + '\n', {flag:"a+"})
@@ -87,7 +88,7 @@ Cypress.Commands.add('cria_arquivo_json', (indexCnpj) => {
                 nomeEmitente: valores[3].trim(),
                 situacao: valores[4].trim(),
                 valor: valores[5].trim(),
-                cnpjEmpresa: Cypress.env('cnpjs')[indexCnpj]
+                cnpjEmpresa: Cypress.env('dadosLogin')[user][indexCnpj]
                 }
                 // cy.writeFile('notas.json', registro, {flag: 'a+'})
                 // cy.writeFile('notas.json', ',' + "\n", {flag: 'a+'})
@@ -109,7 +110,7 @@ Cypress.Commands.add('cria_arquivo_json', (indexCnpj) => {
 })
 
 
-Cypress.Commands.add('ultimo_dado', (indexCnpj) => {
+Cypress.Commands.add('ultimo_dado', (user, indexCnpj) => {
     let registro = {
         id: valores[0].trim(),
         serie: valores[1].trim(),
@@ -117,7 +118,7 @@ Cypress.Commands.add('ultimo_dado', (indexCnpj) => {
         nomeEmitente: valores[3].trim(),
         situacao: valores[4].trim(),
         valor: valores[5].trim(),
-        cnpjEmpresa: Cypress.env('cnpjs')[indexCnpj]
+        cnpjEmpresa: Cypress.env('dadosLogin')[user][indexCnpj]
     }
     // cy.writeFile('notas.json', registro, {flag: 'a+'})
     // cy.writeFile('notas.json', "\n" + ']' + '\n' + '}', {flag: 'a+'})
