@@ -65,11 +65,45 @@ async function awaitPdf(pdfName){
     });
 };
 
+async function strContains(string, containsVal){ // vê se uma string contem uma substring, retorna true ou false
+
+    if (containsVal.length === 0) return(true); // se o tamanho da substring for 0 retorna true
+
+    for (let i = 0; i < string.length; i++){ // varrendo a string
+
+        if (string[i] === containsVal[0] && string.substring(i, i + containsVal.length) === containsVal){ // se string[i] === substring[0] então vê se a substring aparece nessa posição
+            return(true); 
+        };
+    };
+
+    return false; // se não encontrar retorna false
+};
+
+function trimSpaces(string){
+    for (let i = 0; i < string.length-1; i++){
+        while (string[i] === " " && string[i+1] === " "){
+            string = string.substring(0, i) + string.substring(i+1);
+        };
+    };
+
+    return string;
+}
+
 // função para verificar o texto do pdf
-function verifyPdfText(text){
-    // not implemented
-    console.log(text)
-    return 1;
+function verifyPdfText(text, cnpj){ // -> 0 : 1
+
+    text = trimSpaces(text.replace(/(\r\n|\n|\r)/gm, " ")); // tira as quebras de linha e transforma todos os espaços duplos em espaços simples
+
+    let fCnpj = `${cnpj.substring(0,2)}.${cnpj.substring(2,5)}.${cnpj.substring(5,8)}/${cnpj.substring(8,12)}-${cnpj.substring(12,14)}`; // transforma o numero do cnpj em uma string com a formação do cnpj(XX.XXX.XXX/XXXX-XX)
+
+    const toFind = `, inscrito(a) no CNPJ sob o nº ${fCnpj}, NÃO CONSTA como inadimplente no Banco Nacional de Devedores Trabalhistas.`; // string que tem que ser encontrada no texto
+
+
+    if (strContains(text, toFind)) {
+        return 1;
+    } else {
+        return 0
+    }
 }
 
 // função para verificar o pdf após o download
@@ -94,7 +128,7 @@ async function verifyPdf(cnpj){
 
             // lê o pdf e retorna o resultado da verificação
             pdfParse(pdfBuffer).then((pdf) => {
-                resolve(verifyPdfText(pdf.text));
+                resolve(verifyPdfText(pdf.text, cnpj));
             });
         })
     })

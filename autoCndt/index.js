@@ -209,8 +209,4 @@ async function main(){
 
 };
 
-let run = new RunCypress(new RunArgs("cnpj=08803834000147"), undefined);
-
-run.run().catch((reason) => {
-    console.log(reason);
-})
+main()
