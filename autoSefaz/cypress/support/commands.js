@@ -52,18 +52,16 @@ Cypress.Commands.add('buscandoCnpj', (user, indexCnpj, dateInit, dateFim) => {
 })
 
 let valores = []
+let registro = ""
 
 Cypress.Commands.add('cria_arquivo_json', (user, indexCnpj) => {
 
     valores = []
-    cy.writeFile('notas.json', '{' + '\n' + '"listaNotas" : [' + '\n', {flag:"a+"})
 
-    
     //Coletando tabela com notas e tabela com resumo das notas 
-
     var c = 0
     var len = 0
-
+    registro = ""
     cy.get('[name=frmConsultar] > table:nth-child(2) > tbody > tr > td')
     .each(($coluna, index) => {
         if (index < 8){
@@ -81,18 +79,16 @@ Cypress.Commands.add('cria_arquivo_json', (user, indexCnpj) => {
         cy.get($coluna).invoke('text').then(($conteudo) => {
             
             if (len == 6){
-                let registro = {
-                id: valores[0].trim(),
-                serie: valores[1].trim(),
-                data: valores[2].trim(),
+                let nota = {
+                id: parseInt(valores[0].trim()),
+                serie: parseInt(valores[1].trim()),
+                data: valores[2].trim().split("/")[2] + "-" + valores[2].trim().split("/")[1] + "-" + valores[2].trim().split("/")[0],
                 nomeEmitente: valores[3].trim(),
                 situacao: valores[4].trim(),
                 valor: valores[5].trim(),
                 cnpjEmpresa: Cypress.env('dadosLogin')[user][indexCnpj]
                 }
-                // cy.writeFile('notas.json', registro, {flag: 'a+'})
-                // cy.writeFile('notas.json', ',' + "\n", {flag: 'a+'})
-                cy.task("escreverJson", {registro: registro, quebra: ",\n"})
+                registro += JSON.stringify(nota) + ","
                 
                 len = 1
                 valores = []
@@ -111,16 +107,15 @@ Cypress.Commands.add('cria_arquivo_json', (user, indexCnpj) => {
 
 
 Cypress.Commands.add('ultimo_dado', (user, indexCnpj) => {
-    let registro = {
-        id: valores[0].trim(),
-        serie: valores[1].trim(),
-        data: valores[2].trim(),
+    registro += JSON.stringify({
+        id: parseInt(valores[0].trim()),
+        serie: parseInt(valores[1].trim()),
+        data: valores[2].trim().split("/")[2] + "-" + valores[2].trim().split("/")[1] + "-" + valores[2].trim().split("/")[0],
         nomeEmitente: valores[3].trim(),
         situacao: valores[4].trim(),
         valor: valores[5].trim(),
         cnpjEmpresa: Cypress.env('dadosLogin')[user][indexCnpj]
-    }
-    // cy.writeFile('notas.json', registro, {flag: 'a+'})
-    // cy.writeFile('notas.json', "\n" + ']' + '\n' + '}', {flag: 'a+'})
-    cy.task("escreverJson", {registro: registro, quebra: "\n]\n}"})
+    })
+
+    cy.task("escreverJson", {registro: registro, flag:"a+"})
 })

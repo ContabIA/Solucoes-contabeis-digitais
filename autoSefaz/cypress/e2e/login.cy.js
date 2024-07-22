@@ -6,11 +6,11 @@ describe('Coletando notas Sefaz', () => {
       let user = Object.keys(dict)[j]
       let senha = dict[user][0]
       
-      cy.loginSefaz(user, senha);
-      
-      cy.writeFile("notas.json", '{\n"runs":[')
+      cy.task("escreverJson", {registro: '{\n"runs":[' , flag: "w"})
+      // cy.writeFile("notas.json", '{\n"runs":[')
       
       for (let i = 1; i < dict[user].length; i ++){
+        cy.loginSefaz(user, senha);
         const dateObj = new Date();
         let mod = (Cypress.env("diaUm")) ? 0:-1
         const dateInit = new Date(dateObj.getFullYear()+mod, dateObj.getMonth()- (mod+1), 1).toLocaleDateString();
@@ -19,17 +19,27 @@ describe('Coletando notas Sefaz', () => {
         
         cy.buscandoCnpj(user,i, dateInit, dateFim)
         cy.wait(10000)
-        cy.cria_arquivo_json(user,i)
-        cy.ultimo_dado(user,i)
+
+        cy.task("escreverJson", {registro: '{' + '\n' + '"listaNotas" : [' + '\n', flag:"a+"})
+        cy.get('[name=frmConsultar]').then(($form) =>{
+          cy.wait(3000)
+          if($form.find('table:nth-child(2)').length > 0){
+            cy.cria_arquivo_json(user,i)
+            cy.ultimo_dado(user,i)
+          }
+          
+        })
         
-        if (i == dict[user][i].length - 2){
-          cy.writeFile("notas.json","\n", {flag: "a+"})
+        cy.task("escreverJson", {registro: "\n] \n}", flag:"a+"})  
+        
+        if (i == dict[user].length - 1){
+          cy.task("escreverJson", {registro: "\n", flag:"a+"})
         } else {
-          cy.writeFile("notas.json",",\n", {flag: "a+"})
+          cy.task("escreverJson", {registro: ",\n", flag:"a+"})
         }
         
       }
-      cy.writeFile("notas.json", "\n]\n}", {flag: "a+"});
+      cy.task("escreverJson", {registro: "\n]\n}", flag:"a+"})
     }
     
   })

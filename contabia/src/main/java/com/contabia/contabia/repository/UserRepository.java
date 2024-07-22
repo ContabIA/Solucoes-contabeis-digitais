@@ -13,8 +13,10 @@ public interface UserRepository extends JpaRepository<UserModel, Long>{
     // Consulta SQL que retorna um usuário dado o cnpj dele.
     Optional<UserModel> findByCnpj(String cnpj);
 
-    Optional<UserModel> findByEmail(String cnpj);
+    // Consulta SQL que retorna um usuário dado o email dele.
+    Optional<UserModel> findByEmail(String email);
 
-    Optional<UserModel> findByUserSefaz(String cnpj);
+    // Consulta SQL que retorna um usuário dado o userSefaz dele.
+    Optional<UserModel> findByUserSefaz(String userSefaz);
 
 }
