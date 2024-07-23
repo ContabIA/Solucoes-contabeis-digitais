@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/styles/reset.css">
+        <link rel="stylesheet" href="/styles/style.css">
+        <link rel="stylesheet" href="/styles/cadastroUser.css">
+        <!-- <script src="js/main.js" defer></script> -->
+        <script src="js/editUser.js"></script>
+        <title>ContabIA</title>
+    </head>
+    <body>
+
+        <header>
+            <nav>
+                <img src="/img/logo.png" alt="logo" class="logo">
+            </nav>
+        </header>
+
+        <main>
+            <section class="login" id="login">
+
+                <div id="erro" style="display: none;"><span id="erroText"></span></div>
+
+                <h1>Editar Conta</h1>
+
+                <form action="#" method="POST" class="form" id="form">
+                    <input th:attr="value=${usuario.cnpj}" type="text" name="cnpj" placeholder="CNPJ" minlength="14" maxlength="14" class="inputs user" id="cnpjCad" required>
+
+                    <input th:attr="value=${usuario.senha}" type="password" name="senha" placeholder="Senha" minlength="6" class="inputs senha" id="senhaCad" required>
+
+                    <input th:attr="value=${usuario.email}" type="email" name="email" placeholder="E-mail" class="inputs email" id="emailCad" required>
+
+                    <input th:attr="value=${usuario.userSefaz}" type="text" name="userSefaz" placeholder="Usuário Sefaz" class="inputs user" id="sefazCad" required>
+
+                    <input th:attr="value=${usuario.senhaSefaz}" type="password" name="senhaSefaz" placeholder="Senha Sefaz" class="inputs senha" id="senhaSefazCad" required>
+                    
+                    <button th:attr="onclick=|editUser('${usuario.cnpj}')|" type="button" id="button">Atualizar</button>
+                </form>
+
+                <a th:href="@{/home(cnpjUser=${usuario.cnpj})}">voltar</a> 
+
+            </section>
+        </main>
+
+    </body>
+</html>

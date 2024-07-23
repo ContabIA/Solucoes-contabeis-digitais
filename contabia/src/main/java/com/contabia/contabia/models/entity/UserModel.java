@@ -69,4 +69,12 @@ public class UserModel {
         this.senhaSefaz = dados.senhaSefaz();
         this.userSefaz = dados.userSefaz();
     }
+
+    public void editUser(String cnpj, String email, String senha, String senhaSefaz, String userSefaz){
+        this.cnpj = cnpj;
+        this.email = email;
+        this.senha = senha;
+        this.senhaSefaz = senhaSefaz;
+        this.userSefaz = userSefaz; 
+    }
 }

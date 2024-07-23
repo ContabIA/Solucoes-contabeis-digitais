@@ -15,12 +15,15 @@ import com.contabia.contabia.models.dto.ListaNotasDto;
 import com.contabia.contabia.models.dto.ListaRespostaDto;
 import com.contabia.contabia.models.dto.RespostaDto;
 import com.contabia.contabia.models.dto.NotasDto;
+import com.contabia.contabia.models.dto.UserDto;
 import com.contabia.contabia.models.dto.ServiceDto;
 import com.contabia.contabia.models.entity.EmpresaModel;
 import com.contabia.contabia.models.entity.ConsultasModel;
 import com.contabia.contabia.models.entity.NotasModel;
+import com.contabia.contabia.models.entity.UserModel;
 import com.contabia.contabia.models.entity.RespostaModel;
 import com.contabia.contabia.repository.ConsultasRepository;
+import com.contabia.contabia.repository.UserRepository;
 import com.contabia.contabia.repository.RespostaRepository;
 import com.contabia.contabia.repository.EmpresaRepository;
 import com.contabia.contabia.repository.NotasRepository;
@@ -29,7 +32,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 /*
- * Classe rest controller responsável por receber e gerenciar requisições de aplicações externas. 
+ * Classe rest controller responsável por receber e gerenciar requisições de aplicações externas e criar métodos auxiliares. 
  * 
  * Rotas:
  *  /service/ (GET) -> Envia para a aplicação que requisitar todos os cnpj's das consultas que devem ser feitas naquele dia, de acordo com os paramêtros que vão ser mandandos na requisição.
@@ -42,6 +45,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RestController
 @RequestMapping("/service")
 public class ServiceController {
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private ConsultasRepository consultasRepository;
@@ -110,5 +116,32 @@ public class ServiceController {
         }
         return ResponseEntity.ok().body("deu certo!");
     }
+
+    /*public String getErroRegUser(UserDto dados){
+        String resp = "";
+
+        Optional<UserModel> userByCnpj = userRepository.findByCnpj(dados.cnpj());
+        Optional<UserModel> userByEmail = userRepository.findByEmail(dados.email());
+        Optional<UserModel> userByUserSefaz = userRepository.findByUserSefaz(dados.userSefaz());
+
+        if (userByCnpj.isPresent()) {
+            resp = "O CNPJ informado já está cadastrado no ContabIA.";
+        }
+
+        else if (userByEmail.isPresent()) {
+            resp = "O E-mail informado já está cadastrado no ContabIA.";
+        }
+
+        else if (userByUserSefaz.isPresent()) {
+            resp = "O usuário Sefaz informado já está cadastrado no ContabIA." ;
+        }
+
+        else {
+            resp = "Erro ao cadastrar usuário. Confira as informações e tente novamente.";
+            
+        }
+
+        return resp;
+    }*/
 
 }
