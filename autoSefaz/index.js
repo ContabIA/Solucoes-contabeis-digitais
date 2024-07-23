@@ -5,7 +5,6 @@ const path = require("path");
 async function enviarDados(dados){
     return new Promise(async (resolve, reason) => {
       
-
       for (let i = 0; i < dados["runs"].length; i++){
         await fetch("http://localhost:8080/service/respSefaz", {
           method: "POST",
@@ -69,37 +68,65 @@ async function getInput(){
   return listaCnpj
 }
 
-async function loginSefaz(){
-  let dadosLogin = await fetch("http://localhost:8080/service/");
-  let respJson = await dadosLogin.json();
-  let infoLogin = respJson.body;
-
-  return infoLogin
+async function getObjDadosLogin(listaCnpj){
+  var objDadosLogin = new Object;
+  for (let i = 0; i < listaCnpj.length; i++){
+    let dadosLogin = await fetch("http://localhost:8080/service/getDadosLogin?cnpjEmpresa="+listaCnpj[i]);
+    let respJson = await dadosLogin.json();
+    let infoLogin = respJson.dadosLogin[0].split(",");
+    if (objDadosLogin[infoLogin[0]] == null){
+      objDadosLogin[infoLogin[0]] = [infoLogin[1], listaCnpj[i]]
+    } else {
+      objDadosLogin[infoLogin[0]] = objDadosLogin[infoLogin[0]].concat(listaCnpj[i])
+    }
+  }
+  return objDadosLogin
 }
 
-async function main(){
-  
-  getInput().then((listaCnpj)=> {
+async function runAuto(listaCnpj){
+  let dateObj = new Date()
+  getObjDadosLogin(listaCnpj).then((objDadosLogin) => {
     cypress
     .run({
       spec: './cypress/e2e/login.cy.js',
-      env: {"cnpjs" : listaCnpj},
+      env: {"dadosLogin" : objDadosLogin, diaUm : (dateObj.getDay() === 1)},
       headed: true,
       browser: "electron",
     })
-    .then((results) => {
-      console.log(results)
+    .then(() => {
       let dadosJson = JSON.parse(fs.readFileSync(path.join(__dirname, "/notas.json")));
 
       return (enviarDados(dadosJson));
     })
-    .catch((err)  => {
-      console.error(err)
-    })
-  }
-  )
-
-
+    // .catch((err)  => {
+    //   return err;
+    // })
+  })
 }
 
+async function main(){
+  
+  if (dateObj.getDay() === 1){
+    let listaCnpj = new Array()
+    let req = await fetch("http://localhost:8080/service/getCnpj?tamanhoFinal=1&ultimoDigito=&frequencia=&tipoConsulta=1");
+    let reqJson = await req.json();
+    listaCnpj = listaCnpj.concat(reqJson["cnpjs"]);
+    console.log(listaCnpj)
+    await runAuto(listaCnpj)
+    
+  } 
+  getInput().then(async (listaCnpj)=> {
+    if (listaCnpj.length === 0){
+      return 'no entrys'
+    }
+    console.log(listaCnpj)
+    return await runAuto(listaCnpj)
+    .catch((err) => {
+      return 'oi'
+    })
+     
+    })
+  
+}
+  
 main()

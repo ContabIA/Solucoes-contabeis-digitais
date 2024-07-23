@@ -1,5 +1,6 @@
 package com.contabia.contabia.services;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.contabia.contabia.models.dto.DadosLoginDto;
 import com.contabia.contabia.models.dto.ListaNotasDto;
 import com.contabia.contabia.models.dto.ListaRespostaDto;
 import com.contabia.contabia.models.dto.RespostaDto;
@@ -62,10 +64,10 @@ public class ServiceController {
     private RespostaRepository respostaRepository;
 
     @GetMapping("/getCnpj")
-    public ResponseEntity<ServiceDto> getCnpj(@RequestParam("tamanhoFinal") int tamanhoFinal, @RequestParam("ultimoDigito") int ultimoDigito, @RequestParam("frequencia") int frequencia, @RequestParam("tipoConsulta") int tipoConsulta) {
+    public ResponseEntity<ServiceDto> getCnpj(@RequestParam("tamanhoFinal") int tamanhoFinal, @RequestParam("ultimoDigito") String ultimoDigito, @RequestParam("frequencia") String frequencia, @RequestParam("tipoConsulta") int tipoConsulta) {
 
         // Busca no banco todos os Id's das empresa que devem ter consultas executadas hoje de acordo com os paramêtros de requisição enviado pela aplicação externa.
-        List<Long> listIdEmpresa = consultasRepository.empresasOfDay(tamanhoFinal, ultimoDigito, frequencia, tipoConsulta);
+        List<Long> listIdEmpresa = consultasRepository.empresasOfDay(ultimoDigito, frequencia, tipoConsulta);
 
         List<String> cnpjs = new ArrayList<>(); // Lista para armazenar os cnpj's das empresas
         // Coleta e insere na lista o cnpj para cada empresa encontrada.
@@ -79,6 +81,18 @@ public class ServiceController {
         return ResponseEntity.ok().body(new ServiceDto(cnpjs)); // Retorno da requisição com lista de cnps's como body.
     } 
 
+    @GetMapping("/getDadosLogin")
+    public ResponseEntity<DadosLoginDto> getDadosLogin(@RequestParam("cnpjEmpresa") String cnpjEmpresa){
+        
+        Optional<List<String>> optionalDadosLogin = empresaRepository.findDadosLoginByCnpjEmpresa(cnpjEmpresa); 
+        if (optionalDadosLogin.isPresent()){
+            return ResponseEntity.ok().body(new DadosLoginDto(optionalDadosLogin.get()));
+        }
+        return ResponseEntity.badRequest().body(null);
+
+        
+    }
+
     @PostMapping("/respSefaz")
     public ResponseEntity<String> respSefaz(@RequestBody ListaNotasDto listaNotas) {
         
@@ -86,19 +100,34 @@ public class ServiceController {
         for (NotasDto nota : listaNotas.listaNotas()) {
 
             Optional<EmpresaModel> empresa = empresaRepository.findByCnpj(nota.cnpjEmpresa()); // Coleta empresa que esta associada à nota.
-            NotasModel novaNota = new NotasModel(nota, true, empresa.get()); // Cria modelo de nota para inserir no banco.
+
+            LocalDate diaAtual = LocalDate.now();
             
-            // Tenta inserir no banco a nota, caso não seja inserida nada acontece pois se ela já está no banco significa que ela não é uma alteração.
-            if (notasRepository.findById(novaNota.getId()).isPresent()){
-                continue;
+
+            // Confere se nota é do mês imediatamente passado, logo essa não deve ser tratada como alteração e inserida com o argumento novo = false.
+            if (diaAtual.getDayOfMonth() == 1){
+                NotasModel novaNota;
+                if (nota.data().getMonthValue() == diaAtual.getMonthValue() - 1){
+                    novaNota = new NotasModel(nota, false, empresa.get()); // Cria modelo de nota para inserir no banco.
+                } else {
+                    novaNota = new NotasModel(nota, true, empresa.get()); // Cria modelo de nota para inserir no banco.
+                } if (notasRepository.findById(novaNota.getId()).isPresent()){
+                    continue;
+                    
+                } else {
+                    notasRepository.save(novaNota);
+                }
             } else {
-                notasRepository.save(novaNota);
+                // Verifica se nota já existe no banco de dados e se não existir à insere.
+                NotasModel novaNota = new NotasModel(nota, true, empresa.get());
+                if (notasRepository.findById(novaNota.getId()).isPresent()){
+                    continue;
+                    
+                } else {
+                    notasRepository.save(novaNota);
+                }
             }
-            // try {
-            //     notasRepository.save(novaNota); // Insere resposta no banco.
-            // } catch (Exception e) {
-            //     continue;
-            // }
+            
         }
         return ResponseEntity.ok().body("deu certo!");
     }

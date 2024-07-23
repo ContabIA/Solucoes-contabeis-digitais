@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.contabia.contabia.models.entity.EmpresaModel;
@@ -23,4 +25,8 @@ public interface EmpresaRepository extends JpaRepository<EmpresaModel, Long> {
 
     // Processo SQL que deleta uma empresa passado o seu cnpj
     void deleteByCnpj(String cnpjEmpresa);
-}
+
+    // Consulta SQL que retorna o usuario e senha do Sefaz do usuário relacionado à empresa dado o cnpj dela
+    @Query(value = "SELECT u.user_sefaz, u.senha_sefaz FROM usuarios u JOIN empresa e ON u.id = e.id_usuario WHERE e.cnpj = :cnpjEmpresa;", nativeQuery = true)
+    Optional<List<String>> findDadosLoginByCnpjEmpresa(@Param("cnpjEmpresa") String cnpjEmpresa);
+ }

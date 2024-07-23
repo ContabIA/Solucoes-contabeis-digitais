@@ -9,18 +9,9 @@ module.exports = defineConfig({
     
     setupNodeEvents(on, config){
       on('task', {
-        escreverJson({registro, quebra}){
-          let conteudo = {
-            id : parseInt(registro.id),
-            serie : parseInt(registro.serie),
-            data : registro.data.split("/")[2] + "-" + registro.data.split("/")[1] + "-" + registro.data.split("/")[0],
-            nomeEmitente : registro.nomeEmitente,
-            situacao : registro.situacao,
-            valor : registro.valor,
-            cnpjEmpresa : registro.cnpjEmpresa
-          }
-          fs.writeFileSync('notas.json', JSON.stringify(conteudo), {flag: 'a+'})
-          fs.writeFileSync('notas.json', quebra, {flag: 'a+'})
+        escreverJson({registro, flag}){
+         
+          fs.writeFileSync('notas.json', registro, {flag: flag})
 
           return null
         }
