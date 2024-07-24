@@ -30,7 +30,10 @@
                     <form class="formCadCnpj" id="formEditCnpj" action="#">
                         <label class="labelFormCadCnpj" for="">Editar informações do CNPJ</label>
 
-                        <input th:attr="value=${cnpjEmpresa}" type="text" placeholder="CNPJ" minlength="14" maxlength="14" class="inputCadCnpj" id="cnpjCadCnpj" name="cnpjEmpresa" required>
+                        <div style="display: flex; align-items: baseline;">
+                            <input th:attr="value=${cnpjEmpresa}" type="text" placeholder="CNPJ" minlength="14" maxlength="14" class="inputCadCnpj" id="cnpjCadCnpj" name="cnpjEmpresa" required>
+                            <span id="erroText"></span>
+                        </div>
 
                         <input th:attr="value=${nomeEmpresa}" type="text" placeholder="Nome" class="inputCadCnpj" maxlength="70" id="nomeCadCnpj" name="nome" required>
 

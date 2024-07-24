@@ -17,15 +17,12 @@ import com.contabia.contabia.models.dto.ListaNotasDto;
 import com.contabia.contabia.models.dto.ListaRespostaDto;
 import com.contabia.contabia.models.dto.RespostaDto;
 import com.contabia.contabia.models.dto.NotasDto;
-import com.contabia.contabia.models.dto.UserDto;
 import com.contabia.contabia.models.dto.ServiceDto;
 import com.contabia.contabia.models.entity.EmpresaModel;
 import com.contabia.contabia.models.entity.ConsultasModel;
 import com.contabia.contabia.models.entity.NotasModel;
-import com.contabia.contabia.models.entity.UserModel;
 import com.contabia.contabia.models.entity.RespostaModel;
 import com.contabia.contabia.repository.ConsultasRepository;
-import com.contabia.contabia.repository.UserRepository;
 import com.contabia.contabia.repository.RespostaRepository;
 import com.contabia.contabia.repository.EmpresaRepository;
 import com.contabia.contabia.repository.NotasRepository;
@@ -47,9 +44,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RestController
 @RequestMapping("/service")
 public class ServiceController {
-
-    @Autowired
-    private UserRepository userRepository;
 
     @Autowired
     private ConsultasRepository consultasRepository;
@@ -77,7 +71,6 @@ public class ServiceController {
                 cnpjs.add(empresa.get().getCnpj());
             }
         }
-
         return ResponseEntity.ok().body(new ServiceDto(cnpjs)); // Retorno da requisição com lista de cnps's como body.
     } 
 
@@ -89,8 +82,6 @@ public class ServiceController {
             return ResponseEntity.ok().body(new DadosLoginDto(optionalDadosLogin.get()));
         }
         return ResponseEntity.badRequest().body(null);
-
-        
     }
 
     @PostMapping("/respSefaz")
@@ -143,34 +134,7 @@ public class ServiceController {
             respostaRepository.save(novaResposta); // Insere resposta no banco.
             
         }
-        return ResponseEntity.ok().body("deu certo!");
+        return ResponseEntity.ok().body("ok");
     }
-
-    /*public String getErroRegUser(UserDto dados){
-        String resp = "";
-
-        Optional<UserModel> userByCnpj = userRepository.findByCnpj(dados.cnpj());
-        Optional<UserModel> userByEmail = userRepository.findByEmail(dados.email());
-        Optional<UserModel> userByUserSefaz = userRepository.findByUserSefaz(dados.userSefaz());
-
-        if (userByCnpj.isPresent()) {
-            resp = "O CNPJ informado já está cadastrado no ContabIA.";
-        }
-
-        else if (userByEmail.isPresent()) {
-            resp = "O E-mail informado já está cadastrado no ContabIA.";
-        }
-
-        else if (userByUserSefaz.isPresent()) {
-            resp = "O usuário Sefaz informado já está cadastrado no ContabIA." ;
-        }
-
-        else {
-            resp = "Erro ao cadastrar usuário. Confira as informações e tente novamente.";
-            
-        }
-
-        return resp;
-    }*/
 
 }

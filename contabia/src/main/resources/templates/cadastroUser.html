@@ -6,8 +6,7 @@
         <link rel="stylesheet" href="/styles/reset.css">
         <link rel="stylesheet" href="/styles/style.css">
         <link rel="stylesheet" href="/styles/cadastroUser.css">
-        <!-- <script src="js/main.js" defer></script> -->
-        <script src="js/cadastroUser.js"></script>
+        <script src="js/cadastroUser.js" defer></script>
         <title>ContabIA</title>
     </head>
     <body>
@@ -19,13 +18,14 @@
         </header>
 
         <main>
-            <section class="login" id="login">
 
-                <div id="erro" style="display: none;"><span id="erroText"></span></div>
+            <div id="erro" style="display: none;"><span id="erroText"></span></div>
+
+            <section class="login" id="login">
 
                 <h1>Criar Conta</h1>
 
-                <form action="#" method="POST" class="form" id="form">
+                <form action="#" class="form" id="form">
                     <input type="text" name="cnpj" placeholder="CNPJ" minlength="14" maxlength="14" class="inputs user" id="cnpjCad" required>
 
                     <input type="password" name="senha" placeholder="Senha" minlength="6" class="inputs senha" id="senhaCad" required>

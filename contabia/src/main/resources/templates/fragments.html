@@ -8,20 +8,17 @@
     <a th:href="@{/home(cnpjUser=${cnpjUser})}"><img src="../img/logo.png" alt="logo" class="logo"></a>
 
     <a th:href="@{/home(cnpjUser=${cnpjUser})}" class="button-nav">Home</a>
-    
+
     <a th:href="@{/listaCnpj(cnpjUser=${cnpjUser})}" class="button-nav">CNPJ's</a>
 
-   
-    <div class="caixa-user">
+    <div id="caixa-user" class="caixa-user">
 
         <label th:text="${cnpjUser}" id="user"></label>
         <a class='linkUser'><img src="../img/user-Icon.png" alt="userIcon" id="userIcon"></a>
         
-        <div class='lista-config'>
-            <ul class='lista'>
-                <a th:href="@{/editUser(cnpjUser=${cnpjUser})}" class='button-li'><li class='elementos-li'><strong>Editar Perfil</strong></li><a/>
-                <a th:href="@{/}" class='button-li'><li class='elementos-li'><strong>Sair</strong></li></a>
-            </ul>
+        <div style="display: none;" class="lista-config" id="lista-config">
+            <a style="margin-right: 10px;" th:href="@{/editUser(cnpjUser=${cnpjUser})}" class='button-li'><strong>Editar Dados</strong></a>
+            <a style="margin-left: 10px;" th:href="@{/}" class='button-li'><strong>Sair</strong></a>
         </div>
     </div>
     

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.contabia.contabia.exceptions.CnpjRegisteredException;
 import com.contabia.contabia.models.dto.RegCnpjDto;
 import com.contabia.contabia.models.entity.ConsultasModel;
 import com.contabia.contabia.models.entity.EmpresaModel;
@@ -100,6 +101,12 @@ public class EditCnpjController {
 
         //caso exista, coleta a consulta CNDT agendada pela empresa que está sendo editada
         Optional<ConsultasModel> optionalConsultaCndt = consultasRepository.findConsultaByCnpjAndTipoConsulta(cnpjEmpresa, 3);
+
+        //verificação se o cnpj que está sendo atualizado já está cadastrado no sistema
+        Optional<EmpresaModel> empresaByCnpj = empresaRepository.findByCnpj(dadosEmpresa.cnpjEmpresa());
+        if(empresaByCnpj.isPresent() && !(dadosEmpresa.cnpjEmpresa().equals(cnpjEmpresa))){
+            throw new CnpjRegisteredException();
+        }
 
         if(dadosEmpresa.checkboxSefaz().get() == true){
             //caso a checkbox da pesquisa sefaz esteja marcada na página, e também esteja agendada no banco de dados, é feita a atualização de sua frequência.
