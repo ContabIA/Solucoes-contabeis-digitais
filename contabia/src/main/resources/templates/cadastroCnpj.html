@@ -1,75 +1,76 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles/reset.css">
+        <link rel="stylesheet" href="styles/style.css">
+        <link rel="stylesheet" href="styles/cadastroCnpj.css">
+        <script src="js/cadastroCnpj.js" defer></script>
 
-    <link rel="stylesheet" href="styles/reset.css">
-    <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="styles/cadastroCnpj.css">
-    <script th:src="@{/js/main.js}" defer></script>
-    <script type="module" th:src="@{/js/editCnpj.js}" defer></script>
+        <title>ContabIA</title>
+    </head>
+    <!--
+        Atributos utilizados pelo thymeleaf:
+        - cnpjUser
+    -->
+    <body>
+        
+        <header th:insert="~{fragments :: nav}"></header>
+        
+        <main>
+            <div class="container">
+                <div class="divPrincipal">
+                
+                    <form action="#" class="formCadCnpj" id="formCadCnpj">
+                        <label class="labelFormCadCnpj" for="">Cadastrar Novo CNPJ</label>
 
-    <title>ContabIA</title>
-</head>
-<body>
-    
-    <header th:insert="~{fragments :: nav}"></header>
-    
-    <main>
-        <div class="container">
-            <div class="divPrincipal">
-            
-            <form th:action="@{/cadastroCnpj(cnpjUser=${cnpjUser})}" method="post" class="formCadCnpj">
-                <label class="labelFormCadCnpj" for="">Cadastrar Novo CNPJ</label>
+                        <div style="display: flex; align-items: baseline;">
+                            <input type="text" placeholder="CNPJ" minlength="14" maxlength="14" class="inputCadCnpj" id="cnpjCadCnpj" name="cnpjEmpresa" required>
+                            <span id="erroText"></span>
+                        </div>
 
-                <input type="text" placeholder="CNPJ" minlength="14" maxlength="14" class="inputCadCnpj" id="cnpjCadCnpj" name="cnpjEmpresa" required>
+                        <input type="text" placeholder="Nome" class="inputCadCnpj" maxlength="70" id="nomeCadCnpj" name="nome" required>
 
-                <input type="text" placeholder="Nome" class="inputCadCnpj" maxlength="70" id="nomeCadCnpj" name="nome" required>
+                        <label class="labelFormCadCnpj" for="">Consultas</label>
 
-                <label class="labelFormCadCnpj" for="">Consultas</label>
+                        <div class="consultasCadCnpj">
+                            <div class="checkboxCadCnpj">
+                                <input type="checkbox" name="checkboxSefaz" id="checkboxSefaz">
+                                <label class="labelCheckbox" for=""><span class="fontBold">SEFAZ</span> - Secretaria da Fazenda</label> 
+                                <select class="selectFreq" name="frequenciaSefaz" id="frequenciaSefaz">
+                                    <option value="1">Semanalmente</option>
+                                    <option value="2">Mensalmente</option>
+                                    <option value="3">Anualmente</option>
+                                </select>  
+                            </div>
 
-                <div class="consultasCadCnpj">
-                    <div class="checkboxCadCnpj">
-                        <input type="checkbox" name="checkboxSefaz">
-                        <label class="labelCheckbox" for=""><span class="fontBold">SEFAZ</span> - Secretaria da Fazenda</label> 
-                        <select class="selectFreq" name="frequenciaSefaz" id="frequenciaSefaz">
-                            <option value="1">Semanalmente</option>
-                            <option value="2">Mensalmente</option>
-                            <option value="3">Anualmente</option>
-                        </select>  
-                    </div>
+                            <!-- <div class="checkboxCadCnpj">
+                                <input type="checkbox" name="checkboxCnd">
+                                <label class="labelCheckbox" for=""><span class="fontBold">CND</span> - Certidão Negativa de Débitos - Receita Federal</label> 
+                                <select class="selectFreq" name="frequenciaCnd" id="frequenciaCnd">
+                                    <option value="1">Semanalmente</option>
+                                    <option value="2">Mensalmente</option>
+                                    <option value="3">Anualmente</option>
+                                </select>       
+                            </div> -->
 
-                    <!-- <div class="checkboxCadCnpj">
-                        <input type="checkbox" name="checkboxCnd">
-                        <label class="labelCheckbox" for=""><span class="fontBold">CND</span> - Certidão Negativa de Débitos - Receita Federal</label> 
-                        <select class="selectFreq" name="frequenciaCnd" id="frequenciaCnd">
-                            <option value="1">Semanalmente</option>
-                            <option value="2">Mensalmente</option>
-                            <option value="3">Anualmente</option>
-                        </select>       
-                    </div> -->
-
-                    <div style="border: none;" class="checkboxCadCnpj">
-                        <input type="checkbox" name="checkboxCndt">
-                        <label class="labelCheckbox" for=""><span class="fontBold">CNDT</span> - Certidão Negativa de Débitos Trabalhistas</label>
-                        <select class="selectFreq" name="frequenciaCndt" id="frequenciaCndt">
-                            <option value="1">Semanalmente</option>
-                            <option value="2">Mensalmente</option>
-                            <option value="3">Anualmente</option>
-                        </select>
-                    </div>
-
+                            <div style="border: none;" class="checkboxCadCnpj">
+                                <input type="checkbox" name="checkboxCndt" id="checkboxCndt">
+                                <label class="labelCheckbox" for=""><span class="fontBold">CNDT</span> - Certidão Negativa de Débitos Trabalhistas</label>
+                                <select class="selectFreq" name="frequenciaCndt" id="frequenciaCndt">
+                                    <option value="1">Semanalmente</option>
+                                    <option value="2">Mensalmente</option>
+                                    <option value="3">Anualmente</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <button type="button" th:attr="onclick=|cadastroCnpj('${cnpjUser}')|" class="btnSalvar">Salvar</button>
+                    </form>
                 </div>
-                
-                <button type="submit" class="btnSalvar">Salvar</button>
-            </form>
-                
             </div>
-        </div>
-    </main>
+        </main>
 
-    <footer></footer>
-
-</body>
+    </body>
 </html>

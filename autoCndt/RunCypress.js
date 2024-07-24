@@ -7,7 +7,7 @@ class RunCypress{
         this.runArgs = runArgs;
         this.runableObj = runableObj;
         this.current = undefined;
-        this.maxRetrys = 2;
+        this.maxRetrys = 3;
     }
 
     async #runRunableObj(){
