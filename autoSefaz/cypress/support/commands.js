@@ -1,3 +1,4 @@
+// Função que loga no sefaz utilizando o usuario e senha fornecido
 Cypress.Commands.add("loginSefaz", (user, senha) => {
     //Logando no Sefaz
     cy.visit('https://www4.sefaz.pb.gov.br/atf/seg/SEGf_LoginSERVirtual.jsp', {failOnStatusCode: false})
@@ -6,6 +7,7 @@ Cypress.Commands.add("loginSefaz", (user, senha) => {
     cy.get('[name=btnAvancar]').click()
 })
 
+// Função que busca cnpj no Sefaz
 Cypress.Commands.add('buscandoCnpj', (user, indexCnpj, dateInit, dateFim) => {
     
     
