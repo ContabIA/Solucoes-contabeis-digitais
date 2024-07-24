@@ -1,0 +1,29 @@
+/*
+CSS com as estilizações específicas da página principal da aplicação (página que exibe as alterações)
+*/
+
+.divPrincipal{
+    text-align: center;
+    display: block;
+}
+
+#alts{
+    margin-top: 60px;
+}
+
+.detalhesLink{
+    width: 20%;
+    text-decoration: none;
+    color: white;
+    background-color: #553D8A;
+    padding: 5px;
+    border-radius: 5px;
+    border: #361f51 2px solid;
+    transition-property: background-color, color;
+    transition-duration: 0.2s;
+}
+
+.detalhesLink:hover{
+    background-color: white;
+    color: black;
+}
