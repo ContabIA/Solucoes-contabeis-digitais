@@ -58,7 +58,7 @@ public class ServiceController {
     private RespostaRepository respostaRepository;
 
     @GetMapping("/getCnpj")
-    public ResponseEntity<ServiceDto> getCnpj(@RequestParam("tamanhoFinal") int tamanhoFinal, @RequestParam("ultimoDigito") String ultimoDigito, @RequestParam("frequencia") String frequencia, @RequestParam("tipoConsulta") int tipoConsulta) {
+    public ResponseEntity<ServiceDto> getCnpj(@RequestParam("ultimoDigito") String ultimoDigito, @RequestParam("frequencia") String frequencia, @RequestParam("tipoConsulta") int tipoConsulta) {
 
         // Busca no banco todos os Id's das empresa que devem ter consultas executadas hoje de acordo com os paramêtros de requisição enviado pela aplicação externa.
         List<Long> listIdEmpresa = consultasRepository.empresasOfDay(ultimoDigito, frequencia, tipoConsulta);

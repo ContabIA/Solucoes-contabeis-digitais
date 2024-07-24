@@ -1,0 +1,9 @@
+{
+"runs":[{
+"listaNotas" : [
+{"id":468952,"serie":1,"data":"2024-07-22","nomeEmitente":"MACENA MATERIAL DE CONSTRUCAO LTDA","situacao":"Autorizada","valor":"R$ 75,66","cnpjEmpresa":"09157801000130"},{"id":11596,"serie":1,"data":"2024-07-23","nomeEmitente":"TINTAS BELLA INDUSTRIAL LTDA - EPP","situacao":"Autorizada","valor":"R$ 1.536,44","cnpjEmpresa":"09157801000130"},{"id":11597,"serie":1,"data":"2024-07-23","nomeEmitente":"TINTAS BELLA INDUSTRIAL LTDA - EPP","situacao":"Autorizada","valor":"R$ 1.518,11","cnpjEmpresa":"09157801000130"}
+] 
+}
+
+]
+}
