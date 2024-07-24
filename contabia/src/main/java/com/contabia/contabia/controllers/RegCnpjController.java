@@ -3,12 +3,16 @@ package com.contabia.contabia.controllers;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;    
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.contabia.contabia.exceptions.CnpjRegisteredException;
+import com.contabia.contabia.infra.ExceptionMessage;
 import com.contabia.contabia.models.dto.RegCnpjDto;
 import com.contabia.contabia.models.entity.ConsultasModel;
 import com.contabia.contabia.models.entity.EmpresaModel;
@@ -21,6 +25,7 @@ import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
     /*
      * Classe controller responsável por gereciar a página de cadastro de empresas e receber as informações para salvar as empresas e suas respectivas consultas no banco de dados.
@@ -52,9 +57,15 @@ public class RegCnpjController {
     
     @PostMapping
     @Transactional
-    public String addEmpresa(@RequestParam("cnpjUser") String cnpjUser, @Valid RegCnpjDto dadosEmpresa) {
+    public ResponseEntity<ExceptionMessage> addEmpresa(@RequestParam("cnpjUser") String cnpjUser, @Valid @RequestBody RegCnpjDto dadosEmpresa) {
 
         Optional<UserModel> user = userRepository.findByCnpj(cnpjUser);
+
+        //verifica se o CNPJ informado já está cadastrado no sistema
+        Optional<EmpresaModel> empresaByCnpj = empresaRepository.findByCnpj(dadosEmpresa.cnpjEmpresa());
+        if(empresaByCnpj.isPresent()){
+            throw new CnpjRegisteredException(); //se estiver, retorna mensagem de erro
+        }
 
         if (user.isPresent()){
             //coleta as informações que estão no DTO e adiciona a empresa ao banco de dados
@@ -71,6 +82,6 @@ public class RegCnpjController {
             }
         }
         
-        return "redirect:/listaCnpj?cnpjUser=" + cnpjUser; //reireciona o usuário para a página de listagem de empresas
+        return ResponseEntity.ok().body(new ExceptionMessage(HttpStatus.OK, "ok"));
     }
 }

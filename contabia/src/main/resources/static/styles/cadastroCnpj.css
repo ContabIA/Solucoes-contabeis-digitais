@@ -75,3 +75,10 @@ CSS com as estilizações específicas da página de cadastro de empresas
     background-color: white;
     color: black;
 }
+
+#erroText{
+    color: rgb(255, 62, 62);
+    font-weight: bolder;
+    margin-left: 15px;
+    display: none;
+}

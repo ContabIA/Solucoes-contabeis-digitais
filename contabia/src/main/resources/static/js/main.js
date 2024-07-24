@@ -1,3 +1,16 @@
+var count = 0;
+
+document.getElementById("caixa-user").addEventListener('click', ()=>{
+    if(count == 0){
+        document.getElementById("lista-config").style.display = 'flex';
+        count = 1;
+    }
+    else if(count == 1){
+        document.getElementById("lista-config").style.display = 'none';
+        count = 0;
+    }
+});
+
 // Função que formata o cnpj de XXXXXXXXXXXXXX para XX.XXX.XXX/XXXX-XX
 const formataCnpj = function (textCnpj){    
     var cnpjFormatado = ''

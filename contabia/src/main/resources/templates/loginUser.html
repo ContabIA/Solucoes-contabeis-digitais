@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="styles/loginUser.css">
         <link rel="shortcut icon" href="logo-aba-copy.ico" type="image/x-icon">
         <script src="js/main.js" defer></script>
+        <script src="js/login.js" defer></script>
 
         <title>ContabIA</title>
     </head>
@@ -21,15 +22,19 @@
         </header>
 
         <main>
-            <section class="login">
+            
+            <div id="erro" style="display: none;"><span id="erroText"></span></div>
+
+            <section class="login" id="login">
+
                 <h1>Login</h1>
 
-                <form action="/" method="POST" class="form">
+                <form action="#" class="form" id="form">
                     <input name="cnpj" type="text" placeholder="CNPJ" minlength="14" maxlength="14" class="inputs" id="userLogin" required>
 
                     <input name="senha" type="password" placeholder="Senha" minlength="6" class="inputs" id="senhaLogin" required>
 
-                    <button type="submit" id="button">Entrar</button>
+                    <button onclick="loginUser()" type="button" id="button">Entrar</button>
                 </form>
 
                 <a th:href="@{/cadastro}">Criar uma conta</a>

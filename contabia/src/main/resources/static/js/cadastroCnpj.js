@@ -1,4 +1,5 @@
 var count = 0;
+
 //sistema para fazer o menu de edição de usuário aparecer e sumir
 document.getElementById("caixa-user").addEventListener('click', ()=>{
     if(count == 0){
@@ -11,7 +12,7 @@ document.getElementById("caixa-user").addEventListener('click', ()=>{
     }
 });
 
-var cad = document.getElementById("formEditCnpj");
+var cad = document.getElementById("formCadCnpj");
 var erro = document.getElementById("erroText");
 
 //quando o usuário clicar na tela, a mensagem de erro some
@@ -19,7 +20,7 @@ cad.addEventListener("click", ()=>{
     erro.style.display = "none";
 });
 
-function atualizaDados(cnpjUser, cnpjEmpresa){
+function cadastroCnpj(cnpjUser){
 
     let freqSefaz = document.getElementById("frequenciaSefaz");
     let freqCndt = document.getElementById("frequenciaCndt");
@@ -38,15 +39,15 @@ function atualizaDados(cnpjUser, cnpjEmpresa){
         frequenciaCndt : freqCndt.value
     }
 
-    //requisição para atualizar a empresa
-    fetch('http://localhost:8080/editCnpj?cnpjUser='+cnpjUser+'&cnpjEmpresa='+cnpjEmpresa, {
-        method:"PUT",
+    //requisição para cadastrar novo CNPJ
+    fetch('http://localhost:8080/cadastroCnpj?cnpjUser='+cnpjUser, {
+        method:"POST",
         body:JSON.stringify(body),
-        headers:{'Content-Type': 'application/json'},
+        headers:{'Content-Type': 'application/json'}
     })
     .then((resposta)=>{
         if (resposta.status == 200){
-            window.location = "/listaCnpj?cnpjUser="+cnpjUser; //se der tudo certo, é redirecionado para a listagem de empresas
+            window.location = "/listaCnpj?cnpjUser=" + cnpjUser; //se der certo, redireciona para a lista de empresas cadastradas
         } else {
             return resposta.json() ;
         }

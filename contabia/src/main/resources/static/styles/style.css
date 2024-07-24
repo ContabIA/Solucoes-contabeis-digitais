@@ -55,9 +55,10 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    border-radius: 15px;
+    cursor: pointer;
 }
 
 #user {
@@ -68,8 +69,6 @@ nav {
     width: 60px;
     height: 60px;
     display: grid;
-    margin-top: 0.2em;
-    margin-right: 0.2em;
 }
 
 .lista{
@@ -78,10 +77,10 @@ nav {
 }
 
 .lista-config{
-    display: flex;
-    text-align: end;
-    margin-left: 8em;
-    margin-top: 0.5em;
+    width: 100%;
+    background-color: #a0a0a0;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
 
 .linkUser:hover ~ .lista-config > .lista{
@@ -99,6 +98,9 @@ nav {
 .button-li{
     text-decoration: none;
     color: black;
+    margin: auto;
+    margin-top: 3px;
+    margin-bottom: 3px;
 }
 
 .lista:hover{
@@ -167,3 +169,11 @@ nav {
     width: 70%;
 }
 
+#erro{
+    background-color: rgba(255, 124, 124, 0.764);
+    padding: 1%;
+    margin: auto;
+    text-align: center;
+    border: 2px solid rgb(255, 63, 63);
+    font-weight: bolder;
+}
