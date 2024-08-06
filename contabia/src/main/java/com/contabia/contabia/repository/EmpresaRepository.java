@@ -29,4 +29,5 @@ public interface EmpresaRepository extends JpaRepository<EmpresaModel, Long> {
     // Consulta SQL que retorna o usuario e senha do Sefaz do usuário relacionado à empresa dado o cnpj dela
     @Query(value = "SELECT u.user_sefaz, u.senha_sefaz FROM usuarios u JOIN empresa e ON u.id = e.id_usuario WHERE e.cnpj = :cnpjEmpresa;", nativeQuery = true)
     Optional<List<String>> findDadosLoginByCnpjEmpresa(@Param("cnpjEmpresa") String cnpjEmpresa);
+
  }
