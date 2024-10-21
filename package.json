@@ -1,0 +1,16 @@
+{
+  "name": "solucoes-contabeis-digitais",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "ContabIA",
+  "license": "MIT",
+  "description": "automação que coleta os dados de sites da receita federal",
+  "dependencies": {
+    "express": "^4.21.1",
+    "solucoes-contabeis-digitais": "file:"
+  }
+}
