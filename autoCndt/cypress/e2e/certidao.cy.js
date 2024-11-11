@@ -2,7 +2,7 @@ describe("Teste do negativado trabalhista", ()=>{
 
     before("coleta de src", ()=>{
         cy.visit("https://cndt-certidao.tst.jus.br/gerarCertidao.faces");
-        cy.wait(50000);
+        cy.wait(4000);
         cy.get("#idImgBase64").invoke('attr', 'src').then(($url)=>{
             cy.writeFile('imgUrl.txt', $url);
         });

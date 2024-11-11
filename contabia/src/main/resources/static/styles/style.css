@@ -1,10 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 
-/*
-CSS com os elementos que se repetem nas páginas HTML
-*/
-
 :root {
     --fonte: "Montserrat", sans-serif;
     --cor-textos: #FFFFFF
@@ -43,6 +39,7 @@ nav {
     color: var(--cor-textos);
     padding: 2px;
     border-radius: 5px;
+    transition-property: text-decoration;
 }
 
 .button-nav:hover{
@@ -52,13 +49,10 @@ nav {
 .caixa-user {
     background-color: #D9D9D9;
     width: 280px;
+    border-radius: 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-    border-radius: 15px;
-    cursor: pointer;
 }
 
 #user {
@@ -68,47 +62,6 @@ nav {
 #userIcon {
     width: 60px;
     height: 60px;
-    display: grid;
-}
-
-.lista{
-    display: none;
-    text-align: end;
-}
-
-.lista-config{
-    width: 100%;
-    background-color: #a0a0a0;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-}
-
-.linkUser:hover ~ .lista-config > .lista{
-    display: flex;
-    flex-direction: column;
-}
-
-.elementos-li{
-    font-family: var(--fonte);
-    color: black;
-    font-size: 18px;
-    margin-bottom: 0.2em;
-}
-
-.button-li{
-    text-decoration: none;
-    color: black;
-    margin: auto;
-    margin-top: 3px;
-    margin-bottom: 3px;
-}
-
-.lista:hover{
-    display: grid;
-}
-
-.button-li:hover{
-    text-decoration: underline;
 }
 
 .container{
@@ -169,11 +122,3 @@ nav {
     width: 70%;
 }
 
-#erro{
-    background-color: rgba(255, 124, 124, 0.764);
-    padding: 1%;
-    margin: auto;
-    text-align: center;
-    border: 2px solid rgb(255, 63, 63);
-    font-weight: bolder;
-}

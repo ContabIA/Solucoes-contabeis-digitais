@@ -8,8 +8,8 @@ class RunArgs{
         this.env = env;
         this.spec = './cypress/e2e/certidao.cy.js';
         this.configFile = './cypress.config.js';
-        this.headed = true;
-        this.browser ='edge';
+        this.headed = false;
+        this.browser ='firefox';
         this.quiet = true;
     }
 };
@@ -67,7 +67,7 @@ async function getInput(){
     // fazendo fetch para pegar todos os cnpj's semanais para consultar hoje
     for (let i = 0; i < objNumerosSemanal[diaSemana].length; i++){
 
-        let req = await fetch("http://localhost:8080/service/getCnpj?ultimoDigito=" + objNumerosSemanal[diaSemana][i] + "&frequencia=1&tipoConsulta=3")
+        let req = await fetch("http://localhost:8080/service/getCnpj?tamanhoFinal=1&ultimoDigito=" + objNumerosSemanal[diaSemana][i] + "&frequencia=1&tipoConsulta=3")
         let reqJson = await req.json()
         resp = resp.concat(reqJson["cnpjs"])
     };
@@ -83,7 +83,7 @@ async function getInput(){
 
     // fazendo fetch para pegar todos os cnpj's mensais para consultar hoje
     for (let i = 0; i < objNumerosMensal[diaMes].length; i++){
-        let req = await fetch("http://localhost:8080/service/getCnpj?ultimoDigito=" + objNumerosMensal[diaMes][i] + "&frequencia=2&tipoConsulta=3")
+        let req = await fetch("http://localhost:8080/service/getCnpj?tamanhoFinal=2&ultimoDigito=" + objNumerosMensal[diaMes][i] + "&frequencia=2&tipoConsulta=3")
         let reqJson = await req.json()
         resp = resp.concat(reqJson["cnpjs"])
     };
@@ -100,7 +100,7 @@ async function getInput(){
 
     // fazendo fetch para pegar todos os cnpj's anuais para consultar hoje
     for (let i = 0; i < objNumerosAnual[diaAno].length; i++){
-        let req = await fetch("http://localhost:8080/service/getCnpj?ultimoDigito=" + objNumerosAnual[diaAno][i] + "&frequencia=3&tipoConsulta=3")
+        let req = await fetch("http://localhost:8080/service/getCnpj?tamanhoFinal=2&ultimoDigito=" + objNumerosAnual[diaAno][i] + "&frequencia=3&tipoConsulta=3")
         let reqJson = await req.json()
         resp = resp.concat(reqJson["cnpjs"])
     };

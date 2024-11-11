@@ -17,19 +17,6 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-/*
- * Classe model responsável por fazer a representação da tabela usuarios do banco de dados.
- * 
- * Atributos:
- * id: identificador da instância
- * cnpj: cnpj do usuario
- * email: email do usuario
- * senha: senha do cadastro no site contabia
- * usuarioSefaz: nome do usuario no site da Secretária da Fazenda - PB
- * senhaSefaz: senha do usuario no site da Secretária da Fazenda - PB
- * 
-*/
-
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
@@ -56,12 +43,6 @@ public class UserModel {
 
     @Column(unique = true, nullable = false)
     private String userSefaz;
-    
-    // Declaração de relação 1:n da entidade usuario com a entidade empresa no banco de dados.
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<EmpresaModel> empresas;
-
-    // Construtor com base no UserDto
     public UserModel(UserDto dados){
         this.cnpj = dados.cnpj();
         this.email = dados.email();
@@ -70,11 +51,6 @@ public class UserModel {
         this.userSefaz = dados.userSefaz();
     }
 
-    public void editUser(String cnpj, String email, String senha, String senhaSefaz, String userSefaz){
-        this.cnpj = cnpj;
-        this.email = email;
-        this.senha = senha;
-        this.senhaSefaz = senhaSefaz;
-        this.userSefaz = userSefaz; 
-    }
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<EmpresaModel> empresas;
 }

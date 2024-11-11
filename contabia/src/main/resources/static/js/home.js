@@ -1,7 +1,5 @@
 import { formataCnpj,  TRADUZ_MES } from "./main.js";
 
-
-// Coleta todas as alterações que estão na tela e formata o cnpj e traduz o mês
 var listAltCnpj = document.querySelectorAll(".nomeAlt")
 listAltCnpj.forEach(AltCnpj => {
     var textAltCnpj = AltCnpj.textContent.split(' - ')

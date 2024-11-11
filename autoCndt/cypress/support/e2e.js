@@ -109,7 +109,6 @@ function verifyPdfText(text, cnpj){ // -> 0 : 1
 // função para verificar o pdf após o download
 async function verifyPdf(cnpj){
 
-    cnpj = cnpj.toString();
     console.log(cnpj);
     cnpj = (cnpj.length === 14) ? cnpj : cnpj.slice(1,cnpj.length -1);
 

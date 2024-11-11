@@ -1,36 +1,23 @@
-
-<!--
-    Este arquivo é destinado para o armazenamento dos fragments que serão utilizados pelo thymeleaf nas páginas da aplicação
--->
-
-<!--Fragment que contém o cabeçalho do site-->
 <nav th:fragment="nav">
     <a th:href="@{/home(cnpjUser=${cnpjUser})}"><img src="../img/logo.png" alt="logo" class="logo"></a>
 
     <a th:href="@{/home(cnpjUser=${cnpjUser})}" class="button-nav">Home</a>
-
+    
     <a th:href="@{/listaCnpj(cnpjUser=${cnpjUser})}" class="button-nav">CNPJ's</a>
 
-    <div id="caixa-user" class="caixa-user">
+    <div class="caixa-user">
 
         <label th:text="${cnpjUser}" id="user"></label>
-        <a class='linkUser'><img src="../img/user-Icon.png" alt="userIcon" id="userIcon"></a>
-        
-        <div style="display: none;" class="lista-config" id="lista-config">
-            <a style="margin-right: 10px;" th:href="@{/editUser(cnpjUser=${cnpjUser})}" class='button-li'><strong>Editar Dados</strong></a>
-            <a style="margin-left: 10px;" th:href="@{/}" class='button-li'><strong>Sair</strong></a>
-        </div>
+        <img src="../img/user-Icon.png" alt="userIcon" id="userIcon">
+
     </div>
-    
 </nav>
 
-<!--Fragment que contém a div que exibe o nome da alteração e o link para ver os detalhes-->
 <div th:fragment="alteracao" class="divAlt">
     <span class="nomeAlt" th:text="${infos.texto}"></span>
     <a class="detalhesLink" th:href="@{${'detalhes/' + infos.tipoAlt}(cnpjUser=${cnpjUser}, cnpjEmpresa=${infos.cnpjEmpresa}, idAlt=${infos.altId})}">Ver detalhes</a>
 </div>
 
-<!--Fragment que contém a div que exibe o nome/CNPJ da empresa, e fornece a opção de deleta-la e edita-la-->
 <div th:fragment="cnpj(infos)" class="divCnpj">
     <span th:text="${infos.nome}" class="nomeDivCnpj"></span>
     <div class="opcoes">
@@ -39,7 +26,6 @@
     </div>
 </div>
 
-<!--Fragment que contém a tabela que exibe os detalhes de uma alteração Sefaz-->
 <table th:fragment="tabelaDetalhes" class="detalhes">
     <tr style="border-bottom: 1px solid black;">
         <th>Número</th>
@@ -54,5 +40,5 @@
         <td th:text="${nota.data}" id="data"></td>
         <td th:text="${nota.nomeEmitente}"></td>
         <td th:text="${nota.situacao}"></td>
-        <td th:text="${nota.valor}" style="border: none;"></td>
+        <td th:text="${'R$ ' + nota.valor}" style="border: none;"></td>
 </table>

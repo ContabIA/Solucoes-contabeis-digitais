@@ -1,34 +1,12 @@
-var count = 0;
-//sistema para fazer o menu de edição de usuário aparecer e sumir
-document.getElementById("caixa-user").addEventListener('click', ()=>{
-    if(count == 0){
-        document.getElementById("lista-config").style.display = 'flex';
-        count = 1;
-    }
-    else if(count == 1){
-        document.getElementById("lista-config").style.display = 'none';
-        count = 0;
-    }
-});
+async function atualizaDados(cnpjUser, cnpjEmpresa){
 
-var cad = document.getElementById("formEditCnpj");
-var erro = document.getElementById("erroText");
+    var freqSefaz = document.getElementById("frequenciaSefaz");
+    var freqCndt = document.getElementById("frequenciaCndt");
+    var checkboxSefaz = document.getElementById("checkboxSefaz");
+    var checkboxCndt = document.getElementById("checkboxCndt");
+    var nome = document.getElementById("nomeCadCnpj");
+    var cnpjEmpresaInp = document.getElementById("cnpjCadCnpj");
 
-//quando o usuário clicar na tela, a mensagem de erro some
-cad.addEventListener("click", ()=>{
-    erro.style.display = "none";
-});
-
-function atualizaDados(cnpjUser, cnpjEmpresa){
-
-    let freqSefaz = document.getElementById("frequenciaSefaz");
-    let freqCndt = document.getElementById("frequenciaCndt");
-    let checkboxSefaz = document.getElementById("checkboxSefaz");
-    let checkboxCndt = document.getElementById("checkboxCndt");
-    let nome = document.getElementById("nomeCadCnpj");
-    let cnpjEmpresaInp = document.getElementById("cnpjCadCnpj");
-
-    //corpo da requisição
     let body = {
         cnpjEmpresa : cnpjEmpresaInp.value,
         nome : nome.value,
@@ -38,26 +16,16 @@ function atualizaDados(cnpjUser, cnpjEmpresa){
         frequenciaCndt : freqCndt.value
     }
 
-    //requisição para atualizar a empresa
-    fetch('http://localhost:8080/editCnpj?cnpjUser='+cnpjUser+'&cnpjEmpresa='+cnpjEmpresa, {
+    await fetch('http://localhost:8080/editCnpj?cnpjUser='+cnpjUser+'&cnpjEmpresa='+cnpjEmpresa, {
         method:"PUT",
         body:JSON.stringify(body),
         headers:{'Content-Type': 'application/json'},
     })
-    .then((resposta)=>{
-        if (resposta.status == 200){
-            window.location = "/listaCnpj?cnpjUser="+cnpjUser; //se der tudo certo, é redirecionado para a listagem de empresas
-        } else {
-            return resposta.json() ;
-        }
-    })
-    .then((respJson) =>{ //se der errado, a mensagem de erro é exibida
-        document.getElementById("erroText").innerHTML = respJson.resp;
-        document.getElementById("erroText").style.display  = "block";  
+    .then((resp)=>{return resp.json()})
+    .then((respJson) => {
+        window.location = "/listaCnpj?cnpjUser="+respJson;
     });
 }
-
-// Função que formata o cnpj de XXXXXXXXXXXXXX para XX.XXX.XXX/XXXX-XX
 const formataCnpj = function (textCnpj){    
     var cnpjFormatado = ''
     
@@ -77,8 +45,9 @@ const formataCnpj = function (textCnpj){
     return cnpjFormatado
 }
 
-// Coleta o cnpj do usuário que fica no header e chama a função formataCnpj
 var cnpj  = document.getElementById("user")
 var textCnpj = cnpj.textContent.split('')
 var cnpjFormatado = formataCnpj(textCnpj)
 cnpj.innerHTML = cnpjFormatado  
+
+

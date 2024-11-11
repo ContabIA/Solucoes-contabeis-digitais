@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,16 +10,6 @@
         <script th:src="@{/js/main.js}" defer></script>
         <script type="module" th:src="@{/js/detalhes.js}" defer></script>
     </head>
-    <!--
-        Atributos utilizados pelo thymeleaf:
-        - cnpjUser
-        - cnpjEmpresa
-        - tipoAlt
-        - nota
-        - mes
-        - idAlt
-        - resp
-    -->
     <body>
 
         <header th:insert="~{fragments :: nav}"></header>
@@ -44,6 +34,5 @@
                 </div>
             </div>
         </main>
-
     </body>
 </html>

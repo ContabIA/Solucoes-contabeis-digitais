@@ -18,18 +18,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/*
- * Classe model responsável por fazer a representação da tabela resposta do banco de dados.
- * 
- * Atributos:
- * id: identificador da instância
- * status: status da resposta(0 = negativa, 1=positiva)
- * data: data em que foi feita a consulta
- * novo: boolean que identifica se a resposta já foi vizualizada(0) ou não(0) pelo usuário 
- * consulta: consulta cuja a resposta está relacionada
- * 
-*/
-
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
@@ -52,17 +40,13 @@ public class RespostaModel {
     @Column(unique = false, nullable = false)
     private boolean novo;
 
-    // Método que retorna o atributo novo da resposta.
     public boolean getNovo(){
         return this.novo;
     }
-
-   // Declaração de relação n:1 da entidade resposta com a entidade consulta no banco de dados.
     @ManyToOne
     @JoinColumn(name = "idConsulta", nullable = false)
     private ConsultasModel consulta;
 
-    // Construtor com base no RespostaDto e na consulta que ela esta relacionada.
     public RespostaModel(RespostaDto dados, ConsultasModel consulta){
         this.status = dados.status();
         this.novo = dados.novo();
