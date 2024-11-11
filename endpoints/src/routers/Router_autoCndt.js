@@ -8,12 +8,18 @@ const Router_autoCndt = express.Router();
 Router_autoCndt.use(express.json);
 
 // importando controllers
-
+const controller_cndt = require("../controlers/Cndt_controller");
 
 // criando as rotas
 // get:/
 Router_autoCndt.get("/", (req, res) => {
+    res.json(controller_cndt.keys());
+})
 
+
+// get:/:operacao
+Router_autoCndt.get("/:operacao", (req, res) => {
+    controller_cndt[req.params.operacao](req.body);
 })
 
 

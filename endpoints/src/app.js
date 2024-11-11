@@ -8,10 +8,22 @@ const app = express()
 app.use(express.json)
 
 // importação de routers
+let Routers = {};
+const Cndt_router = require("./routers/Router_autoCndt");
+Routers.cndt = Cndt_router
 
 // usando routers
+Routers_list = Object.entries(Routers);
+for (let i = 0; i < Routers_list.length; i++){
+    app.use("/" + Routers_list[i][0], Routers_list[i][1]);
+}
 
 // caminhos extras
+app.get("/", (req, res) => {
+    res.send("");
+    return;
+    res.json(Routers.keys())
+})
 
 // lidando com o error 404
 app.all("/*", (req, res) => {
