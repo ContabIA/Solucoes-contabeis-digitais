@@ -1,11 +1,13 @@
 import { formataCnpj, formataData, TRADUZ_MES } from "./main.js";
 
+// Coleta a data da tabela html e chama a função formataData
 var tdData = document.getElementById("data")
 if (tdData != null){
     var data = tdData.textContent
     tdData.innerHTML = formataData(data)
 }
 
+// Coleta os titulos secundarios da página e chama a função formataCnpj e traduz o mês
 var listaTitulos = document.querySelectorAll(".title2")
 var textoTituloCnpj = listaTitulos[0].textContent.split(" - ")
 var cnpjFormatado = formataCnpj(textoTituloCnpj[1])

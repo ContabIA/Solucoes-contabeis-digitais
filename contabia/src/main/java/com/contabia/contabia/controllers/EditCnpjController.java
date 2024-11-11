@@ -32,13 +32,13 @@ import jakarta.validation.Valid;
 public class EditCnpjController {
 
     @Autowired
-    private ConsultasRepository consultasRepository;
+    private ConsultasRepository consultasRepository; //repository das consultas
 
     @Autowired
-    private EmpresaRepository empresaRepository;
+    private EmpresaRepository empresaRepository; //repository das empresas
 
     @Autowired
-    private UserRepository userRepository;
+    private UserRepository userRepository; //repository dos usuários
 
     @GetMapping
     public String editCnpj(@RequestParam("cnpjUser") String cnpjUser, @RequestParam("cnpjEmpresa") String cnpjEmpresa, Model model) {
@@ -49,23 +49,26 @@ public class EditCnpjController {
 
             EmpresaModel empresa = empresaRepository.findByUserAndCnpj(userEncontrado, cnpjEmpresa);
             
-            model.addAttribute("nomeEmpresa", empresa.getNome());
-            model.addAttribute("cnpjEmpresa", cnpjEmpresa);
+            model.addAttribute("nomeEmpresa", empresa.getNome()); //envia para o thymeleaf o nome atual da empresa
+            model.addAttribute("cnpjEmpresa", cnpjEmpresa); //envia para o thymeleaf o cnpj atual da empresa
 
+            //obtem as consultas referentes à empresa em questão
             List<ConsultasModel> consultas = consultasRepository.findByEmpresaConsulta(empresa);
 
+            //verifica quais consultas já estão programadas para a empresa
             for (ConsultasModel consultasModel : consultas) {                
                 if(consultasModel.getTipoConsulta() == 1) model.addAttribute("sefazStatus", true);
                 if(consultasModel.getTipoConsulta() == 3) model.addAttribute("cndtStatus", true);
             }
 
-            Map<Integer, String> sla = new HashMap<>();
-            sla.put(1, "freqSefaz");
-            sla.put(3, "freqCndt");
+            Map<Integer, String> nomeAtributo = new HashMap<>();
+            nomeAtributo.put(1, "freqSefaz");
+            nomeAtributo.put(3, "freqCndt");
 
-            //feito por arnaud
+            //envia para o thymeleaf a frequência atual que as consultas possuem
+            //Isso é feito com base no tipo das consultas da lista "consultas" e no nome salvo no HashMap "nomeAtributo"
             for(int i = 0; i < consultas.size(); i++){
-                model.addAttribute(sla.get(consultas.get(i).getTipoConsulta()) + Integer.toString(consultas.get(i).getFrequencia()), true);
+                model.addAttribute(nomeAtributo.get(consultas.get(i).getTipoConsulta()) + Integer.toString(consultas.get(i).getFrequencia()), true);
             }
         }
         model.addAttribute("cnpjUser", cnpjUser);

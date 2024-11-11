@@ -16,6 +16,14 @@ import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.GetMapping;
 
+/*
+ * Classe controller responsável por gerenciar a página detalhes do site exibindo os detalhes de uma alteração no banco, podendo essa ser uma adição de uma nova nota ou uma respostas com status = 0.
+ * 
+ * Rotas:
+ *  /detalhes/ (GET) -> Exibe a página detalhes e envia para o thymeleaf os detalhes da alteração que está sendo chamada
+ *          /sefaz/ -> Exibe os detalhes das alterações na tabela notas
+ *          /cndt/ - > Exibe os detalhes das alterações da tabela respostas
+*/
 
 @Controller
 @RequestMapping("/detalhes")
@@ -40,9 +48,11 @@ public class DetailsAltController {
         model.addAttribute("mes", notaDto.data().getMonth());
         model.addAttribute("idAlt", idNota);
 
+        model.addAttribute("nota", notaDto); //Envia para o thymeleaf o objeto de transferência de dados da nota que deve ser exibido os detalhes.
+        model.addAttribute("mes", notaDto.data().getMonth()); // Envia para o thymeleaf o mês da nota.
+        model.addAttribute("idAlt", idNota); // Envia para o thymeleaf o id da nota.
 
         return "detalhes";
-
     }
 
     @GetMapping("/cndt")
@@ -58,7 +68,6 @@ public class DetailsAltController {
         model.addAttribute("resp", respostaDto);
         model.addAttribute("idAlt", idResp);
 
-        
         return "detalhes";
     }
     

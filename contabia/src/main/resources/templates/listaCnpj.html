@@ -1,8 +1,24 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles/reset.css">
+        <link rel="stylesheet" href="styles/style.css">
+        <link rel="stylesheet" href="styles/listaCnpj.css">
+        <script th:src="@{/js/main.js}" defer></script>
+        <script type="module" th:src="@{/js/listaCnpj.js}" defer></script>
+        <script src="/js/deleteCnpj.js" defer></script>
+    </head>
+    <!--
+    Atributos utilizados pelo thymeleaf:
+    - cnpjUser
+    - cnpjEmpresa
+    - empresasInfos
+    -->
+    <body>
+        
+        <header th:insert="~{fragments :: nav}"></header>
 
     <link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="styles/style.css">
@@ -28,12 +44,14 @@
                         
                     </div>
 
-                </section>
+                    <section id="cnpjs">
+                        <div th:each="infos : ${empresasInfos}" th:insert="~{fragments :: cnpj(infos)}">
+                            
+                        </div>
+                    </section>
+                </div>
             </div>
-        </div>
-    </main>
+        </main>
 
-    <footer></footer>
-
-</body>
+    </body>
 </html>

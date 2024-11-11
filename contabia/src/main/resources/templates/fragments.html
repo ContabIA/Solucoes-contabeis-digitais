@@ -1,18 +1,30 @@
+
+<!--
+    Este arquivo é destinado para o armazenamento dos fragments que serão utilizados pelo thymeleaf nas páginas da aplicação
+-->
+
+<!--Fragment que contém o cabeçalho do site-->
 <nav th:fragment="nav">
     <a th:href="@{/home(cnpjUser=${cnpjUser})}"><img src="../img/logo.png" alt="logo" class="logo"></a>
 
     <a th:href="@{/home(cnpjUser=${cnpjUser})}" class="button-nav">Home</a>
-    
+
     <a th:href="@{/listaCnpj(cnpjUser=${cnpjUser})}" class="button-nav">CNPJ's</a>
 
-    <div class="caixa-user">
+    <div id="caixa-user" class="caixa-user">
 
         <label th:text="${cnpjUser}" id="user"></label>
-        <img src="../img/user-Icon.png" alt="userIcon" id="userIcon">
-
+        <a class='linkUser'><img src="../img/user-Icon.png" alt="userIcon" id="userIcon"></a>
+        
+        <div style="display: none;" class="lista-config" id="lista-config">
+            <a style="margin-right: 10px;" th:href="@{/editUser(cnpjUser=${cnpjUser})}" class='button-li'><strong>Editar Dados</strong></a>
+            <a style="margin-left: 10px;" th:href="@{/}" class='button-li'><strong>Sair</strong></a>
+        </div>
     </div>
+    
 </nav>
 
+<!--Fragment que contém a div que exibe o nome da alteração e o link para ver os detalhes-->
 <div th:fragment="alteracao" class="divAlt">
     <span class="nomeAlt" th:text="${infos.texto}"></span>
     <a class="detalhesLink" th:href="@{${'detalhes/' + infos.tipoAlt}(cnpjUser=${cnpjUser}, cnpjEmpresa=${infos.cnpjEmpresa}, idAlt=${infos.altId})}">Ver detalhes</a>

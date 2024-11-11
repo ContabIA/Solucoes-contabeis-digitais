@@ -37,13 +37,16 @@ public class ConsultasModel{
     @Column(unique = false, nullable = false)
     private int frequencia;
 
+    // Declaração de relação n:1 da entidade consulta com a entidade empresa no banco de dados.
     @ManyToOne
     @JoinColumn(name="idEmpresa", nullable = false)
     private EmpresaModel empresaConsulta;
 
+    // Declaração de relação 1:n da entidade consulta com a entidade respostas no banco de dados.
     @OneToMany(mappedBy = "consulta", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<RespostaModel> respostas;
 
+    // Construtor
     public ConsultasModel(int tipoConsulta, int frequencia, EmpresaModel empresa) {
         this.tipoConsulta = tipoConsulta;
         this.frequencia = frequencia;

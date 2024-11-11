@@ -38,9 +38,6 @@ public class NotasModel {
     @Column(unique = false, nullable = false)
     private int serie;
 
-    // @Column(unique = false, nullable = false)
-    // private String cnpjEmitente;
-
     @Column(unique = false, nullable = false)
     private String nomeEmitente;
 
@@ -48,16 +45,18 @@ public class NotasModel {
     private String situacao;
 
     @Column(unique = false, nullable = false)
-    private double valor;
+    private String valor;
 
     @Setter
     @Column(unique = false, nullable = false)
     private boolean novo;
 
+    // Declaração de relação n:1 da entidade nota com a entidade empresa no banco de dados.
     @ManyToOne
     @JoinColumn(name="idEmpresa", nullable = false)
     private EmpresaModel empresaNotas;
 
+    // Construtor com base no NotasDto e nas variaveis novo e empresaNotas passadas
     public NotasModel(NotasDto dados, boolean novo, EmpresaModel empresaNotas){
         this.id = dados.id();
         this.data = dados.data();

@@ -11,9 +11,7 @@ const formataCnpj = function (textCnpj){
             cnpjFormatado += '-';
         }
         cnpjFormatado += textCnpj[i]
-        
     }
-
     return cnpjFormatado
 }
 
@@ -25,6 +23,7 @@ const formataData = function(data){
     return dataFormatada
 }
 
+// Dicionário para tradução dos meses que são inseridos em inglês
 const TRADUZ_MES = {"JANUARY" : "Janeiro", "FEBRUARY" : "Fevereiro", "MARCH" : "Março", "APRIL" : "Abril", "MAY" : "Maio", "JUNE" : "Junho", "JULY" : "Julho", "AUGUST" : "Agosto", "SEPTEMBER" : "Setembro", "OCTOBER" : "Outubro", "NOVEMBER" : "Novembro", "DECEMBER" : "Dezembro"}
 
 const formataCnpjUser = function(){

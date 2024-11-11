@@ -35,25 +35,32 @@ public class HomeController {
 
     @GetMapping
     public String home(@RequestParam("cnpjUser") String cnpjUser, Model model) {
-        model.addAttribute("cnpjUser", cnpjUser);
-        
 
+        model.addAttribute("cnpjUser", cnpjUser); //Envia para o thymeleaf o cnpj do usuário. 
+        
+        // Coleta lista com notas que devem ser expostas na tela.
         Optional<List<NotasModel>> optionalNotas = notasRepository.findByNovoAndCnpjUser(true, cnpjUser);
         Optional<List<RespostaModel>> optionalResposta = respostaRepository.findByNovoAndCnpjUserAndStatus(true, cnpjUser, 0);
-        List<AltDto> infos = new ArrayList<>();
 
+        List<AltDto> infos = new ArrayList<>(); // Lista para inserir as alterações
+
+        // Verifica se há conteudo nas listas com as notas
         if (optionalNotas.isPresent()){
+            //Cria o objetov de transferencia de dados e adiciona na lista infos cada alteração com o que deve ser exposto na tela
             for (NotasModel nota : optionalNotas.get()) {
                 infos.add(new AltDto("Alteração Sefaz - " +  nota.getEmpresaNotas().getCnpj() + " - " + nota.getData().getMonth(), nota.getEmpresaNotas().getCnpj(), nota.getId(), "sefaz"));
             }
         }
 
+        // Verifica se há conteudo nas listas com as respostas
         if(optionalResposta.isPresent()){
+            //Adiciona na lista infos cada alteração com o que deve ser exposto na tela
             for (RespostaModel resposta : optionalResposta.get()) {
                 infos.add(new AltDto("Alteração CNDT - " + resposta.getConsulta().getEmpresaConsulta().getCnpj() + " - " + resposta.getData().getMonth(), resposta.getConsulta().getEmpresaConsulta().getCnpj(), resposta.getId(), "cndt"));
             }
         }
-        model.addAttribute("infosAlt", infos);
+
+        model.addAttribute("infosAlt", infos); //Envia para o thymeleaf as alterações que devem ser expostas
         return "home";
     }
 

@@ -47,6 +47,7 @@ public class RespostaModel {
     @JoinColumn(name = "idConsulta", nullable = false)
     private ConsultasModel consulta;
 
+    // Construtor com base no RespostaDto e na consulta que ela esta relacionada.
     public RespostaModel(RespostaDto dados, ConsultasModel consulta){
         this.status = dados.status();
         this.novo = dados.novo();

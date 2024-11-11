@@ -1,3 +1,7 @@
+/*
+CSS com as estilizações específicas da página de cadastro de usuários
+*/
+
 body {
     height: 100vh;
     background-color: #110119;
@@ -13,9 +17,10 @@ nav {
 }
 
 .login {
-    display: grid;
-    justify-items: center;
-    margin-top: 12vh;
+    text-align: center;
+    position: relative;
+    top: 50%;
+    transform: translateY(25%);
 }
 
 h1 {

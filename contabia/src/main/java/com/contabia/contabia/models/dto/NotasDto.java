@@ -24,11 +24,7 @@ public record NotasDto(
     String situacao,
 
     @NotBlank
-<<<<<<< HEAD
     String valor,
-=======
-    double valor,
->>>>>>> 316fd6ae9325e80a2e5c51f880f663308bded6a3
 
     @NotBlank
     String cnpjEmpresa
