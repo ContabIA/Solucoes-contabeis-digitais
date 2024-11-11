@@ -60,7 +60,7 @@ async function getInput(){
   // Requisita os cnpj's as consultas semanais para cada fim de id fornecido.
   for (let i = 0; i < listaFinaisIdSemanal.length; i++){
     // Faz a requisição e acessa o body com a lista de cnpj's.
-    let req = await fetch("http://localhost:8080/service/getCnpj?ultimoDigito=" + listaFinaisIdSemanal[i] + "&frequencia=1&tipoConsulta=1");
+    let req = await fetch("http://localhost:8080/service/getCnpj?tamanhoFinal=1&ultimoDigito=" + listaFinaisIdSemanal[i] + "&frequencia=1&tipoConsulta=1");
     let reqJson = await req.json();
     listaCnpj = listaCnpj.concat(reqJson["cnpjs"]); // Concatena os cnpj's adquiridos da requisição à lista com todos os cnpj's.
   }
@@ -70,7 +70,7 @@ async function getInput(){
   let listaFinaisIdMensal = getListaNumeroDia(diasMes, 2, diaAtual);  // Lista com todos os finais de id correspondente daquele dia das consultas mensais.
 
   for (let i = 0; i < listaFinaisIdMensal.length; i++){
-    let req = await fetch("http://localhost:8080/service/getCnpj?ultimoDigito=" + listaFinaisIdMensal[i] + "&frequencia=2&tipoConsulta=1");
+    let req = await fetch("http://localhost:8080/service/getCnpj?tamanhoFinal=2&ultimoDigito=" + listaFinaisIdMensal[i] + "&frequencia=2&tipoConsulta=1");
     let reqJson = await req.json();
     listaCnpj = listaCnpj.concat(reqJson["cnpjs"]); // Concatena os cnpj's adquiridos da requisição à lista com todos os cnpj's.
   }
@@ -99,15 +99,14 @@ async function getObjDadosLogin(listaCnpj){
 }
 
 // Função que roda automação.
-async function runAuto(listaCnpj){
-  let dataAtual = new Date() // Variável com a data atual.
+async function runAuto(listaCnpj, diaUm){
 
   // Coleta dados do login sefaz e roda automação
   getObjDadosLogin(listaCnpj).then((objDadosLogin) => {
     cypress
     .run({
       spec: './cypress/e2e/login.cy.js',
-      env: {"dadosLogin" : objDadosLogin, diaUm : (dataAtual.getDay() === 1)},
+      env: {dadosLogin : objDadosLogin, diaUm : diaUm},
       headed: false,
       browser: "electron",
     })
@@ -125,15 +124,15 @@ async function main(){
   let dataAtual = new Date() // Variável com a data atual.
 
   // Verifica se o dia atual é dia 1, se for antes de fazer as consultas diárias faz a consulta do último mês para cada cnpj cadastrado no banco.
-  if (dataAtual.getDay() === 1){
+  if (dataAtual.getDate() === 1){
     let listaCnpj = new Array()  // Lista para guardar os cnpj's.
-    let req = await fetch("http://localhost:8080/service/getCnpj?ultimoDigito=&frequencia=&tipoConsulta=1"); // Requisição que retorna no body uma lista com todos os cnpj's.
+    let req = await fetch("http://localhost:8080/service/getCnpj?tamanhoFinal=0&ultimoDigito=&frequencia=&tipoConsulta=1"); // Requisição que retorna no body uma lista com todos os cnpj's.
     
-    // Acessa o body para pegar a lista.
-    let reqJson = await req.json();
-    listaCnpj = listaCnpj.concat(reqJson["cnpjs"]);
+      // Acessa o body para pegar a lista.
+      let reqJson = await req.json();
+      listaCnpj = listaCnpj.concat(reqJson["cnpjs"]);
     
-    await runAuto(listaCnpj)  // Roda função que chama a automação.
+    await runAuto(listaCnpj, true)  // Roda função que chama a automação.
   } 
 
   // Chama função getInput e verifica se existe cnpj's naquele dia.
@@ -142,7 +141,7 @@ async function main(){
       return 'no entrys' // Retorna uma mensagem que não há entradas para aquele dia.
     }
     console.log(listaCnpj)
-    return await runAuto(listaCnpj) // Roda função que chama a automação.
+    return await runAuto(listaCnpj, false) // Roda função que chama a automação.
     .catch(console.error)
     })
   
