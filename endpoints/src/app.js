@@ -5,7 +5,7 @@ const express = require("express");
 const app = express()
 
 // usando midwares
-app.use(express.json)
+app.use(express.json())
 
 // importação de routers
 let Routers = {};
@@ -20,9 +20,7 @@ for (let i = 0; i < Routers_list.length; i++){
 
 // caminhos extras
 app.get("/", (req, res) => {
-    res.send("");
-    return;
-    res.json(Routers.keys())
+    res.status(200).json({"caminhos_validos":Object.keys(Routers)});
 })
 
 // lidando com o error 404
@@ -34,5 +32,5 @@ app.all("/*", (req, res) => {
 const PORT = 3000
 
 app.listen(PORT, () => {
-    console.log(`serve active at port: ${PORT}`)
+    console.log(`servidor ativo na porta: ${PORT}`)
 })
