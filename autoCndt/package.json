@@ -14,6 +14,7 @@
     "cypress": "^13.10.0"
   },
   "dependencies": {
-    "@2captcha/captcha-solver": "^1.0.1"
+    "@2captcha/captcha-solver": "^1.0.1",
+    "teste_cypress": "file:"
   }
 }
