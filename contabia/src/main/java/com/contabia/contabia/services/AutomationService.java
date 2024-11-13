@@ -7,62 +7,59 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Service;
 
 import com.contabia.contabia.models.dto.DadosLoginDto;
 import com.contabia.contabia.models.dto.ListaNotasDto;
 import com.contabia.contabia.models.dto.ListaRespostaDto;
-import com.contabia.contabia.models.dto.RespostaDto;
 import com.contabia.contabia.models.dto.NotasDto;
-import com.contabia.contabia.models.dto.ServiceDto;
-import com.contabia.contabia.models.entity.EmpresaModel;
+import com.contabia.contabia.models.dto.RespostaDto;
 import com.contabia.contabia.models.entity.ConsultasModel;
+import com.contabia.contabia.models.entity.EmpresaModel;
 import com.contabia.contabia.models.entity.NotasModel;
 import com.contabia.contabia.models.entity.RespostaModel;
 import com.contabia.contabia.repository.ConsultasRepository;
-import com.contabia.contabia.repository.RespostaRepository;
 import com.contabia.contabia.repository.EmpresaRepository;
 import com.contabia.contabia.repository.NotasRepository;
+import com.contabia.contabia.repository.RespostaRepository;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import lombok.NoArgsConstructor;
 
-/*
- * Classe rest controller responsável por receber e gerenciar requisições de aplicações externas e criar métodos auxiliares. 
- * 
- * Rotas:
- *  /service/ (GET) -> Rotas para aplicações externas receberem informações para executar as automações.
- * 
- *          /getCnpj/ -> Envia para a aplicação que requisitar todos os cnpj's das consultas que devem ser feitas naquele dia, de acordo com os paramêtros que vão ser mandandos na requisição.
- *          /getDadosLogin/ -> Envia para a aplicação que requisitar os dados do login no site do Sefaz para o cnpj que for enviado como parâmetro.
- *  
- *  /service/ (PUT) -> Recebe a resposta de automações executadas na aplicação externa com dados que devem ser incluidos no banco de dados.
- * 
- *          /respSefaz/ -> Recebe uma lista de notas que devem ser incluidas no banco.
- *          /respCndt/ -> Recebe uma lista de respostas que devem ser incluidas no banco.
-*/
-
-@RestController
-@RequestMapping("/service")
-public class ServiceController {
+@Service
+@NoArgsConstructor
+public class AutomationService {
 
     @Autowired
-    private ConsultasRepository consultasRepository;
+    ConsultasRepository consultasRepository;
 
     @Autowired
-    private EmpresaRepository empresaRepository;
+    EmpresaRepository empresaRepository;
 
     @Autowired
-    private NotasRepository notasRepository;
+    NotasRepository notasRepository;
 
     @Autowired
-    private RespostaRepository respostaRepository;
+    RespostaRepository respostaRepository;
+    
+    //Método que retorna os cnpjs que devem ser consultados no dia
+    public List<String> getCnpjsDia(int ultimoDigito, String frequencia, int tipoConsulta, int tamanhoFinal){
+        
+        List<Long> listIdEmpresa = getEmpresas(ultimoDigito, frequencia, tipoConsulta, tamanhoFinal); // Lista com os id empresas do dia.
+        
+        List<String> cnpjs = new ArrayList<>(); // Lista para armazenar os cnpj's das empresas
+        // Coleta e insere na lista o cnpj para cada empresa encontrada.
+        for (Long id : listIdEmpresa) {
+            Optional<EmpresaModel> empresa = empresaRepository.findById(id);
+            if(empresa.isPresent()){
+                cnpjs.add(empresa.get().getCnpj());
+            }
+        }
 
-    @GetMapping("/getCnpj")
-    public ResponseEntity<ServiceDto> getCnpj(@RequestParam("ultimoDigito") int ultimoDigito, @RequestParam("tamanhoFinal") int tamanhoFinal, @RequestParam("frequencia") String frequencia, @RequestParam("tipoConsulta") int tipoConsulta) {
+        return cnpjs;
+    }
+
+    // Método que pega os id das empresas do dia com base no número final dele
+    public List<Long> getEmpresas(int ultimoDigito, String frequencia, int tipoConsulta, int tamanhoFinal){
 
         int idConsulta = ultimoDigito; // id da consulta que obrigatoriamente será coletado já que é igual ao final de id pedido.
         String strUltimoDigito = ultimoDigito + ""; // Transformando o ultimo digito em String.
@@ -83,33 +80,11 @@ public class ServiceController {
             System.out.println("\n" + strUltimoDigito + "\n");
         }
 
-        
-        List<String> cnpjs = new ArrayList<>(); // Lista para armazenar os cnpj's das empresas
-        // Coleta e insere na lista o cnpj para cada empresa encontrada.
-        for (Long id : listIdEmpresa) {
-            Optional<EmpresaModel> empresa = empresaRepository.findById(id);
-            if(empresa.isPresent()){
-                cnpjs.add(empresa.get().getCnpj());
-                //System.out.println("\n" + empresa.get().getCnpj() + "\n");
-            }
-            System.out.println("\n" + cnpjs + "\n");
-        }
-        return ResponseEntity.ok().body(new ServiceDto(cnpjs)); // Retorno da requisição com lista de cnps's como body.
-    } 
-
-    @GetMapping("/getDadosLogin")
-    public ResponseEntity<DadosLoginDto> getDadosLogin(@RequestParam("cnpjEmpresa") String cnpjEmpresa){
-        
-        Optional<List<String>> optionalDadosLogin = empresaRepository.findDadosLoginByCnpjEmpresa(cnpjEmpresa); // Verifica qual usuário está relacionado ao cnpj enviado e retorna uma lista com usuário e senha sefaz.
-        if (optionalDadosLogin.isPresent()){
-            return ResponseEntity.ok().body(new DadosLoginDto(optionalDadosLogin.get())); // Retorna os dadosLogin
-        }
-        return ResponseEntity.badRequest().body(null); // Retorna nulo caso não exista os DadosLogin.
+        return listIdEmpresa;
     }
 
-    @PostMapping("/respSefaz")
-    public ResponseEntity<String> respSefaz(@RequestBody ListaNotasDto listaNotas) {
-        
+    public void insereNotasBanco(ListaNotasDto listaNotas){
+
         // Tenta inserir no banco cada uma das notas enviadas pela aplicação externa.
         for (NotasDto nota : listaNotas.listaNotas()) {
 
@@ -139,12 +114,19 @@ public class ServiceController {
             }
             
         }
-        return ResponseEntity.ok().body("deu certo!");
     }
 
-    @PostMapping("/respCndt")
-    public ResponseEntity<String> respCndt(@RequestBody ListaRespostaDto listaResp) {
-        
+    public ResponseEntity<DadosLoginDto> getDadosLogin(String cnpjEmpresa){
+
+        Optional<List<String>> optionalDadosLogin = empresaRepository.findDadosLoginByCnpjEmpresa(cnpjEmpresa); // Verifica qual usuário está relacionado ao cnpj enviado e retorna uma lista com usuário e senha sefaz.
+        if (optionalDadosLogin.isPresent()){
+            return ResponseEntity.ok().body(new DadosLoginDto(optionalDadosLogin.get())); // Retorna os dadosLogin
+        }
+        return ResponseEntity.badRequest().body(null); // Retorna nulo caso não exista os DadosLogin.
+    }
+
+    public void insereRespostasBanco(ListaRespostaDto listaResp){
+
         // Insere no banco cada uma das repostas enviadas pela aplicação externa
         for (RespostaDto resposta : listaResp.listaRespostas()) {
 
@@ -153,7 +135,6 @@ public class ServiceController {
             respostaRepository.save(novaResposta); // Insere resposta no banco.
             
         }
-        return ResponseEntity.ok().body("ok");
     }
 
 }
