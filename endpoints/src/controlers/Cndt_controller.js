@@ -1,5 +1,5 @@
 // importando a função main da automação cndt
-const main_automacao_Cndt = require("../../../automações/autoCndt/index");
+const main_automacao_Cndt = require("../../../automações/autoCndt/index.js");
 
 
 let controller_cndt = {} // objeto controlador

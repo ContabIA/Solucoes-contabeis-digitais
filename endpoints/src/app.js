@@ -10,7 +10,10 @@ app.use(express.json())
 // importação de routers
 let Routers = {};
 const Cndt_router = require("./routers/Router_autoCndt");
+const Sefaz_router = require("./routers/Router_autoSefaz")
 Routers.cndt = Cndt_router
+Routers.sefaz = Sefaz_router
+
 
 // usando routers
 Routers_list = Object.entries(Routers);
@@ -29,7 +32,7 @@ app.all("/*", (req, res) => {
 })
 
 // listen
-const PORT = 3000
+const PORT = 3500
 
 app.listen(PORT, () => {
     console.log(`servidor ativo na porta: ${PORT}`)
