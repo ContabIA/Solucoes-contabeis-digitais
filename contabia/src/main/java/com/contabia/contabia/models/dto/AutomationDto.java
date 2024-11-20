@@ -8,6 +8,6 @@ import java.util.List;
  * cnpjs -> lista de CNPJs
 */
 
-public record ServiceDto(List<String> cnpjs) {
+public record AutomationDto(List<String> cnpjs) {
 
 }
