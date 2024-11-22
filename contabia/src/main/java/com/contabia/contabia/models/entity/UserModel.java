@@ -1,8 +1,14 @@
 package com.contabia.contabia.models.entity;
 
+import java.util.Collection;
 import java.util.List;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import com.contabia.contabia.models.dto.UserDto;
+import com.contabia.contabia.models.enums.UserRole;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -36,7 +42,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(of = "id")
 @Entity
 @Table(name = "usuarios")
-public class UserModel {
+public class UserModel implements UserDetails{
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
@@ -56,6 +62,9 @@ public class UserModel {
 
     @Column(unique = true, nullable = false)
     private String userSefaz;
+
+    @Column(unique = false, nullable = false)
+    private UserRole role;
     
     // Declaração de relação 1:n da entidade usuario com a entidade empresa no banco de dados.
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -76,5 +85,24 @@ public class UserModel {
         this.senha = senha;
         this.senhaSefaz = senhaSefaz;
         this.userSefaz = userSefaz; 
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        if (this.role == UserRole.ADMIN) {
+            return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
+        } else {
+            return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+        }
+    }
+
+    @Override
+    public String getPassword() {
+        return this.senha;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.cnpj;
     }
 }

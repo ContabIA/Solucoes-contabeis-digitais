@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestBody;
     */
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/login")
 public class LoginController {
 
     @Autowired
