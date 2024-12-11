@@ -9,6 +9,7 @@ import com.contabia.contabia.infra.ExceptionMessage;
 import com.contabia.contabia.models.dto.LoginDto;
 import com.contabia.contabia.services.LoginService;
 
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,8 +38,8 @@ public class LoginController {
     }
 
     @PostMapping
-    public ResponseEntity<ExceptionMessage> autenticar(@Valid @RequestBody LoginDto dadosLogin) {
-        return loginService.verificaSenha(dadosLogin);
+    public ResponseEntity<ExceptionMessage> autenticar(@Valid @RequestBody LoginDto dadosLogin, HttpServletResponse response) {
+        return loginService.authenticationLogin(dadosLogin, response);
     }
 
 }

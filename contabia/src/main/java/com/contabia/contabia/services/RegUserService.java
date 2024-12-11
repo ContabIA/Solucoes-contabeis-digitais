@@ -3,14 +3,11 @@ package com.contabia.contabia.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.contabia.contabia.exceptions.CnpjRegisteredException;
 import com.contabia.contabia.exceptions.EmailRegisteredException;
 import com.contabia.contabia.exceptions.UserSefazRegisteredException;
-import com.contabia.contabia.infra.ExceptionMessage;
 import com.contabia.contabia.models.dto.UserDto;
 import com.contabia.contabia.models.entity.UserModel;
 import com.contabia.contabia.repository.UserRepository;
@@ -24,7 +21,7 @@ public class RegUserService {
     @Autowired
     private UserRepository userRepository; //repository dos usuarios
 
-    public ResponseEntity<ExceptionMessage> addUsuario(UserDto dados){
+    public String addUsuario(UserDto dados){
         //variável para verificar se o CNPJ que está sendo cadastrado já existe no sistema
         Optional<UserModel> userByCnpj = userRepository.findByCnpj(dados.cnpj());
 
@@ -49,6 +46,6 @@ public class RegUserService {
         //se tudo estiver certo, será criado um novo usuário
         userRepository.save(new UserModel(dados));
 
-        return ResponseEntity.ok().body(new ExceptionMessage(HttpStatus.OK, "ok"));
+        return "redirect:/login";
     }
 }

@@ -4,11 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.contabia.contabia.infra.ExceptionMessage;
-import com.contabia.contabia.models.dto.UserDto;
+import com.contabia.contabia.models.dto.EditUserDto;
 import com.contabia.contabia.services.EditUserService;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,14 +26,16 @@ public class EditUserController {
     private EditUserService editUserService;
 
     @GetMapping
-    public String editDadosUser(@RequestParam("cnpjUser") String cnpjUser, Model model) {
+    public String editDadosUser(Authentication authentication, Model model) {
+        var cnpjUser = authentication.getName();
         editUserService.coletarDadosAtual(cnpjUser, model);
         return "editUser";
     }
 
     @PutMapping
     @Transactional
-    public ResponseEntity<ExceptionMessage> criarEdicao(@RequestParam ("cnpjUser") String cnpjUser, @Valid @RequestBody UserDto userDto){
-        return editUserService.editarUsuario(cnpjUser, userDto);
+    public ResponseEntity<ExceptionMessage> criarEdicao(Authentication authentication, @Valid @RequestBody EditUserDto editUserDto){
+        var cnpjUser = authentication.getName();
+        return editUserService.editarUsuario(cnpjUser, editUserDto);
     }
 }

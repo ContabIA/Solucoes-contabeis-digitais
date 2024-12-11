@@ -6,8 +6,9 @@
         <link rel="stylesheet" href="/styles/reset.css">
         <link rel="stylesheet" href="/styles/style.css">
         <link rel="stylesheet" href="/styles/cadastroUser.css">
+        <link rel="shortcut icon" href="img/favicon_contabia.png" type="image/x-icon">
         <script src="js/editUser.js" defer></script>
-        <title>ContabIA</title>
+        <title>ContabIA - atualizar dados</title>
     </head>
     <body>
 
@@ -27,18 +28,16 @@
                 <form action="#" method="POST" class="form" id="form">
                     <input th:attr="value=${usuario.cnpj}" type="text" name="cnpj" placeholder="CNPJ" minlength="14" maxlength="14" class="inputs user" id="cnpjCad" required>
 
-                    <input th:attr="value=${usuario.senha}" type="password" name="senha" placeholder="Senha" minlength="6" class="inputs senha" id="senhaCad" required>
-
                     <input th:attr="value=${usuario.email}" type="email" name="email" placeholder="E-mail" class="inputs email" id="emailCad" required>
 
                     <input th:attr="value=${usuario.userSefaz}" type="text" name="userSefaz" placeholder="Usuário Sefaz" class="inputs user" id="sefazCad" required>
 
                     <input th:attr="value=${usuario.senhaSefaz}" type="password" name="senhaSefaz" placeholder="Senha Sefaz" class="inputs senha" id="senhaSefazCad" required>
                     
-                    <button th:attr="onclick=|editUser('${usuario.cnpj}')|" type="button" id="button">Atualizar</button>
+                    <button onclick="editUser()" type="button" id="button">Atualizar</button>
                 </form>
 
-                <a th:href="@{/home(cnpjUser=${usuario.cnpj})}">voltar</a> 
+                <a th:href="@{/home}">voltar</a> 
 
             </section>
         </main>

@@ -16,16 +16,16 @@ var mesFormatado = TRADUZ_MES[listaTitulos[1].textContent.split(" - ")[1]]
 listaTitulos[1].innerHTML = listaTitulos[1].textContent.split(" - ")[0] + " - " + mesFormatado
 
 // Função que manda requisição para fazer deleção lógica do alteração já vista para MVC
-window.removerNovo = function(idAlt, tipoAlt, cnpjUser){
+window.removerNovo = function(idAlt, tipoAlt){
 
-    fetch("http://localhost:8080/home?idAlt="+idAlt+"&tipoAlt="+tipoAlt+"&cnpjUser="+cnpjUser, {
+    fetch("http://localhost:8080/home?idAlt="+idAlt+"&tipoAlt="+tipoAlt, {
         method : "PUT"
     })
     .then((resp) => {return resp.json()})
     .then((respJson) => {
 
         // Requisição para carregar página de listagem de empresas relacionadas usuario logado
-        window.location = "http://localhost:8080/home?cnpjUser="+respJson;
+        window.location = "http://localhost:8080/home";
     });
 
 };

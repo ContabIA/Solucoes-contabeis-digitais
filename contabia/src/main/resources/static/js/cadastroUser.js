@@ -27,7 +27,8 @@ function cadUser(){
         if (resposta.status == 200){
             window.location = "/"; //se der certo, redireciona para a tela de login
         } else {
-            return resposta.json() ;
+            alert(resposta);
+            return resposta.json();
         }
     })
     .then((respJson) =>{ //se der errado, a mensagem de erro é exibida

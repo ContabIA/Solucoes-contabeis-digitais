@@ -2,11 +2,11 @@ package com.contabia.contabia.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;    
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.contabia.contabia.infra.ExceptionMessage;
 import com.contabia.contabia.models.dto.RegCnpjDto;
@@ -35,14 +35,16 @@ public class RegCnpjController {
     private RegCnpjService regCnpjService;
 
     @GetMapping
-    public String cadastroCnpj(@RequestParam("cnpjUser") String cnpjUser, Model model) {
+    public String cadastroCnpj(Authentication authentication, Model model) {
+        var cnpjUser = authentication.getName();
         model.addAttribute("cnpjUser", cnpjUser);//envio padrão do cnpj do usuário
         return "cadastroCnpj"; //exibe a página de cadastro de empresa
     }
     
     @PostMapping
     @Transactional
-    public ResponseEntity<ExceptionMessage> addEmpresa(@RequestParam("cnpjUser") String cnpjUser, @Valid @RequestBody RegCnpjDto dadosEmpresa) {
+    public ResponseEntity<ExceptionMessage> addEmpresa(Authentication authentication, @Valid @RequestBody RegCnpjDto dadosEmpresa) {
+        var cnpjUser = authentication.getName();
         return regCnpjService.cadEmpresa(cnpjUser, dadosEmpresa);
     }
 }

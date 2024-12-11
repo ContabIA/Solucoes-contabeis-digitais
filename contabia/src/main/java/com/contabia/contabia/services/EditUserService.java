@@ -12,7 +12,7 @@ import com.contabia.contabia.exceptions.CnpjRegisteredException;
 import com.contabia.contabia.exceptions.EmailRegisteredException;
 import com.contabia.contabia.exceptions.UserSefazRegisteredException;
 import com.contabia.contabia.infra.ExceptionMessage;
-import com.contabia.contabia.models.dto.UserDto;
+import com.contabia.contabia.models.dto.EditUserDto;
 import com.contabia.contabia.models.entity.UserModel;
 import com.contabia.contabia.repository.UserRepository;
 
@@ -30,12 +30,12 @@ public class EditUserService {
         
         if (userOptional.isPresent()){
             UserModel user = userOptional.get();
-            UserDto userDto = new UserDto(user.getCnpj(), user.getEmail(), user.getSenha(), user.getSenhaSefaz(), user.getUserSefaz());
-            model.addAttribute("usuario", userDto);
+            EditUserDto editUserDto = new EditUserDto(user.getCnpj(), user.getEmail(), user.getSenhaSefaz(), user.getUserSefaz());
+            model.addAttribute("usuario", editUserDto);
         }
     }
 
-    public ResponseEntity<ExceptionMessage> editarUsuario(String cnpjUser, UserDto userDto){
+    public ResponseEntity<ExceptionMessage> editarUsuario(String cnpjUser, EditUserDto userDto){
 
         Optional<UserModel> userOptional = userRepository.findByCnpj(cnpjUser);
         Optional<UserModel> userByCnpj = userRepository.findByCnpj(userDto.cnpj());
@@ -56,7 +56,7 @@ public class EditUserService {
             throw new UserSefazRegisteredException();
         }
 
-        user.editUser(userDto.cnpj(), userDto.email(), userDto.senha(), userDto.senhaSefaz(), userDto.userSefaz());
+        user.editUser(userDto);
         userRepository.save(user);
         
         return ResponseEntity.ok().body(new ExceptionMessage(HttpStatus.OK, "ok"));

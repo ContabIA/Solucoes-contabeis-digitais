@@ -1,12 +1,10 @@
 package com.contabia.contabia.models.entity;
 
-import java.util.Collection;
 import java.util.List;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.contabia.contabia.models.dto.EditUserDto;
 import com.contabia.contabia.models.dto.UserDto;
 import com.contabia.contabia.models.enums.UserRole;
 
@@ -42,7 +40,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(of = "id")
 @Entity
 @Table(name = "usuarios")
-public class UserModel implements UserDetails{
+public class UserModel{
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
@@ -74,35 +72,16 @@ public class UserModel implements UserDetails{
     public UserModel(UserDto dados){
         this.cnpj = dados.cnpj();
         this.email = dados.email();
-        this.senha = dados.senha();
+        this.senha = new BCryptPasswordEncoder().encode(dados.senha());
         this.senhaSefaz = dados.senhaSefaz();
         this.userSefaz = dados.userSefaz();
+        this.role = UserRole.USER;
     }
 
-    public void editUser(String cnpj, String email, String senha, String senhaSefaz, String userSefaz){
-        this.cnpj = cnpj;
-        this.email = email;
-        this.senha = senha;
-        this.senhaSefaz = senhaSefaz;
-        this.userSefaz = userSefaz; 
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        if (this.role == UserRole.ADMIN) {
-            return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
-        } else {
-            return List.of(new SimpleGrantedAuthority("ROLE_USER"));
-        }
-    }
-
-    @Override
-    public String getPassword() {
-        return this.senha;
-    }
-
-    @Override
-    public String getUsername() {
-        return this.cnpj;
+    public void editUser(EditUserDto dados){
+        this.cnpj = dados.cnpj();
+        this.email = dados.email();
+        this.senhaSefaz = dados.senhaSefaz();
+        this.userSefaz = dados.userSefaz(); 
     }
 }

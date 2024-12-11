@@ -1,6 +1,7 @@
 package com.contabia.contabia.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,7 +31,9 @@ public class DetailsAltController {
     private DetailsAltService detailsAltService;
     
     @GetMapping("/sefaz")
-    public String detalheSefaz(@RequestParam("cnpjUser") String cnpjUser, @RequestParam("cnpjEmpresa") String cnpjEmpresa, @RequestParam("idAlt") Long idNota, Model model) {
+    public String detalheSefaz(Authentication authentication, @RequestParam("cnpjEmpresa") String cnpjEmpresa, @RequestParam("idAlt") Long idNota, Model model) {
+
+        var cnpjUser = authentication.getName();
 
         model.addAttribute("cnpjUser", cnpjUser); // Envia para thymeleaf o cnpj do usário.
         model.addAttribute("tipoAlt", "Alteração Sefaz"); // Envia para o thymeleaf o tipo de Alteração
@@ -46,7 +49,9 @@ public class DetailsAltController {
     }
 
     @GetMapping("/cndt")
-    public String detalheCndt(@RequestParam("cnpjUser") String cnpjUser, @RequestParam("cnpjEmpresa") String cnpjEmpresa, @RequestParam("idAlt") Long idResp, Model model){
+    public String detalheCndt(Authentication authentication, @RequestParam("cnpjEmpresa") String cnpjEmpresa, @RequestParam("idAlt") Long idResp, Model model){
+
+        var cnpjUser = authentication.getName();
 
         model.addAttribute("cnpjUser", cnpjUser); // Envia para thymeleaf o cnpj do usário.
         model.addAttribute("tipoAlt", "Alteração Sefaz"); // Envia para o thymeleaf o tipo de Alteração

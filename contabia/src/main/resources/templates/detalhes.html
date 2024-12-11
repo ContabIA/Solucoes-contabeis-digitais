@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="../styles/reset.css">
         <link rel="stylesheet" href="../styles/detalhes.css">
         <link rel="stylesheet" href="../styles/style.css">
+        <link rel="shortcut icon" href="img/favicon_contabia.png" type="image/x-icon">
         <script th:src="@{/js/main.js}" defer></script>
         <script type="module" th:src="@{/js/detalhes.js}" defer></script>
     </head>
@@ -40,7 +41,7 @@
                         
                     </table>
 
-                    <button type="button" class="btnVoltar" th:attr="onclick=|removerNovo(${idAlt}, '${tipoAlt}', '${cnpjUser}')|">Voltar</button>
+                    <button type="button" class="btnVoltar" th:attr="onclick=|removerNovo(${idAlt}, '${tipoAlt}')|">Voltar</button>
                 </div>
             </div>
         </main>

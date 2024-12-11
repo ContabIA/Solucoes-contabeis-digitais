@@ -6,26 +6,25 @@ login.addEventListener("click", ()=>{
     erro.style.display = "none";
 });
 
-function editUser(cnpjUser){
+function editUser(){
 
     //corpo da requisição
     let body = {
         cnpj : document.getElementById("cnpjCad").value,
         email : document.getElementById("emailCad").value,
-        senha : document.getElementById("senhaCad").value,
         senhaSefaz : document.getElementById("senhaSefazCad").value,
         userSefaz: document.getElementById("sefazCad").value,
     }
 
     //requisição para atualizar os dados do usuário
-    fetch('http://localhost:8080/editUser?cnpjUser='+ cnpjUser, {
+    fetch('http://localhost:8080/editUser', {
         method : "PUT",
         body : JSON.stringify(body),
         headers : {'Content-Type': 'application/json'}
     })
     .then((resposta)=>{
         if (resposta.status == 200){ //se der certo, redireciona o usuário novamente para a tela de login
-            window.location = "/"
+            window.location = "/logout"
         } else {
             return resposta.json() 
         }

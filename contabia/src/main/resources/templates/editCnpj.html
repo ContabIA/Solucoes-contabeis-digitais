@@ -6,8 +6,9 @@
         <link rel="stylesheet" href="styles/reset.css">
         <link rel="stylesheet" href="styles/style.css">
         <link rel="stylesheet" href="styles/cadastroCnpj.css">
+        <link rel="shortcut icon" href="img/favicon_contabia.png" type="image/x-icon">
         <script src="js/editCnpj.js" defer></script>
-        <title>ContabIA</title>
+        <title>ContabIA - editar empresa</title>
     </head>
     <!--
         Atributos utilizados pelo thymeleaf:
@@ -72,7 +73,7 @@
 
                         </div>
                         
-                        <button type="button" th:attr="onclick=|atualizaDados('${cnpjUser}', '${cnpjEmpresa}')|" class="btnSalvar">Salvar</button>
+                        <button type="button" th:attr="onclick=|atualizaDados('${cnpjEmpresa}')|" class="btnSalvar">Salvar</button>
                     </form>
                 </div>
             </div>

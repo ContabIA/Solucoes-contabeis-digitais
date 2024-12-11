@@ -1,6 +1,7 @@
 package com.contabia.contabia.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,7 +34,8 @@ public class ListaCnpjController {
     private EmpresaRepository empresaRepository; //repository das empresas
 
     @GetMapping
-    public String listaCnpj(@RequestParam("cnpjUser") String cnpjUser, Model model) {
+    public String listaCnpj(Authentication authentication, Model model) {
+        var cnpjUser = authentication.getName();
         
         var infos = listaCnpjService.criarLista(cnpjUser);
 
@@ -44,7 +46,7 @@ public class ListaCnpjController {
 
     @DeleteMapping
     @Transactional
-    public String delCnpj(@RequestParam("cnpjUser") String cnpjUser, @RequestParam("cnpjEmpresa") String cnpjEmpresa){
+    public String delCnpj(@RequestParam("cnpjEmpresa") String cnpjEmpresa){
         //recebe o cnpj do usuário e da empresa que será deletada como parâmetro de requisição e realiza a exclusão
         empresaRepository.deleteByCnpj(cnpjEmpresa);
         return "listaCnpj"; //exibe novamente a mesma página atualizada

@@ -2,6 +2,7 @@ package com.contabia.contabia.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,7 +36,9 @@ public class EditCnpjController {
     private EditCnpjService editCnpjService;
 
     @GetMapping
-    public String editCnpj(@RequestParam("cnpjUser") String cnpjUser, @RequestParam("cnpjEmpresa") String cnpjEmpresa, Model model) {
+    public String editCnpj(Authentication authentication, @RequestParam("cnpjEmpresa") String cnpjEmpresa, Model model) {
+        var cnpjUser = authentication.getName();
+
         editCnpjService.enviarDadosAtuais(cnpjUser, cnpjEmpresa, model);
         return "editCnpj";
     }
@@ -43,7 +46,8 @@ public class EditCnpjController {
 
     @PutMapping
     @Transactional
-    public ResponseEntity<String> criarEdicao(@RequestParam("cnpjUser") String cnpjUser, @RequestParam("cnpjEmpresa") String cnpjEmpresa, @Valid @RequestBody RegCnpjDto dadosEmpresa) {
+    public ResponseEntity<String> criarEdicao(Authentication authentication, @RequestParam("cnpjEmpresa") String cnpjEmpresa, @Valid @RequestBody RegCnpjDto dadosEmpresa) {
+        var cnpjUser = authentication.getName();
 
         editCnpjService.atualizar(dadosEmpresa, cnpjEmpresa);
         return ResponseEntity.ok().body(cnpjUser); //retorna para o cnpj do usuário para o JS

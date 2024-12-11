@@ -20,7 +20,7 @@ cad.addEventListener("click", ()=>{
     erro.style.display = "none";
 });
 
-function cadastroCnpj(cnpjUser){
+function cadastroCnpj(){
 
     let freqSefaz = document.getElementById("frequenciaSefaz");
     let freqCndt = document.getElementById("frequenciaCndt");
@@ -40,14 +40,14 @@ function cadastroCnpj(cnpjUser){
     }
 
     //requisição para cadastrar novo CNPJ
-    fetch('http://localhost:8080/cadastroCnpj?cnpjUser='+cnpjUser, {
+    fetch('http://localhost:8080/cadastroCnpj', {
         method:"POST",
         body:JSON.stringify(body),
         headers:{'Content-Type': 'application/json'}
     })
     .then((resposta)=>{
         if (resposta.status == 200){
-            window.location = "/listaCnpj?cnpjUser=" + cnpjUser; //se der certo, redireciona para a lista de empresas cadastradas
+            window.location = "/listaCnpj"; //se der certo, redireciona para a lista de empresas cadastradas
         } else {
             return resposta.json() ;
         }

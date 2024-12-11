@@ -19,7 +19,7 @@ cad.addEventListener("click", ()=>{
     erro.style.display = "none";
 });
 
-function atualizaDados(cnpjUser, cnpjEmpresa){
+function atualizaDados(cnpjEmpresa){
 
     let freqSefaz = document.getElementById("frequenciaSefaz");
     let freqCndt = document.getElementById("frequenciaCndt");
@@ -39,14 +39,14 @@ function atualizaDados(cnpjUser, cnpjEmpresa){
     }
 
     //requisição para atualizar a empresa
-    fetch('http://localhost:8080/editCnpj?cnpjUser='+cnpjUser+'&cnpjEmpresa='+cnpjEmpresa, {
+    fetch('http://localhost:8080/editCnpj?cnpjEmpresa='+cnpjEmpresa, {
         method:"PUT",
         body:JSON.stringify(body),
         headers:{'Content-Type': 'application/json'},
     })
     .then((resposta)=>{
         if (resposta.status == 200){
-            window.location = "/listaCnpj?cnpjUser="+cnpjUser; //se der tudo certo, é redirecionado para a listagem de empresas
+            window.location = "/listaCnpj"; //se der tudo certo, é redirecionado para a listagem de empresas
         } else {
             return resposta.json() ;
         }

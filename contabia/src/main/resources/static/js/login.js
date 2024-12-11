@@ -15,14 +15,14 @@ function loginUser(){
     };
 
     //requisição para fazer login
-    fetch("http://localhost:8080/", {
+    fetch("http://localhost:8080/login", {
         method : "POST",
         body : JSON.stringify(body),
         headers : {'Content-Type': 'application/json'}
     })
     .then((resposta)=>{
         if (resposta.status == 200){
-            window.location = "/home?cnpjUser="+body.cnpj; //se der certo, redireciona para a página principal
+            window.location = "/home"; //se der certo, redireciona para a página principal
         } else {
             return resposta.json() ;
         }

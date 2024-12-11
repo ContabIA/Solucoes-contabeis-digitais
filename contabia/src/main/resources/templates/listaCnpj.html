@@ -6,9 +6,11 @@
         <link rel="stylesheet" href="styles/reset.css">
         <link rel="stylesheet" href="styles/style.css">
         <link rel="stylesheet" href="styles/listaCnpj.css">
+        <link rel="shortcut icon" href="img/favicon_contabia.png" type="image/x-icon">
         <script th:src="@{/js/main.js}" defer></script>
         <script type="module" th:src="@{/js/listaCnpj.js}" defer></script>
         <script src="/js/deleteCnpj.js" defer></script>
+        <title>ContabIA - lista de empresas</title>
     </head>
     <!--
     Atributos utilizados pelo thymeleaf:
@@ -25,7 +27,7 @@
                 <div class="divPrincipal">
                     
                     <div class="divBtnCadastrar">
-                        <a class="btnCadastrar" th:href="@{/cadastroCnpj(cnpjUser=${cnpjUser})}"> Cadastrar Novo Cnpj </a>
+                        <a class="btnCadastrar" th:href="@{/cadastroCnpj}"> Cadastrar Novo Cnpj </a>
                     </div>
 
                     <section id="cnpjs">
