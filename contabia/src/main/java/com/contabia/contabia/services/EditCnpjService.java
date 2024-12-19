@@ -34,38 +34,42 @@ public class EditCnpjService {
     private EmpresaRepository empresaRepository; //repository das empresas
 
     
-    public void enviarDadosAtuais(String cnpjUser, String cnpjEmpresa, Model model){
+    public String enviarDadosAtuais(String cnpjUser, String cnpjEmpresa, Model model){
         Optional<UserModel> user = userRepository.findByCnpj(cnpjUser);
 
         if(user.isPresent()){
             var userEncontrado = user.get();
 
+            //erro acontece aq
             EmpresaModel empresa = empresaRepository.findByUserAndCnpj(userEncontrado, cnpjEmpresa);
-            
-            model.addAttribute("nomeEmpresa", empresa.getNome()); //envia para o thymeleaf o nome atual da empresa
-            model.addAttribute("cnpjEmpresa", cnpjEmpresa); //envia para o thymeleaf o cnpj atual da empresa
 
-            //obtem as consultas referentes à empresa em questão
-            List<ConsultasModel> consultas = consultasRepository.findByEmpresaConsulta(empresa);
+            if(empresa != null){
+                model.addAttribute("nomeEmpresa", empresa.getNome()); //envia para o thymeleaf o nome atual da empresa
+                model.addAttribute("cnpjEmpresa", cnpjEmpresa); //envia para o thymeleaf o cnpj atual da empresa
 
-            //verifica quais consultas já estão programadas para a empresa
-            for (ConsultasModel consultasModel : consultas) {                
-                if(consultasModel.getTipoConsulta() == 1) model.addAttribute("sefazStatus", true);
-                if(consultasModel.getTipoConsulta() == 3) model.addAttribute("cndtStatus", true);
-            }
+                //obtem as consultas referentes à empresa em questão
+                List<ConsultasModel> consultas = consultasRepository.findByEmpresaConsulta(empresa);
 
-            Map<Integer, String> nomeAtributo = new HashMap<>();
-            nomeAtributo.put(1, "freqSefaz");
-            nomeAtributo.put(3, "freqCndt");
+                //verifica quais consultas já estão programadas para a empresa
+                for (ConsultasModel consultasModel : consultas) {                
+                    if(consultasModel.getTipoConsulta() == 1) model.addAttribute("sefazStatus", true);
+                    if(consultasModel.getTipoConsulta() == 3) model.addAttribute("cndtStatus", true);
+                }
 
-            //envia para o thymeleaf a frequência atual que as consultas possuem
-            //Isso é feito com base no tipo das consultas da lista "consultas" e no nome salvo no HashMap "nomeAtributo"
-            for(int i = 0; i < consultas.size(); i++){
-                model.addAttribute(nomeAtributo.get(consultas.get(i).getTipoConsulta()) + Integer.toString(consultas.get(i).getFrequencia()), true);
+                Map<Integer, String> nomeAtributo = new HashMap<>();
+                nomeAtributo.put(1, "freqSefaz");
+                nomeAtributo.put(3, "freqCndt");
+
+                //envia para o thymeleaf a frequência atual que as consultas possuem
+                //Isso é feito com base no tipo das consultas da lista "consultas" e no nome salvo no HashMap "nomeAtributo"
+                for(int i = 0; i < consultas.size(); i++){
+                    model.addAttribute(nomeAtributo.get(consultas.get(i).getTipoConsulta()) + Integer.toString(consultas.get(i).getFrequencia()), true);
+                }
+
+                return "editCnpj";
             }
         }
-        model.addAttribute("cnpjUser", cnpjUser); //envia para o thymeleaf o cnpj do usuário
-        model.addAttribute("cnpjEmpresa", cnpjEmpresa); //envia para o thymeleaf o cnpj da empresa editada
+        return "redirect:/logout";
     }
 
     private void atualizaConsultaCndt(String cnpjEmpresa, RegCnpjDto dadosEmpresa, EmpresaModel empresa){
@@ -136,3 +140,5 @@ public class EditCnpjService {
         atualizaEmpresa(dadosEmpresa, empresa);
     }
 }
+
+//está acontecendo um erro quando o usuário muda o cnpj da empresa na url de editar empresa

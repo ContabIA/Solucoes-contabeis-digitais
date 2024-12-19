@@ -39,10 +39,11 @@ public class EditCnpjController {
     public String editCnpj(Authentication authentication, @RequestParam("cnpjEmpresa") String cnpjEmpresa, Model model) {
         var cnpjUser = authentication.getName();
 
-        editCnpjService.enviarDadosAtuais(cnpjUser, cnpjEmpresa, model);
-        return "editCnpj";
+        model.addAttribute("cnpjUser", cnpjUser); //envia para o thymeleaf o cnpj do usuário
+        model.addAttribute("cnpjEmpresa", cnpjEmpresa); //envia para o thymeleaf o cnpj da empresa editada
+
+        return editCnpjService.enviarDadosAtuais(cnpjUser, cnpjEmpresa, model);
     }
-    
 
     @PutMapping
     @Transactional
