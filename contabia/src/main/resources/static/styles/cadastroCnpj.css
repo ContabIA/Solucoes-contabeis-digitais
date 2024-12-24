@@ -16,9 +16,11 @@ CSS com as estilizações específicas da página de cadastro de empresas
 
 .formCadCnpj{
     width: 80%;
-    margin-top: 2%;
     display: flex;
     flex-direction: column;
+    margin: auto;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 .labelFormCadCnpj{
@@ -69,6 +71,7 @@ CSS com as estilizações específicas da página de cadastro de empresas
     margin: auto;
     transition-property: background-color, color;
     transition-duration: 0.2s;
+    cursor: pointer;
 }
 
 .btnSalvar:hover{

@@ -48,5 +48,4 @@ var textCnpj = cnpj.textContent.split('')
 var cnpjFormatado = formataCnpj(textCnpj)
 cnpj.innerHTML = cnpjFormatado  
 
-
 export {formataCnpj, formataData, TRADUZ_MES}

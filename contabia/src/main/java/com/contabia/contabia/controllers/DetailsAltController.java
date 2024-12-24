@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.contabia.contabia.models.dto.ListaNotasDto;
 import com.contabia.contabia.models.dto.NotasDto;
 import com.contabia.contabia.models.dto.RespostaDto;
 import com.contabia.contabia.services.DetailsAltService;
@@ -30,18 +31,25 @@ public class DetailsAltController {
     private DetailsAltService detailsAltService;
     
     @GetMapping("/sefaz")
-    public String detalheSefaz(@RequestParam("cnpjUser") String cnpjUser, @RequestParam("cnpjEmpresa") String cnpjEmpresa, @RequestParam("idAlt") Long idNota, Model model) {
+    public String detalheSefaz(@RequestParam("cnpjUser") String cnpjUser, @RequestParam("cnpjEmpresa") String cnpjEmpresa, @RequestParam("idAlt") Long idNota, @RequestParam("mes") String mes, Model model) {
 
         model.addAttribute("cnpjUser", cnpjUser); // Envia para thymeleaf o cnpj do usário.
-        model.addAttribute("tipoAlt", "Alteração Sefaz"); // Envia para o thymeleaf o tipo de Alteração
-        model.addAttribute("cnpjEmpresa", cnpjEmpresa); // Envia para o thymeleaf o cnpj da empresa que a alteração está associada.
+        model.addAttribute("cnpjEmpresa", cnpjEmpresa);
+        model.addAttribute("mes", mes); // Envia para o thymeleaf o mês da nota.
+
+        if (idNota == 0){
+            ListaNotasDto listaNotasEncaps = detailsAltService.detalhesEncaps(mes, cnpjEmpresa);
+            model.addAttribute("listaNotasEncaps", listaNotasEncaps);
+            model.addAttribute("tipoAlt", "Notas"); // Envia para o thymeleaf o tipo de Alteração
+
+        } else {
+            NotasDto notaDto = detailsAltService.getNota(idNota);  // Funcao que retorna DTO da nota
+
+            model.addAttribute("nota", notaDto); //Envia para o thymeleaf o objeto de transferência de dados da nota que deve ser exibido os detalhes.
+            model.addAttribute("idAlt", idNota); // Envia para o thymeleaf o id da nota.
+            model.addAttribute("tipoAlt", "Alteração Sefaz"); // Envia para o thymeleaf o tipo de Alteração
+        }
         
-        NotasDto notaDto = detailsAltService.getNota(idNota, cnpjEmpresa);  // Funcao que retorna DTO da nota
-
-        model.addAttribute("nota", notaDto); //Envia para o thymeleaf o objeto de transferência de dados da nota que deve ser exibido os detalhes.
-        model.addAttribute("mes", notaDto.data().getMonth()); // Envia para o thymeleaf o mês da nota.
-        model.addAttribute("idAlt", idNota); // Envia para o thymeleaf o id da nota.
-
         return "detalhes";
     }
 
