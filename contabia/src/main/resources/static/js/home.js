@@ -6,5 +6,16 @@ var listAltCnpj = document.querySelectorAll(".nomeAlt")
 listAltCnpj.forEach(AltCnpj => {
     var textAltCnpj = AltCnpj.textContent.split(' - ')
     var altCnpjFormatado = formataCnpj(textAltCnpj[1])
-    AltCnpj.innerHTML = textAltCnpj[0] + ' - ' + altCnpjFormatado + ' - ' + TRADUZ_MES[textAltCnpj[2]]
+    var tipoAlt = textAltCnpj[0].split(' ')[0] + ' ' + textAltCnpj[0].split(' ')[1]
+    var mes = textAltCnpj[0].split(' ')[2]
+    AltCnpj.innerHTML = tipoAlt + ' ' + TRADUZ_MES[mes] + ' - ' + altCnpjFormatado
 });
+
+var listAltEncaps = document.querySelectorAll(".altEncaps")
+listAltEncaps.forEach(AltEncaps => {
+    var textAltEncaps = AltEncaps.textContent.split(' ')
+    var mes = textAltEncaps[1].split('-')[0]
+    var cnpj = formataCnpj(textAltEncaps[1].split('-')[1])
+    AltEncaps.innerHTML =textAltEncaps[0] + ' ' + TRADUZ_MES[mes] + ' - ' + cnpj
+})
+

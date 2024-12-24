@@ -25,9 +25,20 @@
 </nav>
 
 <!--Fragment que contém a div que exibe o nome da alteração e o link para ver os detalhes-->
-<div th:fragment="alteracao" class="divAlt">
-    <span class="nomeAlt" th:text="${infos.texto}"></span>
-    <a class="detalhesLink" th:href="@{${'detalhes/' + infos.tipoAlt}(cnpjUser=${cnpjUser}, cnpjEmpresa=${infos.cnpjEmpresa}, idAlt=${infos.altId})}">Ver detalhes</a>
+<div th:fragment="alteracao">
+    <div th:if="${infos.key} == 'sefaz' OR ${infos.key} == 'cndt'">
+        <div  class="divAlt" th:each="notas : ${infos.value}">
+            <span class="nomeAlt" th:text="'Alteração ' + ${notas.tipoAlt} + ' ' + ${notas.mes} + ' - ' + ${notas.cnpjEmpresa}"></span>
+            <a class="detalhesLink" th:href="@{${'detalhes/' + notas.tipoAlt}(cnpjUser=${cnpjUser}, cnpjEmpresa=${notas.cnpjEmpresa}, idAlt=${notas.altId}, mes=${notas.mes})}">Ver detalhes</a> 
+        </div>
+    </div>
+    <div th:unless="${infos.key} == 'sefaz' OR ${infos.key} == 'cndt'">
+        <div  class="divAlt">
+            <span class="altEncaps" th:text="'Notas ' + ${infos.key}"></span>
+            <a class="detalhesLink" th:attr="onclick=|detalhesEncaps('${cnpjUser}', '${infos.key}')|">Ver detalhes</a> 
+        </div>
+    </div>
+
 </div>
 
 <!--Fragment que contém a div que exibe o nome/CNPJ da empresa, e fornece a opção de deleta-la e edita-la-->
@@ -40,19 +51,13 @@
 </div>
 
 <!--Fragment que contém a tabela que exibe os detalhes de uma alteração Sefaz-->
-<table th:fragment="tabelaDetalhes" class="detalhes">
+<tbody th:fragment="tabelaDetalhes">
     <tr style="border-bottom: 1px solid black;">
-        <th>Número</th>
-        <th>Série</th>
-        <th>Data de Emissão</th>
-        <th>Emitente</th>
-        <th>Situação</th>
-        <th style="border: none;">Valor Total</th>
-        </tr>
-        <td th:text="${nota.id}"></td>
+        <td th:text="${nota.id}" class="id"></td>
         <td th:text="${nota.serie}"></td>
-        <td th:text="${nota.data}" id="data"></td>
+        <td th:text="${nota.data}" class="data"></td>
         <td th:text="${nota.nomeEmitente}"></td>
         <td th:text="${nota.situacao}"></td>
         <td th:text="${nota.valor}" style="border: none;"></td>
-</table>
+    </tr>
+</tbody>

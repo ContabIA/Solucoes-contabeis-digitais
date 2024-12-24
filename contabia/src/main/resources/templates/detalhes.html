@@ -29,18 +29,27 @@
                 <div class="divPrincipal divDetalhes" >
                     <H1 class="title">Detalhes <span th:text="${tipoAlt}"></span></H1>
 
-                    <div style="margin-left: auto; margin-right: auto; ">
+                    <div style="margin-bottom: 8%; margin-left: auto; margin-right: auto; ">
                         <div class="detalhes1">
                             <h2 class="title2" th:text="${'CNPJ - ' + cnpjEmpresa}"></h2>
                             <h2 class="title2" th:text="${'Mês - ' + mes}"></h2>
                         </div>
                     </div>
 
-                    <table th:each="nota : ${nota}" th:insert="~{fragments :: tabelaDetalhes}">
+                    <table class="detalhes"> 
+                        <tr style="border-bottom: 1px solid black;">
+                            <th>Número</th>
+                            <th>Série</th>
+                            <th>Data de Emissão</th>
+                            <th>Emitente</th>
+                            <th>Situação</th>
+                            <th style="border: none;">Valor Total</th>
+                        </tr>
+                        <tbody th:each="nota : ${nota} ?: ${listaNotasEncaps.listaNotas}" th:include="~{fragments :: tabelaDetalhes}"></tbody> 
                         
                     </table>
 
-                    <button type="button" class="btnVoltar" th:attr="onclick=|removerNovo(${idAlt}, '${tipoAlt}', '${cnpjUser}')|">Voltar</button>
+                    <button type="button" class="btnVoltar" th:attr="onclick=|removerNovo('${tipoAlt}', '${cnpjUser}')|"> Marcar como lida </button>
                 </div>
             </div>
         </main>

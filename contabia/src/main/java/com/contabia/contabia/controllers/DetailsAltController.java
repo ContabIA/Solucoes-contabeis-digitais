@@ -5,12 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.contabia.contabia.models.dto.ListaNotasDto;
 import com.contabia.contabia.models.dto.NotasDto;
 import com.contabia.contabia.models.dto.RespostaDto;
-import com.contabia.contabia.models.entity.NotasModel;
-import com.contabia.contabia.models.entity.RespostaModel;
-import com.contabia.contabia.repository.NotasRepository;
-import com.contabia.contabia.repository.RespostaRepository;
+import com.contabia.contabia.services.DetailsAltService;
 
 import org.springframework.ui.Model;
 
@@ -30,26 +28,28 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class DetailsAltController {
 
     @Autowired
-    private NotasRepository notasRepository;
-
-    @Autowired
-    private RespostaRepository respostaRepository;
+    private DetailsAltService detailsAltService;
     
     @GetMapping("/sefaz")
-    public String detalheSefaz(@RequestParam("cnpjUser") String cnpjUser, @RequestParam("cnpjEmpresa") String cnpjEmpresa, @RequestParam("idAlt") Long idNota, Model model) {
+    public String detalheSefaz(@RequestParam("cnpjUser") String cnpjUser, @RequestParam("cnpjEmpresa") String cnpjEmpresa, @RequestParam("idAlt") Long idNota, @RequestParam("mes") String mes, Model model) {
 
         model.addAttribute("cnpjUser", cnpjUser); // Envia para thymeleaf o cnpj do usário.
-        model.addAttribute("tipoAlt", "Alteração Sefaz"); // Envia para o thymeleaf o tipo de Alteração
-        model.addAttribute("cnpjEmpresa", cnpjEmpresa); // Envia para o thymeleaf o cnpj da empresa que a alteração está associada.
+        model.addAttribute("cnpjEmpresa", cnpjEmpresa);
+        model.addAttribute("mes", mes); // Envia para o thymeleaf o mês da nota.
+
+        if (idNota == 0){
+            ListaNotasDto listaNotasEncaps = detailsAltService.detalhesEncaps(mes, cnpjEmpresa);
+            model.addAttribute("listaNotasEncaps", listaNotasEncaps);
+            model.addAttribute("tipoAlt", "Notas"); // Envia para o thymeleaf o tipo de Alteração
+
+        } else {
+            NotasDto notaDto = detailsAltService.getNota(idNota);  // Funcao que retorna DTO da nota
+
+            model.addAttribute("nota", notaDto); //Envia para o thymeleaf o objeto de transferência de dados da nota que deve ser exibido os detalhes.
+            model.addAttribute("idAlt", idNota); // Envia para o thymeleaf o id da nota.
+            model.addAttribute("tipoAlt", "Alteração Sefaz"); // Envia para o thymeleaf o tipo de Alteração
+        }
         
-        // Busca no banco a nota que deve ser mostrado os detalhes e cria o objeto de transferência de dados.
-        NotasModel nota = notasRepository.findById(idNota).get();
-        NotasDto notaDto = new NotasDto(idNota, nota.getData(), nota.getSerie(), nota.getNomeEmitente(), nota.getSituacao(), nota.getValor(), cnpjEmpresa);
-
-        model.addAttribute("nota", notaDto); //Envia para o thymeleaf o objeto de transferência de dados da nota que deve ser exibido os detalhes.
-        model.addAttribute("mes", notaDto.data().getMonth()); // Envia para o thymeleaf o mês da nota.
-        model.addAttribute("idAlt", idNota); // Envia para o thymeleaf o id da nota.
-
         return "detalhes";
     }
 
@@ -60,12 +60,10 @@ public class DetailsAltController {
         model.addAttribute("tipoAlt", "Alteração Sefaz"); // Envia para o thymeleaf o tipo de Alteração
         model.addAttribute("cnpjEmpresa", cnpjEmpresa); // Envia para o thymeleaf o cnpj da empresa que a alteração está associada.
 
-        // Busca no banco a resposta que deve ser mostrado os detalhes e cria o objeto de transferência de dados.
-        RespostaModel resp = respostaRepository.findById(idResp).get();
-        RespostaDto respostaDto = new RespostaDto(resp.getStatus(), resp.getData(), resp.getNovo(), cnpjEmpresa);
+        RespostaDto respostaDto = detailsAltService.getResposta(idResp, cnpjEmpresa); // Função que retorna o DTO da resposta
 
         model.addAttribute("resp", respostaDto); //Envia para o thymeleaf o objeto de transferência de dados da resposta que deve ser exibido os detalhes.
-        model.addAttribute("mes", resp.getData().getMonth()); // Envia para o thymeleaf o mês da resposta.
+        model.addAttribute("mes", respostaDto.data().getMonth()); // Envia para o thymeleaf o mês da resposta.
         model.addAttribute("idAlt", idResp); // Envia para o thymeleaf o id da resposta.
 
         return "detalhes";

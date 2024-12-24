@@ -1,5 +1,6 @@
 package com.contabia.contabia.repository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +18,7 @@ public interface NotasRepository extends JpaRepository<NotasModel, Long> {
     @Query(value = "SELECT n.* FROM notas n JOIN empresa e ON n.id_empresa = e.id JOIN usuarios u ON e.id_usuario = u.id WHERE u.cnpj = :cnpjUser AND n.novo = :novo", nativeQuery = true)
     Optional<List<NotasModel>> findByNovoAndCnpjUser(@Param("novo") boolean novo,@Param("cnpjUser") String cnpjUser);
 
-    
+    @Query(value = "SELECT n.* FROM notas n JOIN empresa e ON n.id_empresa = e.id WHERE e.cnpj = :cnpjEmpresa AND n.data_insercao = :dataInsercao", nativeQuery = true)
+    Optional<List<NotasModel>> findNotasEncapsByDataInsercaoAndCnpjEmpresa(@Param("dataInsercao") LocalDate dataInsercao, @Param("cnpjEmpresa") String cnpjEmpresa);
     
 }

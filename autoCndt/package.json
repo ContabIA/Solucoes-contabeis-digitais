@@ -15,6 +15,6 @@
   },
   "dependencies": {
     "@2captcha/captcha-solver": "^1.0.1",
-    "pdf-parse": "^1.1.1"
+    "teste_cypress": "file:"
   }
 }
