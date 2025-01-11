@@ -147,4 +147,15 @@ async function main(){
   
 }
   
-main()
+let body = {
+  cnpj : "app",
+  senha : "app"
+}
+fetch("http://localhost:8080/login", {
+  method : "POST",
+  body: JSON.stringify(body),
+  headers : {'Content-Type': 'application/json'}
+})
+.then((res) => {
+  console.log(res)
+})

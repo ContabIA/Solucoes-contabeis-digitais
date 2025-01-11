@@ -14,7 +14,7 @@ import com.contabia.contabia.models.entity.NotasModel;
 public interface NotasRepository extends JpaRepository<NotasModel, Long> {
 
     // Consulta SQL que retorna uma lista de todas as notas de um usario dado o cnpj do mesmo e passando o atributo novo que pode ser true ou false.
-    @Query(value = "SELECT n.* FROM notas n JOIN empresa e ON n.id_empresa = e.id JOIN usuarios u ON e.id_usuario = u.id WHERE u.cnpj = :cnpjUser AND n.novo = :novo", nativeQuery = true)
+    @Query(value = "SELECT n.* FROM notas n JOIN empresa e ON n.id_empresa = e.id JOIN cliente c ON e.id_usuario = c.id WHERE c.username = :cnpjUser AND n.novo = :novo", nativeQuery = true)
     Optional<List<NotasModel>> findByNovoAndCnpjUser(@Param("novo") boolean novo,@Param("cnpjUser") String cnpjUser);
 
     

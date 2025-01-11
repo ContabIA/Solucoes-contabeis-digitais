@@ -35,7 +35,7 @@ public class EditCnpjService {
 
     
     public String enviarDadosAtuais(String cnpjUser, String cnpjEmpresa, Model model){
-        Optional<UserModel> user = userRepository.findByCnpj(cnpjUser);
+        Optional<UserModel> user = userRepository.findByUsername(cnpjUser);
 
         if(user.isPresent()){
             var userEncontrado = user.get();

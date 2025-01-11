@@ -29,6 +29,7 @@ public class TokenService{
                                 .sign(algorithm);
             return token;
         }catch (Exception e){
+
             throw new RuntimeException("Error while generating token", e);
         }
     }

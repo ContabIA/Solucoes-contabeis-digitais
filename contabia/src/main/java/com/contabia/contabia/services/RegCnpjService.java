@@ -33,7 +33,7 @@ public class RegCnpjService {
     private ConsultasRepository consultaRepository; //repository das consultas
     
     public ResponseEntity<ExceptionMessage> cadEmpresa(String cnpjUser, RegCnpjDto dadosEmpresa){
-        Optional<UserModel> user = userRepository.findByCnpj(cnpjUser);
+        Optional<UserModel> user = userRepository.findByUsername(cnpjUser);
 
         //verifica se o CNPJ informado já está cadastrado no sistema
         Optional<EmpresaModel> empresaByCnpj = empresaRepository.findByCnpj(dadosEmpresa.cnpjEmpresa());

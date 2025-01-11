@@ -14,8 +14,8 @@ import org.springframework.stereotype.Service;
 import com.contabia.contabia.exceptions.CnpjNotFoundException;
 import com.contabia.contabia.infra.ExceptionMessage;
 import com.contabia.contabia.models.dto.LoginDto;
-import com.contabia.contabia.models.entity.UserModel;
-import com.contabia.contabia.repository.UserRepository;
+import com.contabia.contabia.models.entity.ClientModel;
+import com.contabia.contabia.repository.ClientRepository;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
 public class LoginService {
 
     @Autowired
-    private UserRepository userRepository; //repositório dos usuários
+    private ClientRepository clientRepository; //repositório dos usuários
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -35,11 +35,13 @@ public class LoginService {
     private TokenService tokenService;
     
     public ResponseEntity<ExceptionMessage> authenticationLogin(LoginDto dadosLogin, HttpServletResponse response){
+        
         //variável que verifica se o CNPJ digitado está cadastrado no sistema 
-        Optional<UserModel> userOptional = userRepository.findByCnpj(dadosLogin.cnpj());
+        Optional<ClientModel> clientOptional = clientRepository.findByUsername(dadosLogin.cnpj());
 
-        if(userOptional.isPresent()){
+        if(clientOptional.isPresent()){
             Authentication authenticationRequest = UsernamePasswordAuthenticationToken.unauthenticated(dadosLogin.cnpj(), dadosLogin.senha());
+
             Authentication authenticationResponse = authenticationManager.authenticate(authenticationRequest);
 
             var token = tokenService.generateToken((User) authenticationResponse.getPrincipal());

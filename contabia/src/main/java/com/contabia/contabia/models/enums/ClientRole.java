@@ -1,12 +1,12 @@
 package com.contabia.contabia.models.enums;
 
-public enum UserRole{
+public enum ClientRole{
     ADMIN("admin"),
     USER("user");
 
     private String role;
 
-    UserRole(String role){
+    ClientRole(String role){
         this.role = role;
     }
 

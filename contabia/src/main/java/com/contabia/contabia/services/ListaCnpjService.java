@@ -27,7 +27,7 @@ public class ListaCnpjService {
 
     public List<EmpresaDto> criarLista(String cnpjUser){
 
-        Optional<UserModel> user = userRepository.findByCnpj(cnpjUser);
+        Optional<UserModel> user = userRepository.findByUsername(cnpjUser);
         List<EmpresaDto> infos = new ArrayList<>(); //lista de informações que será enviado para o thymeleaf
 
         if(user.isPresent()){

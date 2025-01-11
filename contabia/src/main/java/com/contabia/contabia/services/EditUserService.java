@@ -26,19 +26,19 @@ public class EditUserService {
     private UserRepository userRepository;
     
     public void coletarDadosAtual(String cnpjUser, Model model){
-        Optional<UserModel> userOptional = userRepository.findByCnpj(cnpjUser);
+        Optional<UserModel> userOptional = userRepository.findByUsername(cnpjUser);
         
         if (userOptional.isPresent()){
             UserModel user = userOptional.get();
-            EditUserDto editUserDto = new EditUserDto(user.getCnpj(), user.getEmail(), user.getSenhaSefaz(), user.getUserSefaz());
+            EditUserDto editUserDto = new EditUserDto(user.getUsername(), user.getEmail(), user.getSenhaSefaz(), user.getUserSefaz());
             model.addAttribute("usuario", editUserDto);
         }
     }
 
     public ResponseEntity<ExceptionMessage> editarUsuario(String cnpjUser, EditUserDto userDto){
 
-        Optional<UserModel> userOptional = userRepository.findByCnpj(cnpjUser);
-        Optional<UserModel> userByCnpj = userRepository.findByCnpj(userDto.cnpj());
+        Optional<UserModel> userOptional = userRepository.findByUsername(cnpjUser);
+        Optional<UserModel> userByCnpj = userRepository.findByUsername(userDto.cnpj());
         Optional<UserModel> userByEmail = userRepository.findByEmail(userDto.email());
         Optional<UserModel> userByUserSefaz = userRepository.findByUserSefaz(userDto.userSefaz());
 

@@ -10,30 +10,32 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.contabia.contabia.exceptions.CnpjNotFoundException;
+import com.contabia.contabia.models.entity.ClientModel;
 import com.contabia.contabia.models.entity.UserDetailsImp;
 import com.contabia.contabia.models.entity.UserModel;
+import com.contabia.contabia.repository.ClientRepository;
 import com.contabia.contabia.repository.UserRepository;
 
 @Service
 public class UserDetailsServiceImp implements UserDetailsService{
 
     @Autowired
-    private UserRepository userRepository;
+    private ClientRepository clientRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<UserModel> userOptional = userRepository.findByCnpj(username);
+        Optional<ClientModel> clientOptional = clientRepository.findByUsername(username);
 
-        if(userOptional.isPresent()){
-            UserModel user = userOptional.get();
-            return buildUserForAuthentication(user);
+        if(clientOptional.isPresent()){
+            ClientModel cliente = clientOptional.get();
+            return buildUserForAuthentication(cliente);
         }else{
             throw new CnpjNotFoundException();
         }
     }
 
-    private UserDetails buildUserForAuthentication(UserModel userModel){
-        var user = new UserDetailsImp(userModel);
+    private UserDetails buildUserForAuthentication(ClientModel clientModel){
+        var user = new UserDetailsImp(clientModel);
 
         return new User(
             user.getUsername(),

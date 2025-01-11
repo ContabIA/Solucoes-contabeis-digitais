@@ -7,18 +7,18 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.contabia.contabia.models.enums.UserRole;
+import com.contabia.contabia.models.enums.ClientRole;
 
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public class UserDetailsImp implements UserDetails{
 
-    private UserModel user;
+    private ClientModel cliente;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if(user.getRole() == UserRole.ADMIN){
+        if(cliente.getRole() == ClientRole.ADMIN){
             return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
         }else{
             return List.of(new SimpleGrantedAuthority("ROLE_USER"));
@@ -27,12 +27,12 @@ public class UserDetailsImp implements UserDetails{
 
     @Override
     public String getPassword() {
-        return user.getSenha();
+        return cliente.getSenha();
     }
 
     @Override
     public String getUsername() {
-        return user.getCnpj();
+        return cliente.getUsername();
     }
 
     @Override

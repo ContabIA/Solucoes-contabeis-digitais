@@ -23,7 +23,7 @@ public class RegUserService {
 
     public String addUsuario(UserDto dados){
         //variável para verificar se o CNPJ que está sendo cadastrado já existe no sistema
-        Optional<UserModel> userByCnpj = userRepository.findByCnpj(dados.cnpj());
+        Optional<UserModel> userByCnpj = userRepository.findByUsername(dados.cnpj());
 
         //variável para verificar se o e-mail que está sendo cadastrao já existe no sistema
         Optional<UserModel> userByEmail = userRepository.findByEmail(dados.email());

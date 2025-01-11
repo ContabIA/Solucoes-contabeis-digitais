@@ -6,18 +6,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.contabia.contabia.models.dto.EditUserDto;
 import com.contabia.contabia.models.dto.UserDto;
-import com.contabia.contabia.models.enums.UserRole;
+import com.contabia.contabia.models.enums.ClientRole;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -34,35 +29,20 @@ import lombok.NoArgsConstructor;
  * 
 */
 
-@Getter
-@AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(of = "id")
+@Getter
 @Entity
 @Table(name = "usuarios")
-public class UserModel{
-
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(unique = true, nullable = false)
-    private Long id;
-
-    @Column(unique = true, nullable = false)
-    private String cnpj;
+public class UserModel extends ClientModel{
 
     @Column(unique = true, nullable = false)
     private String email;
-
-    @Column(unique = false, nullable = false)
-    private String senha;
 
     @Column(unique = false, nullable = false)
     private String senhaSefaz;
 
     @Column(unique = true, nullable = false)
     private String userSefaz;
-
-    @Column(unique = false, nullable = false)
-    private UserRole role;
     
     // Declaração de relação 1:n da entidade usuario com a entidade empresa no banco de dados.
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -70,16 +50,14 @@ public class UserModel{
 
     // Construtor com base no UserDto
     public UserModel(UserDto dados){
-        this.cnpj = dados.cnpj();
+        super(dados.cnpj(), new BCryptPasswordEncoder().encode(dados.senha()), ClientRole.USER);
         this.email = dados.email();
-        this.senha = new BCryptPasswordEncoder().encode(dados.senha());
         this.senhaSefaz = dados.senhaSefaz();
         this.userSefaz = dados.userSefaz();
-        this.role = UserRole.USER;
     }
 
     public void editUser(EditUserDto dados){
-        this.cnpj = dados.cnpj();
+        super.setUsername(dados.cnpj());
         this.email = dados.email();
         this.senhaSefaz = dados.senhaSefaz();
         this.userSefaz = dados.userSefaz(); 
