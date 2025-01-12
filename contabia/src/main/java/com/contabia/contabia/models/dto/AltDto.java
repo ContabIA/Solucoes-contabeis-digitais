@@ -13,4 +13,13 @@ package com.contabia.contabia.models.dto;
  *  tipoAlt -> tipo da alteração (sefaz ou CNDT)
 */
 
-public record AltDto(String texto, String cnpjEmpresa, Long altId, String tipoAlt) {}
+public record AltDto(
+    String mes,
+
+    String cnpjEmpresa, 
+
+    Long altId, 
+
+    String tipoAlt
+) 
+{}

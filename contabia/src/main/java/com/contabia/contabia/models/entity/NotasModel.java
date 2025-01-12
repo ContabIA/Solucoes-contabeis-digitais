@@ -30,6 +30,7 @@ import lombok.ToString;
  * valor: valor total da nota fiscal
  * nomeEmitente: nome da empresa que emitiu a nota fiscal
  * situacao: situação da nota fiscal (Autorizada ou Cancelada)
+ * dataInsercao: data em que a nota foi inserida no banco
  * empresaNotas: empresa cuja a nota fiscal está relacionada
  * 
 */
@@ -66,13 +67,16 @@ public class NotasModel {
     @Column(unique = false, nullable = false)
     private boolean novo;
 
+    @Column(unique = false, nullable = false)
+    private LocalDate dataInsercao;
+
     // Declaração de relação n:1 da entidade nota com a entidade empresa no banco de dados.
     @ManyToOne
     @JoinColumn(name="idEmpresa", nullable = false)
     private EmpresaModel empresaNotas;
 
     // Construtor com base no NotasDto e nas variaveis novo e empresaNotas passadas
-    public NotasModel(NotasDto dados, boolean novo, EmpresaModel empresaNotas){
+    public NotasModel(NotasDto dados, boolean novo, LocalDate dataInsercao, EmpresaModel empresaNotas){
         this.id = dados.id();
         this.data = dados.data();
         this.nomeEmitente = dados.nomeEmitente();
@@ -81,6 +85,7 @@ public class NotasModel {
         this.valor = dados.valor();
         this.novo = novo;
         this.empresaNotas = empresaNotas;
+        this.dataInsercao = dataInsercao;
     }
 
 }

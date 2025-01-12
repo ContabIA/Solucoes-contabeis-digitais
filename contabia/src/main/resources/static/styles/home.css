@@ -12,6 +12,7 @@ CSS com as estilizações específicas da página principal da aplicação (pág
 }
 
 .detalhesLink{
+    cursor: pointer;
     width: 20%;
     text-decoration: none;
     color: white;

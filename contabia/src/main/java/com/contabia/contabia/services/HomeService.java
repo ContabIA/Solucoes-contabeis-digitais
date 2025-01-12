@@ -1,7 +1,9 @@
 package com.contabia.contabia.services;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,33 +27,52 @@ public class HomeService {
     @Autowired
     RespostaRepository respostaRepository;
     
-    public List<AltDto> getListaAlt(String cnpjUser){
+    public Map<String, List<AltDto>> getListaAlt(String cnpjUser){
         
         List<AltDto> infos = new ArrayList<>(); // Lista para inserir as alterações
 
-        infos.addAll(getNotas(cnpjUser)); // Adiciona à lista as notas novas
+        //infos.addAll(getNotas(cnpjUser)); // Adiciona à lista as notas novas
         infos.addAll(getRespostas(cnpjUser)); // Adiciona à lista respostas novas
         
-        return infos;
+        Map<String, List<AltDto>> dictNotas = getNotas(cnpjUser);
+        dictNotas.put("cndt", infos);
+
+        return dictNotas;
 
     }
 
-    public List<AltDto> getNotas(String cnpjUser){
+    public Map<String, List<AltDto>> getNotas(String cnpjUser){
 
-        List<AltDto> listaAlt = new ArrayList<>();// Lista para receber notas novas
+        Map<String, List<AltDto>> dictNotas = new HashMap<>();
 
         // Coleta lista com notas que devem ser expostas na tela.
         Optional<List<NotasModel>> optionalNotas = notasRepository.findByNovoAndCnpjUser(true, cnpjUser);
 
         // Verifica se há conteudo nas listas com as notas
         if (optionalNotas.isPresent()){
-            //Cria o objetov de transferencia de dados e adiciona na lista infos cada alteração com o que deve ser exposto na tela
+            //Cria o objeto de transferencia de dados e adiciona na lista infos cada alteração com o que deve ser exposto na tela
             for (NotasModel nota : optionalNotas.get()) {
-                listaAlt.add(new AltDto("Alteração Sefaz - " +  nota.getEmpresaNotas().getCnpj() + " - " + nota.getData().getMonth(), nota.getEmpresaNotas().getCnpj(), nota.getId(), "sefaz"));
+
+                if (nota.getDataInsercao().getDayOfMonth() == 1){
+                    String key = nota.getData().getMonth().toString() + "-" + nota.getEmpresaNotas().getCnpj();
+
+                    if ( ! (dictNotas.containsKey(key))){
+                        
+                        dictNotas.put(key, new ArrayList<>());
+                    } 
+                    dictNotas.get(key).add(new AltDto(nota.getData().getMonth().toString(), nota.getEmpresaNotas().getCnpj(), nota.getId(), "sefaz"));
+                
+                } else {
+                    if (! dictNotas.containsKey("sefaz")){
+                        dictNotas.put("sefaz", new ArrayList<>());
+                    }
+                    dictNotas.get("sefaz").add(new AltDto(nota.getData().getMonth().toString(), nota.getEmpresaNotas().getCnpj(), nota.getId(), "sefaz"));
+                }
+
             }
         }
 
-        return listaAlt; // Retorna as notas novas
+        return dictNotas; // Retorna as notas novas
 
     }
 
@@ -66,7 +87,7 @@ public class HomeService {
         if(optionalResposta.isPresent()){
             //Adiciona na lista infos cada alteração com o que deve ser exposto na tela
             for (RespostaModel resposta : optionalResposta.get()) {
-                listaAlt.add(new AltDto("Alteração CNDT - " + resposta.getConsulta().getEmpresaConsulta().getCnpj() + " - " + resposta.getData().getMonth(), resposta.getConsulta().getEmpresaConsulta().getCnpj(), resposta.getId(), "cndt"));
+                listaAlt.add(new AltDto(resposta.getData().getMonth().toString(), resposta.getConsulta().getEmpresaConsulta().getCnpj(), resposta.getId(), "cndt"));
             }
         }
 

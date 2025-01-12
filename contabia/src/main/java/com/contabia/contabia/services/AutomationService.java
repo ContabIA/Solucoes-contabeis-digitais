@@ -94,17 +94,8 @@ public class AutomationService {
             
             NotasModel novaNota = new NotasModel();
             // Confere se nota é do mês imediatamente passado, logo essa não deve ser tratada como alteração e inserida com o argumento novo = false.
-            if (diaAtual.getDayOfMonth() == 1){
                 
-                if (nota.data().getMonthValue() == diaAtual.getMonthValue() - 1){
-                    novaNota = new NotasModel(nota, false, empresa.get()); // Cria modelo de nota para inserir no banco.
-                } else {
-                    novaNota = new NotasModel(nota, true, empresa.get()); // Cria modelo de nota para inserir no banco.
-                } 
-                
-            } else {
-                novaNota = new NotasModel(nota, true, empresa.get());
-            }
+            novaNota = new NotasModel(nota, true, diaAtual, empresa.get());
 
             // Verifica se nota já existe no banco de dados e se não existir à insere.
             if (notasRepository.findById(novaNota.getId()).isPresent()){
