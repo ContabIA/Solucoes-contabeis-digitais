@@ -24,38 +24,43 @@ import lombok.NoArgsConstructor;
 public class RegCnpjService {
 
     @Autowired
-    private EmpresaRepository empresaRepository; //repository das empresas
+    private EmpresaRepository empresaRepository;
 
     @Autowired
-    private UserRepository userRepository; //repository dos usuários
+    private UserRepository userRepository;
 
     @Autowired
-    private ConsultasRepository consultaRepository; //repository das consultas
+    private ConsultasRepository consultaRepository;
     
-    public ResponseEntity<ExceptionMessage> cadEmpresa(String cnpjUser, RegCnpjDto dadosEmpresa){
-        Optional<UserModel> user = userRepository.findByUsername(cnpjUser);
+    public ResponseEntity<ExceptionMessage> registerCnpj(String cnpjUser, RegCnpjDto empresaDto){
 
-        //verifica se o CNPJ informado já está cadastrado no sistema
-        Optional<EmpresaModel> empresaByCnpj = empresaRepository.findByCnpj(dadosEmpresa.cnpjEmpresa());
-        if(empresaByCnpj.isPresent()){
-            throw new CnpjRegisteredException(); //se estiver, retorna mensagem de erro
+        Optional<UserModel> optionalUser = userRepository.findByUsername(cnpjUser);
+        EmpresaModel existingCnpj = empresaRepository.findByCnpj(empresaDto.cnpjEmpresa());
+
+        if(existingCnpj != null){
+            throw new CnpjRegisteredException();
         }
 
-        if (user.isPresent()){
-            //coleta as informações que estão no DTO e adiciona a empresa ao banco de dados
-            EmpresaModel empresa = new EmpresaModel(dadosEmpresa.cnpjEmpresa(), dadosEmpresa.nome(), user.get());
-            empresaRepository.save(empresa);
-
-            //caso tenha sido marcado alguma consulta na página, esta também será adicionada ao banco de dados
-            if (dadosEmpresa.checkboxSefaz().isPresent()){
-                consultaRepository.save(new ConsultasModel(1, dadosEmpresa.frequenciaSefaz(), empresa));
-            }
-
-            if (dadosEmpresa.checkboxCndt().isPresent()){
-                consultaRepository.save(new ConsultasModel(3, dadosEmpresa.frequenciaCndt(), empresa));
-            }
+        if (optionalUser.isPresent()){
+            var empresaSaved = saveEmpresa(empresaDto, optionalUser);
+            saveQueries(empresaDto, empresaSaved);
         }
 
         return ResponseEntity.ok().body(new ExceptionMessage(HttpStatus.OK, "ok"));
+    }
+
+    private EmpresaModel saveEmpresa(RegCnpjDto empresaDto, Optional<UserModel> optionalUser){
+        EmpresaModel empresa = new EmpresaModel(empresaDto.cnpjEmpresa(), empresaDto.nome(), optionalUser.get());
+        empresaRepository.save(empresa);
+        return empresa;
+    }
+
+    private void saveQueries(RegCnpjDto empresaDto, EmpresaModel empresa){
+        if (empresaDto.checkboxSefaz().isPresent()){
+            consultaRepository.save(new ConsultasModel(1, empresaDto.frequenciaSefaz(), empresa));
+        }
+        if (empresaDto.checkboxCndt().isPresent()){
+            consultaRepository.save(new ConsultasModel(3, empresaDto.frequenciaCndt(), empresa));
+        }
     }
 }

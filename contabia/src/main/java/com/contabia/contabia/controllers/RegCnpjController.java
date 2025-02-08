@@ -35,16 +35,14 @@ public class RegCnpjController {
     private RegCnpjService regCnpjService;
 
     @GetMapping
-    public String cadastroCnpj(Authentication authentication, Model model) {
-        var cnpjUser = authentication.getName();
-        model.addAttribute("cnpjUser", cnpjUser);//envio padrão do cnpj do usuário
-        return "cadastroCnpj"; //exibe a página de cadastro de empresa
+    public String renderRegistrationCnpjPage(Authentication authentication, Model model) {
+        model.addAttribute("cnpjUser", authentication.getName()); //envio do cnpj para o thymeleaf
+        return "cadastroCnpj";
     }
     
     @PostMapping
     @Transactional
-    public ResponseEntity<ExceptionMessage> addEmpresa(Authentication authentication, @Valid @RequestBody RegCnpjDto dadosEmpresa) {
-        var cnpjUser = authentication.getName();
-        return regCnpjService.cadEmpresa(cnpjUser, dadosEmpresa);
+    public ResponseEntity<ExceptionMessage> registerCnpjEndpoint(Authentication authentication, @Valid @RequestBody RegCnpjDto dadosEmpresa) {
+        return regCnpjService.registerCnpj(authentication.getName(), dadosEmpresa);
     }
 }

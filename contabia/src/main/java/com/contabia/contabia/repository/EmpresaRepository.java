@@ -21,7 +21,7 @@ public interface EmpresaRepository extends JpaRepository<EmpresaModel, Long> {
     EmpresaModel findByUserAndCnpj(UserModel user, String cnpj); 
 
     // Consulta SQL que retorna uma empresa de acordo com o cnpj passado.
-    Optional<EmpresaModel> findByCnpj(String cnpj);
+    EmpresaModel findByCnpj(String cnpj);
 
     // Processo SQL que deleta uma empresa passado o seu cnpj
     void deleteByCnpj(String cnpjEmpresa);
@@ -30,4 +30,4 @@ public interface EmpresaRepository extends JpaRepository<EmpresaModel, Long> {
     @Query(value = "SELECT u.user_sefaz, u.senha_sefaz FROM usuarios u JOIN empresa e ON u.id = e.id_usuario WHERE e.cnpj = :cnpjEmpresa;", nativeQuery = true)
     Optional<List<String>> findDadosLoginByCnpjEmpresa(@Param("cnpjEmpresa") String cnpjEmpresa);
 
- }
+}

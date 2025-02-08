@@ -88,14 +88,14 @@ public class AutomationService {
         // Tenta inserir no banco cada uma das notas enviadas pela aplicação externa.
         for (NotasDto nota : listaNotas.listaNotas()) {
 
-            Optional<EmpresaModel> empresa = empresaRepository.findByCnpj(nota.cnpjEmpresa()); // Coleta empresa que esta associada à nota.
+            EmpresaModel empresa = empresaRepository.findByCnpj(nota.cnpjEmpresa()); // Coleta empresa que esta associada à nota.
 
             LocalDate diaAtual = LocalDate.now();
             
             NotasModel novaNota = new NotasModel();
             // Confere se nota é do mês imediatamente passado, logo essa não deve ser tratada como alteração e inserida com o argumento novo = false.
                 
-            novaNota = new NotasModel(nota, true, diaAtual, empresa.get());
+            novaNota = new NotasModel(nota, true, diaAtual, empresa);
 
             // Verifica se nota já existe no banco de dados e se não existir à insere.
             if (notasRepository.findById(novaNota.getId()).isPresent()){

@@ -29,17 +29,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class RegUserController {
 
     @Autowired
-    private RegUserService regUserService; //repository dos usuarios
+    private RegUserService regUserService;
 
     @GetMapping
-    public String cadastro(Model model) {
+    public String renderRegistrationUserPage(Model model) {
         model.addAttribute("dadosUser", new UserDto("", "", "", "", ""));
-        return "cadastroUser"; //exibe a página de cadastro de usuário
+        return "cadastroUser";
     }
 
     @PostMapping
     @Transactional
-    public String addUsuario(@ModelAttribute @Valid UserDto dados) {
-        return regUserService.addUsuario(dados);
+    public String registerUserEndpoint(@ModelAttribute @Valid UserDto dados) {
+        return regUserService.registerUser(dados);
     }
 }

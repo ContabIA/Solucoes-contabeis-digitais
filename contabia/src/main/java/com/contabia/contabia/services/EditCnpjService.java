@@ -121,24 +121,20 @@ public class EditCnpjService {
     private void atualizaEmpresa(RegCnpjDto dadosEmpresa, EmpresaModel empresa){
         //atuailza os dados da tabela empresa com os dados recebidos da página
         empresa.editEmpresa(dadosEmpresa.cnpjEmpresa(), dadosEmpresa.nome()); 
-        empresaRepository.save(empresa); //salva as alterações no banco de dados
+        empresaRepository.save(empresa);
     }
 
     public void atualizar(RegCnpjDto dadosEmpresa, String cnpjEmpresa){
-        //obtem o objeto da empresa que está sendo editada
-        Optional<EmpresaModel> empresaOpt =  empresaRepository.findByCnpj(cnpjEmpresa);
-        var empresa = empresaOpt.get();
+        EmpresaModel newEmpresaDetails =  empresaRepository.findByCnpj(cnpjEmpresa);
 
         //verificação se o cnpj que está sendo atualizado já está cadastrado no sistema
-        Optional<EmpresaModel> empresaByCnpj = empresaRepository.findByCnpj(dadosEmpresa.cnpjEmpresa());
-        if(empresaByCnpj.isPresent() && !(dadosEmpresa.cnpjEmpresa().equals(cnpjEmpresa))){
+        EmpresaModel existingCnpj = empresaRepository.findByCnpj(dadosEmpresa.cnpjEmpresa());
+        if(existingCnpj != null){
             throw new CnpjRegisteredException();
         }
 
-        atualizaConsultaCndt(cnpjEmpresa, dadosEmpresa, empresa);
-        atualizaConsultaSefaz(cnpjEmpresa, dadosEmpresa, empresa);
-        atualizaEmpresa(dadosEmpresa, empresa);
+        atualizaConsultaCndt(cnpjEmpresa, dadosEmpresa, newEmpresaDetails);
+        atualizaConsultaSefaz(cnpjEmpresa, dadosEmpresa, newEmpresaDetails);
+        atualizaEmpresa(dadosEmpresa, newEmpresaDetails);
     }
 }
-
-//está acontecendo um erro quando o usuário muda o cnpj da empresa na url de editar empresa

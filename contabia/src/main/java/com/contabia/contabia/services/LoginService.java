@@ -26,41 +26,43 @@ import lombok.NoArgsConstructor;
 public class LoginService {
 
     @Autowired
-    private ClientRepository clientRepository; //repositório dos usuários
+    private ClientRepository clientRepository;
 
     @Autowired
     private AuthenticationManager authenticationManager;
 
     @Autowired
     private TokenService tokenService;
+
+    @Autowired
+    private HttpServletResponse response;
     
-    public ResponseEntity<ExceptionMessage> authenticationLogin(LoginDto dadosLogin, HttpServletResponse response){
-        
-        //variável que verifica se o CNPJ digitado está cadastrado no sistema 
-        Optional<ClientModel> clientOptional = clientRepository.findByUsername(dadosLogin.cnpj());
+    public ResponseEntity<ExceptionMessage> authenticateClient(LoginDto loginDetails){
+        Optional<ClientModel> optionalClient = clientRepository.findByUsername(loginDetails.cnpj());
 
-        if(clientOptional.isPresent()){
-            Authentication authenticationRequest = UsernamePasswordAuthenticationToken.unauthenticated(dadosLogin.cnpj(), dadosLogin.senha());
-
-            Authentication authenticationResponse = authenticationManager.authenticate(authenticationRequest);
-
-            var token = tokenService.generateToken((User) authenticationResponse.getPrincipal());
-
-            response.addCookie(generateAuthCookie(token));
-            
-            //return "redirect:/home";
-            return ResponseEntity.ok().body(new ExceptionMessage(HttpStatus.OK, "ok"));
+        if(optionalClient.isPresent()){
+            return authenticate(loginDetails);
         }
 
-        throw new CnpjNotFoundException(); //caso o cnpj não esteja cadastrado no sistema
+        throw new CnpjNotFoundException();
     }
 
-    private Cookie generateAuthCookie(String token){
-        Cookie cookieAuth = new Cookie("Authorization", token);
-        cookieAuth.setHttpOnly(true);
-        cookieAuth.setPath("/");
-        cookieAuth.setMaxAge(7200);
+    private ResponseEntity<ExceptionMessage> authenticate(LoginDto loginDetails){
+        Authentication authenticationRequest = UsernamePasswordAuthenticationToken.unauthenticated(loginDetails.cnpj(), loginDetails.senha());
+        Authentication authenticationResponse = authenticationManager.authenticate(authenticationRequest);
 
-        return cookieAuth;
+        var token = tokenService.generateToken((User) authenticationResponse.getPrincipal());
+
+        response.addCookie(generateCookieToken(token));
+        
+        return ResponseEntity.ok().body(new ExceptionMessage(HttpStatus.OK, "ok"));
+    }
+
+    private Cookie generateCookieToken(String token){
+        Cookie cookieToken = new Cookie("Authorization", token);
+        cookieToken.setHttpOnly(true);
+        cookieToken.setPath("/");
+        cookieToken.setMaxAge(7200);
+        return cookieToken;
     }
 }

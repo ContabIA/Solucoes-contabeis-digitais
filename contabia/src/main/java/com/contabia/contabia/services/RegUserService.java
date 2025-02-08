@@ -19,32 +19,26 @@ import lombok.NoArgsConstructor;
 public class RegUserService {
 
     @Autowired
-    private UserRepository userRepository; //repository dos usuarios
+    private UserRepository userRepository;
 
-    public String addUsuario(UserDto dados){
-        //variável para verificar se o CNPJ que está sendo cadastrado já existe no sistema
+    public String registerUser(UserDto dados){
         Optional<UserModel> userByCnpj = userRepository.findByUsername(dados.cnpj());
-
-        //variável para verificar se o e-mail que está sendo cadastrao já existe no sistema
         Optional<UserModel> userByEmail = userRepository.findByEmail(dados.email());
-
-        //variável para verificar se o usuário Sefaz que está sendo cadastrado já existe no sistema
         Optional<UserModel> userByUserSefaz = userRepository.findByUserSefaz(dados.userSefaz());
 
         if (userByCnpj.isPresent()) {
-            throw new CnpjRegisteredException(); //exceção de CNPJ já cadastrado
+            throw new CnpjRegisteredException();
         }
 
         else if (userByEmail.isPresent()) {
-            throw new EmailRegisteredException(); //exceção de e-mail já cadastrado
+            throw new EmailRegisteredException();
         }
 
         else if (userByUserSefaz.isPresent()) {
-            throw new UserSefazRegisteredException(); //exceção de usuário Sefaz já cadastrado
+            throw new UserSefazRegisteredException();
         }
 
-        //se tudo estiver certo, será criado um novo usuário
-        userRepository.save(new UserModel(dados));
+        userRepository.save(new UserModel(dados)); // !!!!!
 
         return "redirect:/login";
     }
