@@ -1,12 +1,13 @@
 package com.contabia.contabia.controllers;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.contabia.contabia.models.dto.ListaNotasDto;
 import com.contabia.contabia.models.dto.NotasDto;
 import com.contabia.contabia.models.dto.RespostaDto;
 import com.contabia.contabia.services.DetailsAltService;
@@ -41,7 +42,7 @@ public class DetailsAltController {
         model.addAttribute("mes", mes); // Envia para o thymeleaf o mês da nota.
 
         if (idNota == 0){
-            ListaNotasDto listaNotasEncaps = detailsAltService.detalhesEncaps(mes, cnpjEmpresa);
+            ArrayList<NotasDto> listaNotasEncaps = detailsAltService.detalhesEncaps(mes, cnpjEmpresa);
             model.addAttribute("listaNotasEncaps", listaNotasEncaps);
             model.addAttribute("tipoAlt", "Notas"); // Envia para o thymeleaf o tipo de Alteração
 

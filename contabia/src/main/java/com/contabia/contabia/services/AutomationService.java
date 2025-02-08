@@ -9,9 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.contabia.contabia.models.dto.DadosLoginDto;
-import com.contabia.contabia.models.dto.ListaNotasDto;
-import com.contabia.contabia.models.dto.ListaRespostaDto;
 import com.contabia.contabia.models.dto.NotasDto;
 import com.contabia.contabia.models.dto.RespostaDto;
 import com.contabia.contabia.models.entity.ConsultasModel;
@@ -83,10 +80,10 @@ public class AutomationService {
         return listIdEmpresa;
     }
 
-    public void insereNotasBanco(ListaNotasDto listaNotas){
+    public void insereNotasBanco(ArrayList<NotasDto> listaNotas){
 
         // Tenta inserir no banco cada uma das notas enviadas pela aplicação externa.
-        for (NotasDto nota : listaNotas.listaNotas()) {
+        for (NotasDto nota : listaNotas) {
 
             EmpresaModel empresa = empresaRepository.findByCnpj(nota.cnpjEmpresa()); // Coleta empresa que esta associada à nota.
 
@@ -107,19 +104,19 @@ public class AutomationService {
         }
     }
 
-    public ResponseEntity<DadosLoginDto> getDadosLogin(String cnpjEmpresa){
+    public ResponseEntity<List<String>> getDadosLogin(String cnpjEmpresa){
 
         Optional<List<String>> optionalDadosLogin = empresaRepository.findDadosLoginByCnpjEmpresa(cnpjEmpresa); // Verifica qual usuário está relacionado ao cnpj enviado e retorna uma lista com usuário e senha sefaz.
         if (optionalDadosLogin.isPresent()){
-            return ResponseEntity.ok().body(new DadosLoginDto(optionalDadosLogin.get())); // Retorna os dadosLogin
+            return ResponseEntity.ok().body(optionalDadosLogin.get()); // Retorna os dadosLogin
         }
         return ResponseEntity.badRequest().body(null); // Retorna nulo caso não exista os DadosLogin.
     }
 
-    public void insereRespostasBanco(ListaRespostaDto listaResp){
+    public void insereRespostasBanco(ArrayList<RespostaDto> listaResp){
 
         // Insere no banco cada uma das repostas enviadas pela aplicação externa
-        for (RespostaDto resposta : listaResp.listaRespostas()) {
+        for (RespostaDto resposta : listaResp) {
 
             Optional<ConsultasModel> consulta = consultasRepository.findConsultaByCnpjAndTipoConsulta(resposta.cnpjEmpresa(), 3); // Coleta consulta que está relacionada à resposta.
             RespostaModel novaResposta = new RespostaModel(resposta, consulta.get()); // Cria modelo de resposta para inserir no banco.

@@ -10,7 +10,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.contabia.contabia.models.dto.ListaNotasDto;
 import com.contabia.contabia.models.dto.NotasDto;
 import com.contabia.contabia.models.dto.RespostaDto;
 import com.contabia.contabia.models.entity.NotasModel;
@@ -49,7 +48,7 @@ public class DetailsAltService {
         return respostaDto; // Retorna o DTO da resposta.
     }
 
-    public ListaNotasDto detalhesEncaps(String mes, String cnpjEmpresa){
+    public ArrayList<NotasDto> detalhesEncaps(String mes, String cnpjEmpresa){
         LocalDate dataAtual = LocalDate.now();
 
         Map<String, Integer> mapMes = new HashMap<String, Integer>(){{
@@ -75,7 +74,7 @@ public class DetailsAltService {
 
         Optional<List<NotasModel>> OptionalListaNotas= notasRepository.findNotasEncapsByDataInsercaoAndCnpjEmpresa(data, cnpjEmpresa);
 
-        List<NotasDto> Notas = new ArrayList<>();
+        ArrayList<NotasDto> Notas = new ArrayList<>();
 
         if (OptionalListaNotas.isPresent()){
             for (NotasModel nota : OptionalListaNotas.get()) {
@@ -86,7 +85,7 @@ public class DetailsAltService {
             
         }
 
-        return new ListaNotasDto(Notas);
+        return Notas;
     }
 
 }

@@ -1,5 +1,6 @@
 package com.contabia.contabia.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.contabia.contabia.models.dto.AutomationDto;
-import com.contabia.contabia.models.dto.DadosLoginDto;
-import com.contabia.contabia.models.dto.ListaNotasDto;
-import com.contabia.contabia.models.dto.ListaRespostaDto;
+import com.contabia.contabia.models.dto.RespostaDto;
 import com.contabia.contabia.services.AutomationService;
 
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,22 +39,22 @@ public class AutomationController {
     private AutomationService automationService;
 
     @GetMapping("/getCnpj")
-    public ResponseEntity<AutomationDto> getCnpj(@RequestParam("ultimoDigito") int ultimoDigito, @RequestParam("tamanhoFinal") int tamanhoFinal, @RequestParam("frequencia") String frequencia, @RequestParam("tipoConsulta") int tipoConsulta) {
+    public ResponseEntity<List<String>> getCnpj(@RequestParam("ultimoDigito") int ultimoDigito, @RequestParam("tamanhoFinal") int tamanhoFinal, @RequestParam("frequencia") String frequencia, @RequestParam("tipoConsulta") int tipoConsulta) {
 
         List<String> cnpjs = automationService.getCnpjsDia(ultimoDigito, frequencia, tipoConsulta, tamanhoFinal); // Lista com os cnpjs da empresa
         
-        return ResponseEntity.ok().body(new AutomationDto(cnpjs)); // Retorno da requisição com lista de cnps's como body.
+        return ResponseEntity.ok().body(cnpjs); // Retorno da requisição com lista de cnps's como body.
     } 
 
     @GetMapping("/getDadosLogin")
-    public ResponseEntity<DadosLoginDto> getDadosLogin(@RequestParam("cnpjEmpresa") String cnpjEmpresa){
+    public ResponseEntity<List<String>> getDadosLogin(@RequestParam("cnpjEmpresa") String cnpjEmpresa){
         
         return automationService.getDadosLogin(cnpjEmpresa);
         
     }
 
     @PostMapping("/respSefaz")
-    public ResponseEntity<String> respSefaz(@RequestBody ListaNotasDto listaNotas) {
+    public ResponseEntity<String> respSefaz(@RequestBody ArrayList listaNotas) {
         
         automationService.insereNotasBanco(listaNotas); // Método que insere notas no banco
         
@@ -64,7 +62,7 @@ public class AutomationController {
     }
 
     @PostMapping("/respCndt")
-    public ResponseEntity<String> respCndt(@RequestBody ListaRespostaDto listaResp) {
+    public ResponseEntity<String> respCndt(@RequestBody ArrayList<RespostaDto> listaResp) {
         
         automationService.insereRespostasBanco(listaResp); // Método que insere respostas no banco
         

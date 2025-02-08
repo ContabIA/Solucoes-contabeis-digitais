@@ -1,6 +1,6 @@
 var count = 0;
 
-document.getElementById("caixa-user").addEventListener('click', ()=>{
+document.getElementById("caixa-user").addEventListener('z', ()=>{
     if(count == 0){
         document.getElementById("lista-config").style.display = 'flex';
         count = 1;
