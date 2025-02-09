@@ -12,9 +12,7 @@ import org.springframework.stereotype.Service;
 import com.contabia.contabia.exceptions.CnpjNotFoundException;
 import com.contabia.contabia.models.entity.ClientModel;
 import com.contabia.contabia.models.entity.UserDetailsImp;
-import com.contabia.contabia.models.entity.UserModel;
 import com.contabia.contabia.repository.ClientRepository;
-import com.contabia.contabia.repository.UserRepository;
 
 @Service
 public class UserDetailsServiceImp implements UserDetailsService{
