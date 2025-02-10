@@ -9,6 +9,6 @@ class OperacoesEnum(Enum):
     
 
 OperacoesDict = {
-    OperacoesEnum.NOTAS_SEFAZ: NotasSefaz(),
-    OperacoesEnum.CONSULTA_CNDT: ConsultaCNDT()
+    OperacoesEnum.NOTAS_SEFAZ: NotasSefaz,
+    OperacoesEnum.CONSULTA_CNDT: ConsultaCNDT
 }
