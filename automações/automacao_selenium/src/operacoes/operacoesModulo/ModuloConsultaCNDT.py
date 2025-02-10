@@ -2,14 +2,15 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 import time
 import os
 import PyPDF2
 
 # Configuração do ChromeDriver
-chrome_driver_path = "/caminho/para/o/chromedriver.exe"  # Substitua pelo caminho do seu ChromeDriver
-service = Service(chrome_driver_path)
+service = Service(ChromeDriverManager.install())
 
 # Configuração das opções do Chrome
 chrome_options = Options()
@@ -28,10 +29,21 @@ solver = TwoCaptcha("31693569b91ed643587f2531785ae020")
 
 async def solve_captcha(img_src: str):
     img_path = f"{download_dir}/captcha.png"
-    driver.get(img_src)
-    time.sleep(1)
-    driver.save_screenshot(img_path)
-    captcha = await solver.normal(img_path)
+    
+    b = True
+    while b:
+        try:
+            WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//img[@src='" + img_src + "']")))
+            driver.save_screenshot(img_path)
+            b = False
+        except Exception as e:
+            print("error while getting captcha image: " + str(e))
+        
+    
+    try:
+        captcha = await solver.normal(img_path)
+    except Exception as e:
+        print("error while solving captcha: " + str(e))
     
     return captcha["code"]
 

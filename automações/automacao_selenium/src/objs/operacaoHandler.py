@@ -46,7 +46,8 @@ class OperacaoSelenium:
             
     
     def pop_operacao(self) -> Operacao:
-        
         return Operacao.pop()
+    
+    
     
      
