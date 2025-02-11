@@ -85,7 +85,7 @@ public class AutomationService {
         // Tenta inserir no banco cada uma das notas enviadas pela aplicação externa.
         for (NotasDto nota : listaNotas) {
 
-            EmpresaModel empresa = empresaRepository.findByCnpj(nota.cnpjEmpresa()); // Coleta empresa que esta associada à nota.
+            EmpresaModel empresa = empresaRepository.findByCnpj(nota.cnpjEmpresa()).get(); // Coleta empresa que esta associada à nota.
 
             LocalDate diaAtual = LocalDate.now();
             

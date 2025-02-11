@@ -35,9 +35,9 @@ public class RegCnpjService {
     public ResponseEntity<ExceptionMessage> registerCnpj(String cnpjUser, RegCnpjDto empresaDto){
 
         Optional<UserModel> optionalUser = userRepository.findByUsername(cnpjUser);
-        EmpresaModel existingCnpj = empresaRepository.findByCnpj(empresaDto.cnpjEmpresa());
+        Optional<EmpresaModel> optionalEmpresa = empresaRepository.findByCnpj(empresaDto.cnpjEmpresa());
 
-        if(existingCnpj != null){
+        if(optionalEmpresa.isPresent()){
             throw new CnpjRegisteredException();
         }
 
