@@ -1,5 +1,10 @@
 package com.contabia.contabia.services;
 
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +24,7 @@ import com.contabia.contabia.repository.ConsultasRepository;
 import com.contabia.contabia.repository.EmpresaRepository;
 import com.contabia.contabia.repository.NotasRepository;
 import com.contabia.contabia.repository.RespostaRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.NoArgsConstructor;
 
@@ -43,20 +49,13 @@ public class AutomationService {
         
         List<Long> listIdEmpresa = getEmpresas(ultimoDigito, frequencia, tipoConsulta, tamanhoFinal); // Lista com os id empresas do dia.
         
-        List<String> cnpjs = new ArrayList<>(); // Lista para armazenar os cnpj's das empresas
-        // Coleta e insere na lista o cnpj para cada empresa encontrada.
-        for (Long id : listIdEmpresa) {
-            Optional<EmpresaModel> empresa = empresaRepository.findById(id);
-            if(empresa.isPresent()){
-                cnpjs.add(empresa.get().getCnpj());
-            }
-        }
+        List<String> cnpjs = empresaToCnpj(listIdEmpresa);
 
         return cnpjs;
     }
 
     // Método que pega os id das empresas do dia com base no número final dele
-    public List<Long> getEmpresas(int ultimoDigito, String frequencia, int tipoConsulta, int tamanhoFinal){
+    private List<Long> getEmpresas(int ultimoDigito, String frequencia, int tipoConsulta, int tamanhoFinal){
 
         int idConsulta = ultimoDigito; // id da consulta que obrigatoriamente será coletado já que é igual ao final de id pedido.
         String strUltimoDigito = ultimoDigito + ""; // Transformando o ultimo digito em String.
@@ -122,6 +121,51 @@ public class AutomationService {
             RespostaModel novaResposta = new RespostaModel(resposta, consulta.get()); // Cria modelo de resposta para inserir no banco.
             respostaRepository.save(novaResposta); // Insere resposta no banco.
             
+        }
+    }
+
+    public List<String> getAllCnpjsSefaz(String cnpjUser){
+        
+        List<Long> listIdEmpresa = consultasRepository.getIdEmpresaByTipoConsulta(1);
+
+        List<String> cnpjsSefaz = empresaToCnpj(listIdEmpresa);
+        
+        return cnpjsSefaz;
+    }
+
+    private List<String> empresaToCnpj(List<Long> listIdEmpresa){
+        
+        List<String> cnpjs = new ArrayList<>();
+
+        for (Long id : listIdEmpresa) {
+            Optional<EmpresaModel> empresa = empresaRepository.findById(id);
+            if(empresa.isPresent()){
+                cnpjs.add(empresa.get().getCnpj());
+            }
+        }
+
+        return cnpjs;
+    }
+
+    public void requisicaoConsultaManual(List<String> cnpjsSefaz){
+        
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            String json = objectMapper.writeValueAsString(cnpjsSefaz);
+
+            HttpClient client = HttpClient.newHttpClient();
+
+            HttpRequest request = HttpRequest.newBuilder(
+             URI.create("http://localhost:8080/service/ba"))
+            .headers("Content-Type", "application/json")
+            .POST(HttpRequest.BodyPublishers.ofString(json))
+            .build();
+
+            client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        } catch (IOException | InterruptedException e) {
+
+            e.printStackTrace();
         }
     }
 
