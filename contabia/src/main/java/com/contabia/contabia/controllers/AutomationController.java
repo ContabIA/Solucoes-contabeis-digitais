@@ -5,13 +5,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import com.contabia.contabia.models.dto.NotasDto;
 import com.contabia.contabia.models.dto.RespostaDto;
 import com.contabia.contabia.services.AutomationService;
 
@@ -33,7 +31,7 @@ import org.springframework.web.bind.annotation.RequestBody;
  *          /respCndt/ -> Recebe uma lista de respostas que devem ser incluidas no banco.
 */
 
-@Controller
+@RestController
 @RequestMapping("/service")
 public class AutomationController {
 
@@ -56,7 +54,7 @@ public class AutomationController {
     }
 
     @PostMapping("/respSefaz")
-    public ResponseEntity<String> respSefaz(@RequestBody ArrayList<NotasDto> listaNotas) {
+    public ResponseEntity<String> respSefaz(@RequestBody ArrayList listaNotas) {
         
         automationService.insereNotasBanco(listaNotas); // Método que insere notas no banco
         
@@ -71,19 +69,4 @@ public class AutomationController {
         return ResponseEntity.ok().body("Respostas enviadas com sucesso!");
     }
 
-    @PostMapping("/consultaManual")
-    public String consultaManual(Authentication authentication) {
-        
-        String cnpjUser = authentication.getName();
-
-        List<String> cnpjsSefaz = automationService.getAllCnpjsSefaz(cnpjUser);
-
-        automationService.requisicaoConsultaManual(cnpjsSefaz);
-
-        return "redirect:/home";
-    }
-
-
-    
 }
-

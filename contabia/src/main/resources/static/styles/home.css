@@ -28,9 +28,3 @@ CSS com as estilizações específicas da página principal da aplicação (pág
     background-color: white;
     color: black;
 }
-
-.consultaManual{
-    margin-top: 10px;
-    margin-bottom: 25px;
-    cursor: pointer;
-}
