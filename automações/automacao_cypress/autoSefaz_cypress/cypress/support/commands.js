@@ -1,3 +1,5 @@
+const Cypress = require("cypress")
+
 // Função que loga no sefaz utilizando o usuario e senha fornecido
 Cypress.Commands.add("loginSefaz", (user, senha) => {
     //Logando no Sefaz
@@ -120,4 +122,64 @@ Cypress.Commands.add('ultimo_dado', (user, indexCnpj) => {
     })
 
     cy.task("escreverJson", {registro: registro, flag:"a+"})
+})
+
+// gera o txt de um cnpj
+Cypress.Commands.add("gerar_txt_cnpj", (user, indexCnpj, dateInit, dateFim) => {
+
+    cy.task("buscando_cnpj", {user, indexCnpj, dateInit, dateFim}) // buscando cnpj
+
+    cy.get("[]").click()// nome a definir
+
+})
+
+Cypress.Commands.add("login_email_tse", (user, senha) => {
+    
+    cy.visit("") // url a definir
+
+    cy.get("[]").clear() // nome a definir
+    cy.get("[]").clear() // nome a definir
+
+    cy.get("[]").type(user) // nome a definir
+    cy.get("[]").type(senha) // nome a definir
+    cy.get("[]").click() // nome a definir
+
+})
+
+Cypress.Commands.add("pegar_email__txt_cnpj", (user, senha) => {
+
+    cy.task("login_email_tse", {user, senha})
+
+    cy.get("[]").click() // nome a definir
+
+})
+
+Cypress.Commands.add("ver_se_solicitacao_txt_funcionou", (onTrue, onFalse) => {
+    cy.get("[]").invoke("text").then(($conteudo) => { // str a definir
+        if ("" in $conteudo) onFalse()
+        else onTrue()
+    })
+})
+
+Cypress.Commands.add("baixar_txt_email", () => {
+
+})
+
+Cypress.Commands.add("baixar_txt_notas_cnpj", (user, senha, max_retry) => {
+
+    if (max_retry){
+        if (max_retry <= 0) expect(false).to.be.true
+    } else {
+        max_retry = 3
+    }
+
+    cy.task("pegar_email__txt_cnpj", {user, senha})
+
+    cy.task("ver_se_solicitacao_txt_funcionou", {function(){
+        cy.task("baixar_txt_email", {})
+    }, function(){
+        cy.task("baixar_txt_notas_cnpj", (user, senha, max_retry-1))
+    }})
+
+
 })
