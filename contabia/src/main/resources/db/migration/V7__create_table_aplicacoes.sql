@@ -1,0 +1,4 @@
+CREATE TABLE aplicacoes (
+    id BIGINT PRIMARY KEY NOT NULL,
+    FOREIGN KEY (id) REFERENCES cliente(id) ON DELETE CASCADE
+);
