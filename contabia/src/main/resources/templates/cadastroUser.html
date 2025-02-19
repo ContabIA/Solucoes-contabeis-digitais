@@ -26,18 +26,18 @@
 
                 <h1>Criar Conta</h1>
 
-                <form th:action="@{/cadastro}" method="post" th:object="${dadosUser}"class="form" id="form">
-                    <input th:field="*{cnpj}" type="text" name="cnpj" placeholder="CNPJ" minlength="14" maxlength="14" class="inputs user" id="cnpjCad" required>
+                <form th:action="@{/cadastro}" method="post" class="form" id="form">
+                    <input type="text" name="cnpj" placeholder="CNPJ" minlength="18" maxlength="18" class="inputs user" id="cnpjCad" oninput="CnpjMask(this)" required>
 
-                    <input th:field="*{senha}" type="password" name="senha" placeholder="Senha" minlength="6" class="inputs senha" id="senhaCad" required>
+                    <input type="password" name="senha" placeholder="Senha" minlength="6" class="inputs senha" id="senhaCad" required>
 
-                    <input th:field="*{email}" type="email" name="email" placeholder="E-mail" class="inputs email" id="emailCad" required>
+                    <input type="email" name="email" placeholder="E-mail" class="inputs email" id="emailCad" required>
 
-                    <input th:field="*{userSefaz}" type="text" name="userSefaz" placeholder="Usuário Sefaz" class="inputs user" id="sefazCad" required>
+                    <input type="text" name="userSefaz" placeholder="Usuário Sefaz" class="inputs user" id="sefazCad" required>
 
-                    <input th:field="*{senhaSefaz}" type="password" name="senhaSefaz" placeholder="Senha Sefaz" class="inputs senha" id="senhaSefazCad" required>
+                    <input type="password" name="senhaSefaz" placeholder="Senha Sefaz" class="inputs senha" id="senhaSefazCad" required>
                     
-                    <button type="submit" id="button">Entrar</button>
+                    <button type="submit" id="button">Criar</button>
                 </form>
 
                 <a th:href="@{/login}">Já tenho uma conta</a>

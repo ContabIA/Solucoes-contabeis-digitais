@@ -1,21 +1,25 @@
-var login = document.getElementById("login");
-var erro = document.getElementById("erro");
+const mainForm = document.getElementById("form");
 
-//quando o usuário clicar na tela, a mensagem de erro some
-login.addEventListener("click", ()=>{
-    erro.style.display = "none";
-});
+function CnpjMask(input) {
+    let cnpj = input.value.replace(/\D/g, '');
+    cnpj = cnpj.replace(/^(\d{2})(\d)/, '$1.$2');
+    cnpj = cnpj.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
+    cnpj = cnpj.replace(/\.(\d{3})(\d)/, '.$1/$2');
+    cnpj = cnpj.replace(/(\d{4})(\d)/, '$1-$2');
+    input.value = cnpj.substring(0, 18);
+}
 
-function cadUser(){
-
+mainForm.addEventListener("submit", (event) => {
+    event.preventDefault();
     //corpo da requisição
     let body = {
-        cnpj : document.getElementById("cnpjCad").value,
+        cnpj : document.getElementById("cnpjCad").value.replace(/\D/g, ''),
         email : document.getElementById("emailCad").value,
         senha : document.getElementById("senhaCad").value,
         senhaSefaz : document.getElementById("senhaSefazCad").value,
         userSefaz: document.getElementById("sefazCad").value,
     };
+    // alert(JSON.stringify(body));
 
     //requisição para cadastrar novo usuário
     fetch("http://localhost:8080/cadastro", {
@@ -24,15 +28,17 @@ function cadUser(){
         headers : {'Content-Type': 'application/json'}
     })
     .then((resposta)=>{
-        if (resposta.status == 200){
-            window.location = "/"; //se der certo, redireciona para a tela de login
+        if (resposta.ok){
+            window.location = "/login"; //se der certo, redireciona para a tela de login
         } else {
-            alert(resposta);
+            
+
+            // alert(resposta.resp? resposta.resp : "Erro ao cadastrar usuário");
             return resposta.json();
         }
     })
     .then((respJson) =>{ //se der errado, a mensagem de erro é exibida
-        document.getElementById("erroText").innerHTML = respJson.resp;
+        document.getElementById("erroText").innerHTML = respJson.resp? respJson.resp : "Erro ao cadastrar usuário";
         document.getElementById("erro").style.display  = "block";  
     });
-}
+})

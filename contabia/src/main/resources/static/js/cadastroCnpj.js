@@ -46,14 +46,14 @@ function cadastroCnpj(){
         headers:{'Content-Type': 'application/json'}
     })
     .then((resposta)=>{
-        if (resposta.status == 200){
+        if (resposta.ok){
             window.location = "/listaCnpj"; //se der certo, redireciona para a lista de empresas cadastradas
         } else {
             return resposta.json() ;
         }
     })
     .then((respJson) =>{ //se der errado, a mensagem de erro é exibida
-        document.getElementById("erroText").innerHTML = respJson.resp;
+        document.getElementById("erroText").innerHTML = respJson.resp ? respJson.resp : "Erro ao cadastrar CNPJ";
         document.getElementById("erroText").style.display  = "block";  
     });
 }

@@ -29,12 +29,12 @@
 
                 <h1>Login</h1>
 
-                <form action="#" class="form" id="form">
-                    <input name="cnpj" type="text" placeholder="CNPJ" minlength="14" maxlength="14" class="inputs" id="userLogin" required>
+                <form action="#" method="POST" class="form" id="form" enctype="application/x-www-form-urlencoded">
+                    <input name="cnpj" type="text" placeholder="CNPJ" minlength="18" maxlength="18" class="inputs" id="userLogin" oninput="CnpjMask(this)" required>
 
-                    <input name="senha" type="password" placeholder="Senha" minlength="6" class="inputs" id="senhaLogin" required>
+                    <input name="senha" type="password" placeholder="Senha" class="inputs" id="senhaLogin" required>
 
-                    <button onclick="loginUser()" type="button" id="button">Entrar</button>
+                    <button type="submit" id="button">Entrar</button>
                 </form>
 
                 <a th:href="@{/cadastro}">Criar uma conta</a>

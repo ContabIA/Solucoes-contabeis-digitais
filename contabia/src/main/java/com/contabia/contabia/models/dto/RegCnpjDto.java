@@ -2,6 +2,8 @@ package com.contabia.contabia.models.dto;
 
 import java.util.Optional;
 
+import org.hibernate.validator.constraints.br.CNPJ;
+
 import jakarta.validation.constraints.NotBlank;
 
 /*
@@ -24,6 +26,7 @@ import jakarta.validation.constraints.NotBlank;
 public record RegCnpjDto(
     
     @NotBlank
+    @CNPJ
     String cnpjEmpresa,
 
     @NotBlank

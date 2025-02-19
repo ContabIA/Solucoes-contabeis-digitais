@@ -2,8 +2,8 @@ package com.contabia.contabia.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.contabia.contabia.models.dto.UserDto;
 import com.contabia.contabia.services.RegUserService;
@@ -12,8 +12,8 @@ import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
     /*
      * Classe controller responsável por cadastrar um novo usuário ao banco de dados
@@ -32,14 +32,14 @@ public class RegUserController {
     private RegUserService regUserService; //repository dos usuarios
 
     @GetMapping
-    public String cadastro(Model model) {
-        model.addAttribute("dadosUser", new UserDto("", "", "", "", ""));
+    public String cadastro() {
         return "cadastroUser"; //exibe a página de cadastro de usuário
     }
 
     @PostMapping
     @Transactional
-    public String addUsuario(@ModelAttribute @Valid UserDto dados) {
+    @ResponseBody
+    public String addUsuario(@RequestBody @Valid UserDto dados) {
         return regUserService.addUsuario(dados);
     }
 }

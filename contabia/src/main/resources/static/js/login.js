@@ -1,16 +1,25 @@
 var login = document.getElementById("login");
 var erro = document.getElementById("erro");
 
+
+function CnpjMask(input) {
+    let cnpj = input.value.replace(/\D/g, '');
+    cnpj = cnpj.replace(/^(\d{2})(\d)/, '$1.$2');
+    cnpj = cnpj.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
+    cnpj = cnpj.replace(/\.(\d{3})(\d)/, '.$1/$2');
+    cnpj = cnpj.replace(/(\d{4})(\d)/, '$1-$2');
+    input.value = cnpj.substring(0, 18);
+}
 //quando o usuário clicar na tela, a mensagem de erro some
 login.addEventListener("click", ()=>{
     erro.style.display = "none";
 });
 
-function loginUser(){
-
+document.getElementById("form").addEventListener("submit", (event) => {
+    event.preventDefault();
     //corpo da requisição
     let body = {
-        cnpj : document.getElementById("userLogin").value,
+        cnpj : document.getElementById("userLogin").value.replace(/\D/g, ''),
         senha : document.getElementById("senhaLogin").value,
     };
 
@@ -21,14 +30,14 @@ function loginUser(){
         headers : {'Content-Type': 'application/json'}
     })
     .then((resposta)=>{
-        if (resposta.status == 200){
+        if (resposta.ok){
             window.location = "/home"; //se der certo, redireciona para a página principal
         } else {
-            return resposta.json() ;
+            return resposta.json();
         }
     })
     .then((respJson) =>{ //se der errado, exibe mensagem de erro
-        document.getElementById("erroText").innerHTML = respJson.resp;
+        document.getElementById("erroText").innerHTML = respJson.resp? respJson.resp : "Erro a fazer login";
         document.getElementById("erro").style.display  = "block";
     });
-}
+})
