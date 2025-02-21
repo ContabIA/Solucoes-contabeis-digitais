@@ -23,7 +23,8 @@
 
         <main>
             
-            <div id="erro" style="display: none;"><span id="erroText"></span></div>
+            <div id="erro"><span id="erroText"></span></div>
+            <div id="changePassSucessDiv"><span id="messageChangePassSucess">Senha alterada com sucesso!</span></div>
 
             <section class="login" id="login">
 
@@ -37,7 +38,10 @@
                     <button type="submit" id="button">Entrar</button>
                 </form>
 
-                <a th:href="@{/cadastro}">Criar uma conta</a>
+                <div style="display: grid;">
+                    <a style="margin: 10px;" th:href="@{/cadastro}">Criar uma conta</a>
+                    <a style="margin: 10px;" th:href="@{/redefinirSenha}">Esqueci minha senha</a>
+                </div>
             </section>
         </main>
 

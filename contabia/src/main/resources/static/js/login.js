@@ -1,5 +1,6 @@
 var login = document.getElementById("login");
 var erro = document.getElementById("erro");
+var changePassSucessDiv = document.getElementById("changePassSucessDiv");
 
 
 function CnpjMask(input) {
@@ -15,8 +16,16 @@ login.addEventListener("click", ()=>{
     erro.style.display = "none";
 });
 
-document.getElementById("form").addEventListener("submit", (event) => {
-    event.preventDefault();
+document.addEventListener("DOMContentLoaded", ()=>{
+    if(sessionStorage.getItem("changePassSucess")){
+        changePassSucessDiv.style.display = "block";
+        changePassSucessDiv.style.animationName = "fadeMessage";
+        sessionStorage.removeItem("changePassSucess");
+    }
+})
+
+function loginUser(){
+
     //corpo da requisição
     let body = {
         cnpj : document.getElementById("userLogin").value.replace(/\D/g, ''),
@@ -40,4 +49,4 @@ document.getElementById("form").addEventListener("submit", (event) => {
         document.getElementById("erroText").innerHTML = respJson.resp? respJson.resp : "Erro a fazer login";
         document.getElementById("erro").style.display  = "block";
     });
-})
+}

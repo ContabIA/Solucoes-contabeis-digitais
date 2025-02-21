@@ -2,6 +2,8 @@ package com.contabia.contabia.models.entity;
 
 import java.io.Serializable;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import com.contabia.contabia.models.enums.ClientRole;
 
 import jakarta.persistence.Column;
@@ -43,5 +45,9 @@ public abstract class ClientModel implements Serializable{
         this.username = username;
         this.senha = senha;
         this.role = role;
+    }
+
+    public void updatePassword(String newPassword){
+        this.senha = new BCryptPasswordEncoder().encode(newPassword);
     }
 }
