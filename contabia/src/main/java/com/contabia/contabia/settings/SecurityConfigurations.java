@@ -38,6 +38,7 @@ public class SecurityConfigurations {
                     .requestMatchers("/styles/**", "/js/**", "/img/**").permitAll()
                     .requestMatchers("/login").permitAll()
                     .requestMatchers("/cadastro").permitAll()
+                    .requestMatchers("/redefinirSenha/**").permitAll()
                     .anyRequest().authenticated()
                 )   
 

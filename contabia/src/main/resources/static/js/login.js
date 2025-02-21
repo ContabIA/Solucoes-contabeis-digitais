@@ -1,10 +1,19 @@
 var login = document.getElementById("login");
 var erro = document.getElementById("erro");
+var changePassSucessDiv = document.getElementById("changePassSucessDiv");
 
 //quando o usuário clicar na tela, a mensagem de erro some
 login.addEventListener("click", ()=>{
     erro.style.display = "none";
 });
+
+document.addEventListener("DOMContentLoaded", ()=>{
+    if(sessionStorage.getItem("changePassSucess")){
+        changePassSucessDiv.style.display = "block";
+        changePassSucessDiv.style.animationName = "fadeMessage";
+        sessionStorage.removeItem("changePassSucess");
+    }
+})
 
 function loginUser(){
 

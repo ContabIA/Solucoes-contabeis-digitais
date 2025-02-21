@@ -37,10 +37,21 @@
                     <button onclick="editUser()" type="button" id="button">Atualizar</button>
                 </form>
 
-                <a th:href="@{/home}">voltar</a> 
+                <div style="display: grid;">
+                    <a style="margin: 5px; cursor: pointer;" th:attr="onclick=|changePasswordRequest('${usuario.email}')|">alterar senha</a>
+                    <a style="margin: 5px;" th:href="@{/home}">voltar</a>
+                </div>
 
             </section>
         </main>
 
     </body>
+    <script>
+        function changePasswordRequest(userEmail){
+            fetch('http://localhost:8080/redefinirSenha?userEmail='+userEmail, {
+                method:"POST",
+            })
+            .catch((error) => {console.log(error)})
+        }
+    </script>
 </html>
