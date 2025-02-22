@@ -22,7 +22,12 @@ document.addEventListener("DOMContentLoaded", ()=>{
         changePassSucessDiv.style.animationName = "fadeMessage";
         sessionStorage.removeItem("changePassSucess");
     }
-})
+});
+
+document.getElementById("form").addEventListener('submit', (event)=>{
+    event.preventDefault();
+    loginUser();
+});
 
 function loginUser(){
 

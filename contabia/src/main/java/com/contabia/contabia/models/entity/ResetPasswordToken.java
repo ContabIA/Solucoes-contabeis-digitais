@@ -3,6 +3,7 @@ package com.contabia.contabia.models.entity;
 import java.util.Calendar;
 import java.util.Date;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -20,13 +21,14 @@ import lombok.Setter;
 @Entity
 @Table(name = "reset_senha_token")
 public class ResetPasswordToken {
-    private static final int EXPIRATION = 20;
+    private static final int EXPIRATION = 10;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Setter
+    @Column(nullable = false, unique = true)
     private String token;
 
     @OneToOne(targetEntity = UserModel.class, fetch = FetchType.EAGER)
@@ -34,6 +36,7 @@ public class ResetPasswordToken {
     private UserModel user;
 
     @Setter
+    @Column(nullable = false)
     private Date expiryDate;
 
     public ResetPasswordToken(UserModel user, String token){
