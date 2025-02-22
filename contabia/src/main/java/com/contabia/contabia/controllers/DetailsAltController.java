@@ -63,7 +63,7 @@ public class DetailsAltController {
         var cnpjUser = authentication.getName();
 
         model.addAttribute("cnpjUser", cnpjUser); // Envia para thymeleaf o cnpj do usário.
-        model.addAttribute("tipoAlt", "Alteração Sefaz"); // Envia para o thymeleaf o tipo de Alteração
+        model.addAttribute("tipoAlt", "Alteração CNDT"); // Envia para o thymeleaf o tipo de Alteração
         model.addAttribute("cnpjEmpresa", cnpjEmpresa); // Envia para o thymeleaf o cnpj da empresa que a alteração está associada.
 
         RespostaDto respostaDto = detailsAltService.getResposta(idResp, cnpjEmpresa); // Função que retorna o DTO da resposta

@@ -125,16 +125,18 @@ public class EditCnpjService {
     }
 
     public void atualizar(RegCnpjDto dadosEmpresa, String cnpjEmpresa){
-        EmpresaModel newEmpresaDetails =  empresaRepository.findByCnpj(cnpjEmpresa).get();
+        //obtem o objeto da empresa que está sendo editada
+        Optional<EmpresaModel> empresaOpt =  empresaRepository.findByCnpj(cnpjEmpresa);
+        var empresa = empresaOpt.get();
 
         //verificação se o cnpj que está sendo atualizado já está cadastrado no sistema
-        Optional<EmpresaModel> optionalEmpresa = empresaRepository.findByCnpj(dadosEmpresa.cnpjEmpresa());
-        if(optionalEmpresa.isPresent()){
+        Optional<EmpresaModel> empresaByCnpj = empresaRepository.findByCnpj(dadosEmpresa.cnpjEmpresa());
+        if(empresaByCnpj.isPresent() && !(dadosEmpresa.cnpjEmpresa().equals(cnpjEmpresa))){
             throw new CnpjRegisteredException();
         }
 
-        atualizaConsultaCndt(cnpjEmpresa, dadosEmpresa, newEmpresaDetails);
-        atualizaConsultaSefaz(cnpjEmpresa, dadosEmpresa, newEmpresaDetails);
-        atualizaEmpresa(dadosEmpresa, newEmpresaDetails);
+        atualizaConsultaCndt(cnpjEmpresa, dadosEmpresa, empresa);
+        atualizaConsultaSefaz(cnpjEmpresa, dadosEmpresa, empresa);
+        atualizaEmpresa(dadosEmpresa, empresa);
     }
 }

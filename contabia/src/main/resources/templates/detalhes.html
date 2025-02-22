@@ -37,7 +37,7 @@
                         </div>
                     </div>
 
-                    <table class="detalhes"> 
+                    <table th:if="${tipoAlt} == 'Notas' OR ${tipoAlt == 'Alteração Sefaz'}" class="detalhes"> 
                         <tr style="border-bottom: 1px solid black;">
                             <th>Número</th>
                             <th>Série</th>
@@ -46,9 +46,10 @@
                             <th>Situação</th>
                             <th style="border: none;">Valor Total</th>
                         </tr>
-                        <tbody th:each="nota : ${nota} ?: ${listaNotasEncaps.listaNotas}" th:include="~{fragments :: tabelaDetalhes}"></tbody> 
+                        <tbody th:each="nota : ${nota} ?: ${listaNotasEncaps}" th:include="~{fragments :: tabelaDetalhes}"></tbody> 
                         
                     </table>
+                    <div th:unless="${tipoAlt} == 'Notas' OR ${tipoAlt == 'Alteração Sefaz'}"></div>
 
                     <button type="button" class="btnVoltar" th:attr="onclick=|removerNovo('${tipoAlt}', '${cnpjUser}')|"> Marcar como lido </button>
                 </div>

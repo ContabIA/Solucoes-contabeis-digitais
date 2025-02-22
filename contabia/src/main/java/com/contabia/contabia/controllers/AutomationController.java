@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.contabia.contabia.models.dto.NotasDto;
 import com.contabia.contabia.models.dto.RespostaDto;
 import com.contabia.contabia.services.AutomationService;
 
@@ -54,7 +55,7 @@ public class AutomationController {
     }
 
     @PostMapping("/respSefaz")
-    public ResponseEntity<String> respSefaz(@RequestBody ArrayList listaNotas) {
+    public ResponseEntity<String> respSefaz(@RequestBody ArrayList<NotasDto> listaNotas) {
         
         automationService.insereNotasBanco(listaNotas); // Método que insere notas no banco
         
