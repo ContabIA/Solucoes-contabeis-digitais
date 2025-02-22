@@ -27,7 +27,7 @@
                         <label class="labelFormCadCnpj" for="">Cadastrar Novo CNPJ</label>
 
                         <div style="display: flex; align-items: baseline;">
-                            <input type="text" placeholder="CNPJ" minlength="14" maxlength="14" class="inputCadCnpj" id="cnpjCadCnpj" name="cnpjEmpresa" required>
+                            <input type="text" placeholder="CNPJ" minlength="18" maxlength="18" class="inputCadCnpj" id="cnpjCadCnpj" name="cnpjEmpresa" oninput="CnpjMask(this)" required>
                             <span id="erroText"></span>
                         </div>
 

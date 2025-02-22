@@ -140,5 +140,3 @@ public class EditCnpjService {
         atualizaEmpresa(dadosEmpresa, empresa);
     }
 }
-
-//está acontecendo um erro quando o usuário muda o cnpj da empresa na url de editar empresa

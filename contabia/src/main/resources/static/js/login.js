@@ -11,10 +11,6 @@ function CnpjMask(input) {
     cnpj = cnpj.replace(/(\d{4})(\d)/, '$1-$2');
     input.value = cnpj.substring(0, 18);
 }
-//quando o usuário clicar na tela, a mensagem de erro some
-login.addEventListener("click", ()=>{
-    erro.style.display = "none";
-});
 
 document.addEventListener("DOMContentLoaded", ()=>{
     if(sessionStorage.getItem("changePassSucess")){
@@ -27,6 +23,11 @@ document.addEventListener("DOMContentLoaded", ()=>{
 document.getElementById("form").addEventListener('submit', (event)=>{
     event.preventDefault();
     loginUser();
+});
+
+login.addEventListener('click', ()=>{
+    erro.style.display  = "none";
+    erro.style.animationName = "none";
 });
 
 function loginUser(){
@@ -51,7 +52,8 @@ function loginUser(){
         }
     })
     .then((respJson) =>{ //se der errado, exibe mensagem de erro
-        document.getElementById("erroText").innerHTML = respJson.resp? respJson.resp : "Erro a fazer login";
-        document.getElementById("erro").style.display  = "block";
-    });
+        document.getElementById("erroText").innerHTML = respJson.resp? respJson.resp : "Senha incorreta!";
+        erro.style.display  = "block";
+        erro.style.animationName = "fadeMessage";
+    })
 }

@@ -1,4 +1,5 @@
 const mainForm = document.getElementById("form");
+const erro = document.getElementById("erro");
 
 function CnpjMask(input) {
     let cnpj = input.value.replace(/\D/g, '');
@@ -8,6 +9,11 @@ function CnpjMask(input) {
     cnpj = cnpj.replace(/(\d{4})(\d)/, '$1-$2');
     input.value = cnpj.substring(0, 18);
 }
+
+mainForm.addEventListener('click', ()=>{
+    erro.style.display  = "none";
+    erro.style.animationName = "none";
+});
 
 mainForm.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -31,14 +37,13 @@ mainForm.addEventListener("submit", (event) => {
         if (resposta.ok){
             window.location = "/login"; //se der certo, redireciona para a tela de login
         } else {
-            
-
             // alert(resposta.resp? resposta.resp : "Erro ao cadastrar usuário");
             return resposta.json();
         }
     })
     .then((respJson) =>{ //se der errado, a mensagem de erro é exibida
         document.getElementById("erroText").innerHTML = respJson.resp? respJson.resp : "Erro ao cadastrar usuário";
-        document.getElementById("erro").style.display  = "block";  
+        erro.style.display  = "block";
+        erro.style.animationName = "fadeMessage";
     });
 })

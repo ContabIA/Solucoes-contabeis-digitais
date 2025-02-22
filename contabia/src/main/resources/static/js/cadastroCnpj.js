@@ -1,5 +1,14 @@
 var count = 0;
 
+function CnpjMask(input) {
+    let cnpj = input.value.replace(/\D/g, '');
+    cnpj = cnpj.replace(/^(\d{2})(\d)/, '$1.$2');
+    cnpj = cnpj.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
+    cnpj = cnpj.replace(/\.(\d{3})(\d)/, '.$1/$2');
+    cnpj = cnpj.replace(/(\d{4})(\d)/, '$1-$2');
+    input.value = cnpj.substring(0, 18);
+}
+
 //sistema para fazer o menu de edição de usuário aparecer e sumir
 document.getElementById("caixa-user").addEventListener('click', ()=>{
     if(count == 0){
@@ -22,21 +31,14 @@ cad.addEventListener("click", ()=>{
 
 function cadastroCnpj(){
 
-    let freqSefaz = document.getElementById("frequenciaSefaz");
-    let freqCndt = document.getElementById("frequenciaCndt");
-    let checkboxSefaz = document.getElementById("checkboxSefaz");
-    let checkboxCndt = document.getElementById("checkboxCndt");
-    let nome = document.getElementById("nomeCadCnpj");
-    let cnpjEmpresaInp = document.getElementById("cnpjCadCnpj");
-
     //corpo da requisição
     let body = {
-        cnpjEmpresa : cnpjEmpresaInp.value,
-        nome : nome.value,
-        checkboxSefaz : checkboxSefaz.checked,
-        checkboxCndt : checkboxCndt.checked,
-        frequenciaSefaz : freqSefaz.value,
-        frequenciaCndt : freqCndt.value
+        cnpjEmpresa : document.getElementById("cnpjCadCnpj").value.replace(/\D/g, ''),
+        nome :  document.getElementById("nomeCadCnpj").value,
+        checkboxSefaz : document.getElementById("checkboxSefaz").checked,
+        checkboxCndt : document.getElementById("checkboxCndt").checked,
+        frequenciaSefaz : document.getElementById("frequenciaSefaz").value,
+        frequenciaCndt : document.getElementById("frequenciaCndt").value
     }
 
     //requisição para cadastrar novo CNPJ
@@ -47,7 +49,7 @@ function cadastroCnpj(){
     })
     .then((resposta)=>{
         if (resposta.ok){
-            window.location = "/listaCnpj"; //se der certo, redireciona para a lista de empresas cadastradas
+            window.location = "/listaCnpj";
         } else {
             return resposta.json() ;
         }
