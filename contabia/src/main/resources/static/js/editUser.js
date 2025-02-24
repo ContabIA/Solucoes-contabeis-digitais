@@ -1,4 +1,4 @@
-var form = document.getElementById("form");
+var login = document.getElementById("login");
 var erro = document.getElementById("erro");
 
 function CnpjMask(input) {
@@ -17,17 +17,7 @@ form.addEventListener('click', ()=>{
 
 document.addEventListener('DOMContentLoaded', ()=>{
     CnpjMask(document.getElementById("cnpjCad"));
-});
-
-function editUser(){
-
-    //corpo da requisição
-    let body = {
-        cnpj : document.getElementById("cnpjCad").value,
-        email : document.getElementById("emailCad").value,
-        senhaSefaz : document.getElementById("senhaSefazCad").value,
-        userSefaz: document.getElementById("sefazCad").value,
-    }
+})
 
     //requisição para atualizar os dados do usuário
     fetch('http://localhost:8080/editUser', {
@@ -44,10 +34,5 @@ function editUser(){
     })
     .then((respJson) =>{ //se der errado, a mensagem de erro é exibida
         document.getElementById("erroText").innerHTML = respJson.resp
-        erro.style.display  = "block";
-        erro.style.animationName = "fadeMessage";
+        document.getElementById("erro").style.display  = "block"
     })
-}
-
-
-

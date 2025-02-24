@@ -13,7 +13,7 @@ import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 
-import com.contabia.contabia.infra.ExceptionMessage;
+import com.contabia.contabia.infra.ResponseMessage;
 import com.contabia.contabia.models.dto.ChangePasswordDto;
 import com.contabia.contabia.models.entity.ResetPasswordToken;
 import com.contabia.contabia.models.entity.UserModel;
@@ -40,7 +40,7 @@ public class ResetPasswordService {
     @Autowired
     private ValidateResetPassTokenService validatePassToken;
 
-    public ResponseEntity<ExceptionMessage> saveNewPassword(ChangePasswordDto changePassData){
+    public ResponseEntity<ResponseMessage> saveNewPassword(ChangePasswordDto changePassData){
         Optional<ResetPasswordToken> optionalToken = resetPasswordTokenRepository.findByToken(changePassData.token());
 
         if(optionalToken.isPresent()){
@@ -53,11 +53,11 @@ public class ResetPasswordService {
                     optionalToken.get().setExpiryDate(Calendar.getInstance().getTime());
                     resetPasswordTokenRepository.save(optionalToken.get());
 
-                    return ResponseEntity.ok().body(new ExceptionMessage(HttpStatus.OK, "senha atualizada"));
+                    return ResponseEntity.ok().body(new ResponseMessage(HttpStatus.OK, "senha atualizada"));
                 }
             }
         }
-        return ResponseEntity.badRequest().body(new ExceptionMessage(HttpStatus.BAD_REQUEST, "token inválido"));
+        return ResponseEntity.badRequest().body(new ResponseMessage(HttpStatus.BAD_REQUEST, "token inválido"));
     }
 
     public void forgotPassword(String userEmailAddress, HttpServletRequest request){

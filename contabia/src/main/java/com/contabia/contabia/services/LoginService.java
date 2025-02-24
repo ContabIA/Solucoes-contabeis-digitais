@@ -12,8 +12,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
-import com.contabia.contabia.exceptions.CnpjNotFoundException;
-import com.contabia.contabia.infra.ExceptionMessage;
+import com.contabia.contabia.infra.ResponseMessage;
 import com.contabia.contabia.models.dto.LoginDto;
 import com.contabia.contabia.models.entity.ClientModel;
 import com.contabia.contabia.repository.ClientRepository;
@@ -35,10 +34,12 @@ public class LoginService {
     @Autowired
     private TokenService tokenService;
     
-    public ResponseEntity<ExceptionMessage> authenticationLogin(LoginDto dadosLogin, HttpServletResponse response){
+    public ResponseEntity<ResponseMessage> authenticationLogin(LoginDto dadosLogin, HttpServletResponse response){
         
         //variável que verifica se o CNPJ digitado está cadastrado no sistema 
         Optional<ClientModel> clientOptional = clientRepository.findByUsername(dadosLogin.cnpj());
+
+        ResponseEntity<ResponseMessage> genericErrorMessage = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(HttpStatus.BAD_REQUEST, "CNPJ ou senha incorretos"));
 
         if(clientOptional.isPresent()){
             Authentication authenticationRequest = UsernamePasswordAuthenticationToken.unauthenticated(dadosLogin.cnpj(), dadosLogin.senha());
@@ -53,14 +54,14 @@ public class LoginService {
                 response.addCookie(generateAuthCookie(token));
             }
             catch(BadCredentialsException e){
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ExceptionMessage(HttpStatus.BAD_REQUEST, e.getMessage()));
+                return genericErrorMessage;
             }
             
             //return "redirect:/home";
-            return ResponseEntity.ok().body(new ExceptionMessage(HttpStatus.OK, "ok"));
+            return ResponseEntity.ok().body(new ResponseMessage(HttpStatus.OK, "ok"));
         }
 
-        throw new CnpjNotFoundException(); //caso o cnpj não esteja cadastrado no sistema
+        return genericErrorMessage;
     }
 
     private Cookie generateAuthCookie(String token){

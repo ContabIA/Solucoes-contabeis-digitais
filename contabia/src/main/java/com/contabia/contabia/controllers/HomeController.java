@@ -13,7 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.contabia.contabia.infra.ExceptionMessage;
+import com.contabia.contabia.infra.ResponseMessage;
 import com.contabia.contabia.models.dto.AltDto;
 import com.contabia.contabia.services.HomeService;
 
@@ -55,12 +55,12 @@ public class HomeController {
 
     @PutMapping
     @Transactional
-    public ResponseEntity<ExceptionMessage> editNovo(@RequestParam("tipoAlt") String tipoAlt, Model model, @Valid @RequestBody Map<String, ArrayList<Long>> resp) {
+    public ResponseEntity<ResponseMessage> editNovo(@RequestParam("tipoAlt") String tipoAlt, Model model, @Valid @RequestBody Map<String, ArrayList<Long>> resp) {
 
         for (Long idAlt : resp.get("listaIds")) {
             homeService.excluiAlteracao(idAlt, tipoAlt); // Função que remove a alteração da tela inicial após ser vista
         }
         
-        return ResponseEntity.ok().body(new ExceptionMessage(HttpStatus.OK, "ok")); // Retorna o cnpj do usuário para o JS para que ele faça a requisição para o GET da rota home.
+        return ResponseEntity.ok().body(new ResponseMessage(HttpStatus.OK, "ok")); // Retorna o cnpj do usuário para o JS para que ele faça a requisição para o GET da rota home.
     }
 }

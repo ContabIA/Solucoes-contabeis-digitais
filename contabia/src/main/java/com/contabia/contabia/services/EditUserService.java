@@ -11,7 +11,7 @@ import org.springframework.ui.Model;
 import com.contabia.contabia.exceptions.CnpjRegisteredException;
 import com.contabia.contabia.exceptions.EmailRegisteredException;
 import com.contabia.contabia.exceptions.UserSefazRegisteredException;
-import com.contabia.contabia.infra.ExceptionMessage;
+import com.contabia.contabia.infra.ResponseMessage;
 import com.contabia.contabia.models.dto.EditUserDto;
 import com.contabia.contabia.models.entity.UserModel;
 import com.contabia.contabia.repository.UserRepository;
@@ -35,7 +35,7 @@ public class EditUserService {
         }
     }
 
-    public ResponseEntity<ExceptionMessage> editarUsuario(String cnpjUser, EditUserDto userDto){
+    public ResponseEntity<ResponseMessage> editarUsuario(String cnpjUser, EditUserDto userDto){
 
         Optional<UserModel> userOptional = userRepository.findByUsername(cnpjUser);
         Optional<UserModel> userByCnpj = userRepository.findByUsername(userDto.cnpj());
@@ -59,6 +59,6 @@ public class EditUserService {
         user.editUser(userDto);
         userRepository.save(user);
         
-        return ResponseEntity.ok().body(new ExceptionMessage(HttpStatus.OK, "ok"));
+        return ResponseEntity.ok().body(new ResponseMessage(HttpStatus.OK, "ok"));
     }
 }

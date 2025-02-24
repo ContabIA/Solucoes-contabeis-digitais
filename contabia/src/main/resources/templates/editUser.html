@@ -26,7 +26,7 @@
                 <h1>Editar Conta</h1>
 
                 <form action="#" method="POST" class="form" id="form">
-                    <input th:attr="value=${usuario.cnpj}" type="text" name="cnpj" placeholder="CNPJ" minlength="18" maxlength="18" class="inputs user" id="cnpjCad" oninput="CnpjMask(this)" required>
+                    <input th:attr="value=${usuario.cnpj}" type="text" name="cnpj" placeholder="CNPJ" minlength="18" maxlength="18" oninput="CnpjMask(this)"class="inputs user" id="cnpjCad" required>
 
                     <input th:attr="value=${usuario.email}" type="email" name="email" placeholder="E-mail" class="inputs email" id="emailCad" required>
 

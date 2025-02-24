@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.contabia.contabia.infra.ExceptionMessage;
+import com.contabia.contabia.infra.ResponseMessage;
 import com.contabia.contabia.models.dto.EditUserDto;
 import com.contabia.contabia.services.EditUserService;
 
@@ -34,7 +34,7 @@ public class EditUserController {
 
     @PutMapping
     @Transactional
-    public ResponseEntity<ExceptionMessage> criarEdicao(Authentication authentication, @Valid @RequestBody EditUserDto editUserDto){
+    public ResponseEntity<ResponseMessage> criarEdicao(Authentication authentication, @Valid @RequestBody EditUserDto editUserDto){
         var cnpjUser = authentication.getName();
         return editUserService.editarUsuario(cnpjUser, editUserDto);
     }

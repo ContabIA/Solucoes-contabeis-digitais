@@ -11,6 +11,6 @@ import org.springframework.http.HttpStatus;
  *  resp -> mensagem de erro em casos de falha ou "ok" em casos de sucesso
 */
 
-public record ExceptionMessage(HttpStatus status, String resp) {
+public record ResponseMessage(HttpStatus status, String resp) {
 
 }

@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.contabia.contabia.infra.ExceptionMessage;
+import com.contabia.contabia.infra.ResponseMessage;
 import com.contabia.contabia.models.dto.RegCnpjDto;
 import com.contabia.contabia.services.RegCnpjService;
 
@@ -43,7 +43,7 @@ public class RegCnpjController {
     
     @PostMapping
     @Transactional
-    public ResponseEntity<ExceptionMessage> addEmpresa(Authentication authentication, @Valid @RequestBody RegCnpjDto dadosEmpresa) {
+    public ResponseEntity<ResponseMessage> addEmpresa(Authentication authentication, @Valid @RequestBody RegCnpjDto dadosEmpresa) {
         var cnpjUser = authentication.getName();
         return regCnpjService.cadEmpresa(cnpjUser, dadosEmpresa);
     }

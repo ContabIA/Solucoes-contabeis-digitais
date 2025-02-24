@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.contabia.contabia.infra.ExceptionMessage;
+import com.contabia.contabia.infra.ResponseMessage;
 import com.contabia.contabia.models.dto.LoginDto;
 import com.contabia.contabia.services.LoginService;
 
@@ -38,7 +38,7 @@ public class LoginController {
     }
 
     @PostMapping
-    public ResponseEntity<ExceptionMessage> autenticar(@Valid @RequestBody LoginDto dadosLogin, HttpServletResponse response) {
+    public ResponseEntity<ResponseMessage> autenticar(@Valid @RequestBody LoginDto dadosLogin, HttpServletResponse response) {
         return loginService.authenticationLogin(dadosLogin, response);
     }
 

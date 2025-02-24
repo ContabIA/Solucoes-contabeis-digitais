@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.contabia.contabia.exceptions.CnpjRegisteredException;
-import com.contabia.contabia.infra.ExceptionMessage;
+import com.contabia.contabia.infra.ResponseMessage;
 import com.contabia.contabia.models.dto.RegCnpjDto;
 import com.contabia.contabia.models.entity.ConsultasModel;
 import com.contabia.contabia.models.entity.EmpresaModel;
@@ -32,7 +32,10 @@ public class RegCnpjService {
     @Autowired
     private ConsultasRepository consultaRepository; //repository das consultas
     
-    public ResponseEntity<ExceptionMessage> cadEmpresa(String cnpjUser, RegCnpjDto dadosEmpresa){
+    public ResponseEntity<ResponseMessage> cadEmpresa(String cnpjUser, RegCnpjDto dadosEmpresa){
+        
+        System.out.println("'abrobrinha'");
+
         Optional<UserModel> user = userRepository.findByUsername(cnpjUser);
 
         //verifica se o CNPJ informado já está cadastrado no sistema
@@ -56,6 +59,6 @@ public class RegCnpjService {
             }
         }
 
-        return ResponseEntity.ok().body(new ExceptionMessage(HttpStatus.OK, "ok"));
+        return ResponseEntity.ok().body(new ResponseMessage(HttpStatus.OK, "ok"));
     }
 }

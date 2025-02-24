@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.contabia.contabia.infra.ExceptionMessage;
+import com.contabia.contabia.infra.ResponseMessage;
 import com.contabia.contabia.models.dto.ChangePasswordDto;
 import com.contabia.contabia.services.ResetPasswordService;
 import com.contabia.contabia.services.ValidateResetPassTokenService;
@@ -47,7 +47,7 @@ public class ResetPasswordController {
     }
 
     @PostMapping("/novaSenha")
-    public ResponseEntity<ExceptionMessage> changePasswordEndpoint(@RequestBody ChangePasswordDto changePasswordDto, RedirectAttributes redirectAtt) {
+    public ResponseEntity<ResponseMessage> changePasswordEndpoint(@RequestBody ChangePasswordDto changePasswordDto, RedirectAttributes redirectAtt) {
         return resetPasswordService.saveNewPassword(changePasswordDto);
     }
     

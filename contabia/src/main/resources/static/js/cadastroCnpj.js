@@ -31,17 +31,15 @@ cad.addEventListener("click", ()=>{
 
 function cadastroCnpj(){
 
-    //corpo da requisição
     let body = {
         cnpjEmpresa : document.getElementById("cnpjCadCnpj").value.replace(/\D/g, ''),
-        nome :  document.getElementById("nomeCadCnpj").value,
+        nome : document.getElementById("nomeCadCnpj").value,
         checkboxSefaz : document.getElementById("checkboxSefaz").checked,
         checkboxCndt : document.getElementById("checkboxCndt").checked,
         frequenciaSefaz : document.getElementById("frequenciaSefaz").value,
         frequenciaCndt : document.getElementById("frequenciaCndt").value
     }
 
-    //requisição para cadastrar novo CNPJ
     fetch('http://localhost:8080/cadastroCnpj', {
         method:"POST",
         body:JSON.stringify(body),
@@ -55,6 +53,9 @@ function cadastroCnpj(){
         }
     })
     .then((respJson) =>{ //se der errado, a mensagem de erro é exibida
+
+        console.log(respJson)
+
         document.getElementById("erroText").innerHTML = respJson.resp ? respJson.resp : "Erro ao cadastrar CNPJ";
         document.getElementById("erroText").style.display  = "block";  
     });
