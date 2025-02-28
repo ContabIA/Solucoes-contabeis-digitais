@@ -1,9 +1,10 @@
 package com.contabia.contabia.controllers;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -36,13 +37,14 @@ public class ResetPasswordController {
     }
 
     @GetMapping("/novaSenha")
-    public String renderChangePasswordPage(@RequestParam String token, Model model) {
+    public String renderChangePasswordPage(@RequestParam String token, RedirectAttributes redirectAtt) {
         var isValid = validatePassTokenService.isValidToken(token);
 
         if(isValid){
             return "novaSenha";
         }
         
+        redirectAtt.addFlashAttribute("invalidToken", true);
         return "redirect:/login";
     }
 
@@ -52,8 +54,7 @@ public class ResetPasswordController {
     }
     
     @PostMapping
-    public String forgotPasswordEndpoint(@RequestParam String userEmail, HttpServletRequest request) {
-        resetPasswordService.forgotPassword(userEmail, request);
-        return "forgotPassword";
+    public ResponseEntity<ResponseMessage> forgotPasswordEndpoint(@RequestBody Map<String, String> userEmail, HttpServletRequest request) {
+        return resetPasswordService.forgotPassword(userEmail.get("userEmail"), request);
     }
 }

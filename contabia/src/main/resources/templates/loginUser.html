@@ -25,6 +25,7 @@
             
             <div id="erro" class="erro"><span id="erroText"></span></div>
             <div id="changePassSucessDiv"><span id="messageChangePassSucess">Senha alterada com sucesso!</span></div>
+            <div id="invalidToken" class="erro" style="display: block; animation-name: fadeMessage;" th:if="${invalidToken == true}"><span id="erroText"></span>Link expirado!</div>
 
             <section class="login" id="login">
 

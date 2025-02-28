@@ -33,8 +33,6 @@ public class RegCnpjService {
     private ConsultasRepository consultaRepository; //repository das consultas
     
     public ResponseEntity<ResponseMessage> cadEmpresa(String cnpjUser, RegCnpjDto dadosEmpresa){
-        
-        System.out.println("'abrobrinha'");
 
         Optional<UserModel> user = userRepository.findByUsername(cnpjUser);
 

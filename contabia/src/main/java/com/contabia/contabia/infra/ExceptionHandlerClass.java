@@ -1,5 +1,6 @@
 package com.contabia.contabia.infra;
 
+import org.eclipse.angus.mail.util.MailConnectException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -54,5 +55,10 @@ public class ExceptionHandlerClass{
             }
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(HttpStatus.BAD_REQUEST, "Erro de validação"));
+    }
+
+    @ExceptionHandler(MailConnectException.class)
+    private ResponseEntity<ResponseMessage> mailConnectFailedHandler(MailConnectException e){
+        return ResponseEntity.status(HttpStatus.REQUEST_TIMEOUT).body(new ResponseMessage(HttpStatus.REQUEST_TIMEOUT, "Erro ao enviar e-mail, verifique sua conexão com a internet!"));
     }
 }

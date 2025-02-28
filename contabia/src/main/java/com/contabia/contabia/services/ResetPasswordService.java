@@ -60,7 +60,7 @@ public class ResetPasswordService {
         return ResponseEntity.badRequest().body(new ResponseMessage(HttpStatus.BAD_REQUEST, "token inválido"));
     }
 
-    public void forgotPassword(String userEmailAddress, HttpServletRequest request){
+    public ResponseEntity<ResponseMessage> forgotPassword(String userEmailAddress, HttpServletRequest request){
         Optional<UserModel> optionalUser = userRepository.findByEmail(userEmailAddress);
 
 
@@ -69,10 +69,15 @@ public class ResetPasswordService {
 
             if(optionalToken.isPresent()){
                 updateAndSendPasswordToken(optionalUser.get(), optionalToken.get(), request);
+                return ResponseEntity.ok().body(new ResponseMessage(HttpStatus.OK, "ok"));
             }
             else{
                 createAndSendPasswordToken(optionalUser.get(), request);
+                return ResponseEntity.ok().body(new ResponseMessage(HttpStatus.OK, "ok"));
             }
+        }
+        else{
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(HttpStatus.BAD_REQUEST, "O e-mail enviado não está cadastrado no contabIA!"));
         }
     }
 

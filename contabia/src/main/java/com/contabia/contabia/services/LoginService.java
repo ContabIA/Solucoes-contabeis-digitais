@@ -47,8 +47,6 @@ public class LoginService {
             try{
                 Authentication authenticationResponse = authenticationManager.authenticate(authenticationRequest);
 
-                System.out.println(authenticationResponse.isAuthenticated());
-
                 var token = tokenService.generateToken((User) authenticationResponse.getPrincipal());
 
                 response.addCookie(generateAuthCookie(token));
