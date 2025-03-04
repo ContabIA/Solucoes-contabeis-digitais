@@ -1,8 +1,9 @@
 from exceptions import MaxRetrysExceded
 from time import sleep
+from typing import Any, Callable
 
 
-def retry_while_error(f: function, *args, exception:Exception | None = Exception, max_retrys: int|None = 10, sep_time: float|None = 1, log: bool = True, retry_message: str|None = None, show_error: bool = True, stop_if_wrogh_error: bool = False, **kwargs ):
+def retry_while_error(f: Callable, *args, exception:Exception | None = Exception, max_retrys: int|None = 10, sep_time: float|None = 1, log: bool = True, retry_message: str|None = None, show_error: bool = True, stop_if_wrogh_error: bool = False, **kwargs ):
     """função que usa a função repassada 'max_retry' vezes até que a função não levante a exeção 'exception'
 
     Args:

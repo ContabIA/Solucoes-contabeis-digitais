@@ -11,7 +11,7 @@ import PyPDF2
 from helpers import retry_while_error
 
 # Configuração do ChromeDriver
-service = Service(ChromeDriverManager.install())
+service = Service(ChromeDriverManager().install())
 
 # Configuração das opções do Chrome
 chrome_options = Options()
@@ -29,35 +29,25 @@ from twocaptcha import TwoCaptcha
 solver = TwoCaptcha("31693569b91ed643587f2531785ae020")
 
 async def solve_captcha(img_src: str, **kargs):
-    kwargs_get_captcha_img: dict = {
-        "max_retrys" : 3,
-        "sep_time" : 0.1,
-        "retry_message" : "unable to find captcha image - Retrying...",
-        "show_error": False
-    }
-    kwargs_get_captcha_img.update(kargs.get("kargs_get_captcha_img", {}))
     
     kargs_captcha_solver: dict = {
         "max_retrys" : 3,
         "sep_time" : 0.1,
         "retry_message" : "error while solving the captcha - Retrying...",
     }
-    kargs_captcha_solver.update()
+    kargs_captcha_solver.update(kargs.get("kargs_captcha_solver", {}))
+    
     
     img_path = f"{download_dir}/captcha.png"
     
+    await WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//img[@src='" + img_src + "']")))    
+    await driver.get(img_src)
+    await driver.save_screenshot(img_path)
     
-    retry_while_error(lambda: WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//img[@src='" + img_src + "']"))), **kwargs_get_captcha_img)
+    async def solve_captcha_envelope():
+        await solver.normal(img_path)
     
-    try:
-        driver.save_screenshot(img_path)
-    except Exception as e:
-        print("error: " + er
-        ...
-    driver.get(img_src)
-    time.sleep(1)
-    driver.save_screenshot(img_path)
-    captcha = await solver.normal(img_path)
+    captcha = retry_while_error(solve_captcha_envelope, **kargs_captcha_solver)
     
     return captcha["code"]
 

@@ -1,3 +1,5 @@
+from typing import Any
+from objs.operacaoModulo import OperacaoSelenium
 
 
 class Operacao:
@@ -9,7 +11,7 @@ class Operacao:
         self.run_args = kwargs
         self.debug = kwargs.get("debug", False)
         
-    async def get_input_data(self):
+    async def get_input_data(self) -> Any:
         raise NotImplementedError("Operacao.get_input_data")
     
     async def run(self):
@@ -18,5 +20,5 @@ class Operacao:
     async def send_output_data(self):
         raise NotImplementedError("Operacao.send_output_data")
     
-    async def retry(self):
+    async def retry(self, module: OperacaoSelenium, retrys: int = 3, *args, **kwargs) -> Any:
         raise NotImplementedError("Operacao.retry")

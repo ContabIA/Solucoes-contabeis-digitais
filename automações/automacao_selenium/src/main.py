@@ -1,11 +1,10 @@
-from operacoes.operacoes_enum import OperacoesDict
-from operacoes.operacoes_enum import OperacoesEnum
+from operacoes.operacoes_enum import OperacoesDict, OperacoesEnum
 from automações.automacao_selenium.src.objs.operacaoHandler import OperacaoHandler
 
 
 DEFAULT_RUN_ARGS = {
     "recursive": False,
-    "paralel": False,
+    "paralel": True,
     "debug": False,
     "operacoes": [
         OperacoesEnum.NOTAS_SEFAZ,
@@ -31,7 +30,7 @@ def setup_operacoes(**run_args) -> OperacaoHandler:
     operacoes_run_args = run_args.get("operacoes_run_args")
     
     for operacao in operacoes:
-        if operacao not in OperacoesDict:
+        if operacao not in OperacoesEnum:
             raise ValueError(f"Operacao '{operacao}' não encontrada em OperacoesDict")
         
         
