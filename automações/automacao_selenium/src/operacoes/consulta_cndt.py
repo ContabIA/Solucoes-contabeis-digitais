@@ -28,7 +28,7 @@ class ConsultaCNDT(Operacao):
             num_dias = datetime.date.fromordinal(datetime.datetime(data.year, data.month%12+1, 1).toordinal() -1).day
         elif tipo == "anual": 
             quant_digitos = 3
-            index_day = datetime.date.fromordinal(data.toordinal() - datetime.datetime(data.year, 1, 1).toordinal() - 1)
+            index_day = data.toordinal() - datetime.date(data.year, 1, 1).toordinal() + 1
             num_dias = 365 if data.year%4 != 0 else 366
         else:
             raise ValueError(f"Tipo {tipo} não é válido.")
