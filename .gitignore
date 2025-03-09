@@ -4,6 +4,7 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+**/__pycache__/
 */node_modules
 .vscode/
 */cypress/fixtures
