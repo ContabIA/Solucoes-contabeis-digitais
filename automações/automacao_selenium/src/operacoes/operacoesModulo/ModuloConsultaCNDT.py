@@ -23,46 +23,59 @@ chrome_options.add_experimental_option("prefs", {
     "safebrowsing.enabled": True
 })
 
-driver = webdriver.Chrome(service=service, options=chrome_options)
 
 from twocaptcha import TwoCaptcha
 solver = TwoCaptcha("31693569b91ed643587f2531785ae020")
 
-async def solve_captcha(img_src: str, **kargs):
-    
-    kargs_captcha_solver: dict = {
-        "max_retrys" : 3,
-        "sep_time" : 0.1,
-        "retry_message" : "error while solving the captcha - Retrying...",
-    }
-    kargs_captcha_solver.update(kargs.get("kargs_captcha_solver", {}))
-    
-    
-    img_path = f"{download_dir}/captcha.png"
-    
-    await WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//img[@src='" + img_src + "']")))    
-    await driver.get(img_src)
-    await driver.save_screenshot(img_path)
-    
-    async def solve_captcha_envelope():
-        await solver.normal(img_path)
-    
-    captcha = retry_while_error(solve_captcha_envelope, **kargs_captcha_solver)
-    
-    return captcha["code"]
+
+DEFAULT_RUN_DATA: dict = {
+    "url_pagina_inicial": "",
+    "pagina_inicial_xpath_gerar_certidao_button": "",
+    "pagina_gerar_certidao_xpath_cnpj_input": "",
+    "pagina_gerar_certidao_xpath_gerar_certidao_button": "",
+    "pagina_gerar_certidao_xpath_captcha_img": "",
+    "pagina_gerar_certidao_xpath_captcha_text_input": "",
+    "quant_retry_solve_captcha": 3
+}
+
 
 class ModuloConsultaCNDT:
-    def __init__(self, cnpj: str):
-        self.cnpj = cnpj
+    def __init__(self, cnpj: str, run_data: dict):
+        self.cnpj = cnpj        
+        self.run_data = DEFAULT_RUN_DATA
+        self.run_data.update(run_data)
+        
+        
+    async def solve_captcha(self, img_src):
+        
+        c = self.run_data["quant_retry_solve_captcha"]
+        while c >= 0:
+            try:
+                return await solver.normal(file = img_src)
+
+            except:
+                pass
+        
 
     def run(self):
+        driver = webdriver.Chrome(service=service, options=chrome_options)
         driver.get("https://cndt-certidao.tst.jus.br/inicio.faces")
+        
+        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, self.run_data["pagina_inicial_xpath_gerar_certidao_button"])))
+        driver.find_element(By.ByXPath, self.run_data["pagina_inicial_xpath_gerar_certidao_button"]).click()
+        
+        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, self.run_data["pagina_gerar_certidao_xpath_cnpj_input"])))
+        driver.find_element(By.ByXPath, self.run_data["pagina_gerar_certidao_xpath_cnpj_input"]).send_keys(self.cnpj)
+        
+        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, self.run_data["pagina_gerar_certidao_xpath_captcha_img"])))
+        captcha_result = self.solve_captcha(driver.find_element(By.ByXPath, self.run_data["pagina_gerar_certidao_xpath_captcha_img"]).src)
 
-        driver.find_element(By.NAME, "j_id_jsp_992698495_2:j_id_jsp_992698495_3").click()
+        driver.find_element(By.Xpath, self.run_data["pagina_gerar_certidao_xpath_captcha_text_input"]).send_keys(captcha_result)
         
-        driver.find_element(By.ID, "gerarCertidaoForm:cpfCnpj").send_keys(self.cnpj)
+        driver.find_element(By.Xpath, self.run_data["pagina_gerar_certidao_xpath_gerar_certidao_button"]).click()     
         
-        solve_captcha(driver.find_element(By.ID, "idImgBase64").get_attribute("src"))
+        driver.quit()
         
+    
         
         

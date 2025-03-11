@@ -9,3 +9,5 @@ target/
 */cypress/fixtures
 */cypress/screenshots
 node_modules
+
+*/__pycache__
