@@ -1,4 +1,4 @@
-from automation.src.enums.operationEnum import operationsDict
+from enums.operationEnum import operationsDict
 
 async def operations_in_sequence(run_args : dict):
     operations_list = run_args.get("operations")

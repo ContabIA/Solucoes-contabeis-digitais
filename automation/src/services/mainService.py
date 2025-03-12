@@ -1,4 +1,4 @@
-from automation.src.enums.operationEnum import OperationEnum, operationsDict
+from enums.operationEnum import OperationEnum, operationsDict
 from operations.handler.operationHandler import OperationHandler
 from run_args import DEFAULT_RUN_ARGS
 

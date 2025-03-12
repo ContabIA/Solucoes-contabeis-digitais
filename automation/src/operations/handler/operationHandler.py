@@ -1,5 +1,4 @@
 from ..operationInterface import OperationInterface
-from automation.src.enums.operationEnum import OperationEnum
 from services.operationHandlerService import operations_in_sequence
 from typing import Any
 

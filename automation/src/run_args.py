@@ -1,4 +1,4 @@
-from automation.src.enums.operationEnum import OperationEnum
+from enums.operationEnum import OperationEnum
 
 DEFAULT_RUN_ARGS = {
     "sequence": True,
