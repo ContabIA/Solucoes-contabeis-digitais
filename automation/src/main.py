@@ -1,4 +1,4 @@
-from services.mainService import setup_operations, update_runArgs
+from services.mainService import setup_operationHandler, update_runArgs
 
 async def main(runArgs):
 
@@ -8,7 +8,7 @@ async def main(runArgs):
     if new_run_args.get("debug") == True: 
         print("automation/src/main.py - main - args:", new_run_args)
     
-    operationHandler = setup_operations(new_run_args)
+    operationHandler = setup_operationHandler(new_run_args)
     
     await operationHandler.run_operations()
     

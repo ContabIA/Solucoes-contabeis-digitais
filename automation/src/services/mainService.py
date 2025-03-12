@@ -15,7 +15,7 @@ def update_runArgs(runArgs : dict) -> dict:
     return run_args
 
 
-def setup_operations(runArgs : dict) -> OperationHandler:
+def setup_operationHandler(runArgs : dict) -> OperationHandler:
     operations_list = runArgs.get("operations")
 
     if(runArgs.get("debug")):
@@ -26,9 +26,6 @@ def setup_operations(runArgs : dict) -> OperationHandler:
             raise ValueError(f"Operacao '{operation}' não encontrada em OperationsDict")
     
     operationHandler = OperationHandler(runArgs)
-    
-    for operation in operations_list:
-        operationHandler.operations = operationsDict[operation]()
 
     if(runArgs.get("debug")):
         print("automation/src/services/mainService.py - mainService.setup_operations - operationHandler created") 

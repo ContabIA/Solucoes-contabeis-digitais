@@ -28,7 +28,10 @@ async def root(body: Optional[BodyRequest]):
     
     print("automation/src/app.py - root")
 
-    await main(runArgsBody)
+    try:
+        await main(runArgsBody)
+    except ValueError:
+        return JSONResponse(content={"message": "verifique se as operações listadas existem"}, status_code=400)
 
     return JSONResponse(content={"message":"operação concluida com sucesso!"}, status_code=200)
 
