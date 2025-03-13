@@ -4,15 +4,13 @@ from run_args import DEFAULT_RUN_ARGS
 
 
 def update_runArgs(runArgs : dict) -> dict:
-    new_run_args = {k : v for k, v in runArgs.items() if v != None}
-    run_args = DEFAULT_RUN_ARGS
+    new_run_args = {k : v for k, v in DEFAULT_RUN_ARGS.items() if v != None}
+    new_run_args.update(runArgs)
 
-    run_args.update(new_run_args)
-
-    if(runArgs.get("debug")):
+    if(new_run_args.get("debug")):
         print("automation/src/services/mainService.py - mainService.update_runArgs - updated run_args: ", run_args)
 
-    return run_args
+    return new_run_args
 
 
 def setup_operationHandler(runArgs : dict) -> OperationHandler:
