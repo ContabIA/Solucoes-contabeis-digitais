@@ -8,7 +8,7 @@ def update_runArgs(runArgs : dict) -> dict:
     new_run_args.update(runArgs)
 
     if(new_run_args.get("debug")):
-        print("automation/src/services/mainService.py - mainService.update_runArgs - updated run_args: ", run_args)
+        print("automation/src/services/mainService.py - mainService.update_runArgs - updated run_args: ", new_run_args)
 
     return new_run_args
 
