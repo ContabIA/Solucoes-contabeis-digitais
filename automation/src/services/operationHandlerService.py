@@ -5,5 +5,5 @@ async def operations_in_sequence(run_args : dict):
     
     for o in operations_list:
         operation = operationsDict.get(o)(run_args)
-        await operation.oi()
+        await operation.test()
 

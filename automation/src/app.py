@@ -12,6 +12,7 @@ class RunArgsBody(BaseModel):
     recursive: bool | None = None
     paralel: bool | None = None
     debug: bool | None = None
+    frequency: int | None = None
     operations: list | None = None
     operations_run_args: dict | None = None
 
