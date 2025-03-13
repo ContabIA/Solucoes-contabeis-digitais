@@ -12,7 +12,6 @@ import com.contabia.contabia.exceptions.CnpjNotFoundException;
 import com.contabia.contabia.exceptions.CnpjRegisteredException;
 import com.contabia.contabia.exceptions.EmailRegisteredException;
 import com.contabia.contabia.exceptions.IncorrectPasswordException;
-import com.contabia.contabia.exceptions.UserSefazRegisteredException;
 
 /*
  * Classe ControllerAdvice responsável por realizar o tratamento dos erros e retornar as mensagens na forma de um record ResponseMessage.
@@ -28,11 +27,6 @@ public class ExceptionHandlerClass{
 
     @ExceptionHandler(EmailRegisteredException.class) //tratamento no caso de uma EmailRegisteredException
     private ResponseEntity<ResponseMessage> emailRegisteredHandler(EmailRegisteredException e){
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(HttpStatus.BAD_REQUEST, e.getMessage()));
-    }
-
-    @ExceptionHandler(UserSefazRegisteredException.class) //tratamento no caso de uma UserSefazRegisteredException
-    private ResponseEntity<ResponseMessage> userSefazRegisteredHandler(UserSefazRegisteredException e){
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(HttpStatus.BAD_REQUEST, e.getMessage()));
     }
 

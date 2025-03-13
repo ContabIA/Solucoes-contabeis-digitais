@@ -13,13 +13,7 @@ public record EditUserDto(
 
     @NotBlank
     @Email
-    String email,
-
-    @NotBlank
-    String senhaSefaz,
-
-    @NotBlank
-    String userSefaz
+    String email
 ) {
 
 }

@@ -29,6 +29,9 @@ public record NotasDto(
     Long id,
 
     @NotBlank
+    int numero,
+
+    @NotBlank
     LocalDate data,
 
     @NotBlank

@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 
 import com.contabia.contabia.exceptions.CnpjRegisteredException;
 import com.contabia.contabia.exceptions.EmailRegisteredException;
-import com.contabia.contabia.exceptions.UserSefazRegisteredException;
 import com.contabia.contabia.infra.ResponseMessage;
 import com.contabia.contabia.models.dto.EditUserDto;
 import com.contabia.contabia.models.entity.UserModel;
@@ -30,7 +29,7 @@ public class EditUserService {
         
         if (userOptional.isPresent()){
             UserModel user = userOptional.get();
-            EditUserDto editUserDto = new EditUserDto(user.getUsername(), user.getEmail(), user.getSenhaSefaz(), user.getUserSefaz());
+            EditUserDto editUserDto = new EditUserDto(user.getUsername(), user.getEmail());
             model.addAttribute("usuario", editUserDto);
         }
     }
@@ -40,7 +39,6 @@ public class EditUserService {
         Optional<UserModel> userOptional = userRepository.findByUsername(cnpjUser);
         Optional<UserModel> userByCnpj = userRepository.findByUsername(userDto.cnpj());
         Optional<UserModel> userByEmail = userRepository.findByEmail(userDto.email());
-        Optional<UserModel> userByUserSefaz = userRepository.findByUserSefaz(userDto.userSefaz());
 
         UserModel user = userOptional.get();
 
@@ -50,10 +48,6 @@ public class EditUserService {
 
         else if (userByEmail.isPresent() && !(userDto.email().equals(user.getEmail()))) {
             throw new EmailRegisteredException();
-        }
-
-        else if (userByUserSefaz.isPresent() && !(userDto.userSefaz().equals(user.getUserSefaz()))) {
-            throw new UserSefazRegisteredException();
         }
 
         user.editUser(userDto);

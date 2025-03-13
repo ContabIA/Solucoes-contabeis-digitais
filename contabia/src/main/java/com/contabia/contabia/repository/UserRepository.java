@@ -15,8 +15,4 @@ public interface UserRepository extends JpaRepository<UserModel, Long>{
 
     // Consulta SQL que retorna um usuário dado o email dele.
     Optional<UserModel> findByEmail(String email);
-
-    // Consulta SQL que retorna um usuário dado o userSefaz dele.
-    Optional<UserModel> findByUserSefaz(String userSefaz);
-
 }

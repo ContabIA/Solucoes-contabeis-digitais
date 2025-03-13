@@ -37,12 +37,6 @@ public class UserModel extends ClientModel{
 
     @Column(unique = true, nullable = false)
     private String email;
-
-    @Column(unique = false, nullable = false)
-    private String senhaSefaz;
-
-    @Column(unique = true, nullable = false)
-    private String userSefaz;
     
     // Declaração de relação 1:n da entidade usuario com a entidade empresa no banco de dados.
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -52,14 +46,10 @@ public class UserModel extends ClientModel{
     public UserModel(UserDto dados){
         super(dados.cnpj(), new BCryptPasswordEncoder().encode(dados.senha()), ClientRole.USER);
         this.email = dados.email();
-        this.senhaSefaz = dados.senhaSefaz();
-        this.userSefaz = dados.userSefaz();
     }
 
     public void editUser(EditUserDto dados){
         super.setUsername(dados.cnpj());
         this.email = dados.email();
-        this.senhaSefaz = dados.senhaSefaz();
-        this.userSefaz = dados.userSefaz(); 
     }
 }

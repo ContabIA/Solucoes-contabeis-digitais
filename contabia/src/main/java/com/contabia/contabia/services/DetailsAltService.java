@@ -35,7 +35,7 @@ public class DetailsAltService {
 
         // Busca no banco a nota que deve ser mostrado os detalhes e cria o objeto de transferência de dados.
         NotasModel nota = notasRepository.findById(idNota).get();
-        NotasDto notaDto = new NotasDto(idNota, nota.getData(), nota.getSerie(), nota.getNomeEmitente(), nota.getSituacao(), nota.getValor(), nota.getEmpresaNotas().getCnpj());
+        NotasDto notaDto = new NotasDto(idNota, nota.getNumero(), nota.getData(), nota.getSerie(), nota.getNomeEmitente(), nota.getSituacao(), nota.getValor(), nota.getEmpresaNotas().getCnpj());
 
         return notaDto; // Retorna o DTO da nota.
     }
@@ -80,7 +80,7 @@ public class DetailsAltService {
         if (OptionalListaNotas.isPresent()){
             for (NotasModel nota : OptionalListaNotas.get()) {
                 if (nota.getData().getMonth().toString().equals(mes)){
-                    Notas.add(new NotasDto(nota.getId(), nota.getData(), nota.getSerie(), nota.getNomeEmitente(), nota.getSituacao(), nota.getValor(), cnpjEmpresa));
+                    Notas.add(new NotasDto(nota.getId(), nota.getNumero(), nota.getData(), nota.getSerie(), nota.getNomeEmitente(), nota.getSituacao(), nota.getValor(), cnpjEmpresa));
                 }
             }
             

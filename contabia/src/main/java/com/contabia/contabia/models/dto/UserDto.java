@@ -31,11 +31,5 @@ public record UserDto(
     String email,
 
     @NotBlank
-    String senha,
-
-    @NotBlank
-    String senhaSefaz,
-
-    @NotBlank
-    String userSefaz
+    String senha
 ) {}

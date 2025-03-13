@@ -49,6 +49,9 @@ public class NotasModel {
     private Long id;
 
     @Column(unique = false, nullable = false)
+    private int numero;
+
+    @Column(unique = false, nullable = false)
     private LocalDate data;
 
     @Column(unique = false, nullable = false)
