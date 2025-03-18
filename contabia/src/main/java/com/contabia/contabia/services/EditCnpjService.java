@@ -50,6 +50,8 @@ public class EditCnpjService {
                 //obtem as consultas referentes à empresa em questão
                 List<ConsultasModel> consultas = consultasRepository.findByEmpresaConsulta(empresa);
 
+                System.out.println(consultas);
+
                 //verifica quais consultas já estão programadas para a empresa
                 for (ConsultasModel consultasModel : consultas) {                
                     if(consultasModel.getTipoConsulta() == 1) model.addAttribute("sefazStatus", true);
@@ -63,6 +65,9 @@ public class EditCnpjService {
                 //envia para o thymeleaf a frequência atual que as consultas possuem
                 //Isso é feito com base no tipo das consultas da lista "consultas" e no nome salvo no HashMap "nomeAtributo"
                 for(int i = 0; i < consultas.size(); i++){
+
+                    System.out.println(nomeAtributo.get(consultas.get(i).getTipoConsulta()) + Integer.toString(consultas.get(i).getFrequencia()));
+
                     model.addAttribute(nomeAtributo.get(consultas.get(i).getTipoConsulta()) + Integer.toString(consultas.get(i).getFrequencia()), true);
                 }
 

@@ -48,11 +48,11 @@ public class RegCnpjService {
             empresaRepository.save(empresa);
 
             //caso tenha sido marcado alguma consulta na página, esta também será adicionada ao banco de dados
-            if (dadosEmpresa.checkboxSefaz().isPresent()){
+            if (dadosEmpresa.checkboxSefaz().get()){
                 consultaRepository.save(new ConsultasModel(1, dadosEmpresa.frequenciaSefaz(), empresa));
             }
 
-            if (dadosEmpresa.checkboxCndt().isPresent()){
+            if (dadosEmpresa.checkboxCndt().get()){
                 consultaRepository.save(new ConsultasModel(3, dadosEmpresa.frequenciaCndt(), empresa));
             }
         }
