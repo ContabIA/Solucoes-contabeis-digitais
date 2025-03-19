@@ -1,5 +1,7 @@
 from .operationInterface import OperationInterface
+from services.sefazOperationService import runAutomation
 import requests
+
 
 class SefazOperation(OperationInterface):
 
@@ -15,7 +17,8 @@ class SefazOperation(OperationInterface):
         return response.text
     
     async def run(self):
-        return await super().run()
+        b = await runAutomation()
+        print(b)
 
 
     async def test(self):

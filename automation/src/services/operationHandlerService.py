@@ -10,6 +10,6 @@ async def operations_in_sequence(run_args : dict):
             print("sevices/operationHandlerService.py - operations_in_sequence - runing operation:", o)
         
         operation = operationsDict.get(o)(run_args)
-        cnpjs = await operation.get_data()
-        print(cnpjs)
+        await operation.run()
+    
         
