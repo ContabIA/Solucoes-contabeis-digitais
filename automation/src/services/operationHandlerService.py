@@ -1,5 +1,6 @@
 from enums.operationEnum import operationsDict
 
+
 async def operations_in_sequence(run_args : dict):
     operations_list = run_args.get("operations")
     
@@ -9,5 +10,6 @@ async def operations_in_sequence(run_args : dict):
             print("sevices/operationHandlerService.py - operations_in_sequence - runing operation:", o)
         
         operation = operationsDict.get(o)(run_args)
-        await operation.test()
-
+        cnpjs = await operation.get_data()
+        print(cnpjs)
+        

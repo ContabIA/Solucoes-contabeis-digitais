@@ -8,13 +8,14 @@ class SefazOperation(OperationInterface):
             super().__init__(run_arg)
 
 
+    # NÃO ESTÁ FUNCIONANDO (FALTA CRIAR O TOKEN JWT PARA A AUTENTICAÇÃO) 
     async def get_data(self):
-        response = requests.get("http:localhost:8080/automation/getCnpj", {
-            "frequencia" : self.run_args.get("frequency"),
-            "tipoConsulta" : 1
-        })
-
-        return response.json()
+        freq = self.run_args.get("frequency")
+        response = requests.get(f"http://localhost:8080/automation/getCnpjs?frequencia={freq}&tipoConsulta=1")
+        return response.text
+    
+    async def run(self):
+        return await super().run()
 
 
     async def test(self):

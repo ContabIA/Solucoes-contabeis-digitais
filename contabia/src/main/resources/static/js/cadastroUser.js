@@ -22,8 +22,6 @@ mainForm.addEventListener("submit", (event) => {
         cnpj : document.getElementById("cnpjCad").value.replace(/\D/g, ''),
         email : document.getElementById("emailCad").value,
         senha : document.getElementById("senhaCad").value,
-        senhaSefaz : document.getElementById("senhaSefazCad").value,
-        userSefaz: document.getElementById("sefazCad").value,
     };
     // alert(JSON.stringify(body));
 

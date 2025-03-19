@@ -79,3 +79,6 @@ def analiseTxt():
                 lista_notas.append(nota)
 
     return lista_notas
+
+
+#const dateInit = new Date(dataAtual.getFullYear()+mod, dataAtual.getMonth()- (mod+1), 1).toLocaleDateString();

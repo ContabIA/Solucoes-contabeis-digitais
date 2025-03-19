@@ -38,10 +38,9 @@ public class SecurityConfigurations {
                     .requestMatchers("/styles/**", "/js/**", "/img/**").permitAll()
                     .requestMatchers("/login").permitAll()
                     .requestMatchers("/cadastro").permitAll()
-                    .requestMatchers("/automation/**").permitAll()
                     .requestMatchers("/redefinirSenha/**").permitAll()
                     .anyRequest().authenticated()
-                )   
+                )
 
                 .addFilterBefore(filterSecurity, UsernamePasswordAuthenticationFilter.class)
 
