@@ -11,6 +11,7 @@ app = FastAPI()
 class RunArgsBody(BaseModel):
     recursive: bool | None = None
     paralel: bool | None = None
+    sequence: bool | None = None
     debug: bool | None = None
     frequency: int | None = None
     operations: list | None = None
@@ -18,6 +19,7 @@ class RunArgsBody(BaseModel):
 
 class BodyRequest(BaseModel):
     run_args : RunArgsBody | None = None
+
 
 @app.get("/")
 async def root(body: Optional[BodyRequest]):
